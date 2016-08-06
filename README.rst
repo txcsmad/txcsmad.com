@@ -67,7 +67,7 @@ NPM, Python3
 
     $ git clone git@github.com:txcsmad/MAD-Web.git
 
-    Make sure you are using the pip for Python 3
+Make sure you are using the pip for Python 3
     $ pip install -r /path/to/requirements.txt
     $ npm install
 
