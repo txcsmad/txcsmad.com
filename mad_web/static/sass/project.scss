@@ -1,0 +1,113 @@
+
+// project specific CSS goes here
+
+////////////////////////////////
+		//Variables//
+////////////////////////////////
+
+// Alert colors
+
+$white: #fff;
+$mint-green: #d6e9c6;
+$black: #000;
+$pink: #f2dede;
+$dark-pink: #eed3d7;
+$red: #b94a48;
+$primary: #1EBD5F;
+$primary-dark: #0E6B34;
+$primary-text: #F2FFF2;
+
+////////////////////////////////
+		//General//
+////////////////////////////////
+
+a {
+  color: $primary;
+}
+
+.match_parent_width {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+input[type=text] {
+  width: 100%;
+}
+
+select {
+  width: 100%;
+}
+
+////////////////////////////////
+		//Alerts//
+////////////////////////////////
+
+// bootstrap alert CSS, translated to the django-standard levels of
+// debug, info, success, warning, error
+
+.alert-debug {
+  background-color: $white;
+  border-color: $mint-green;
+  color: $black;
+}
+
+.alert-error {
+  background-color: $pink;
+  border-color: $dark-pink;
+  color: $red;
+}
+
+////////////////////////////////
+		//Navbar//
+////////////////////////////////
+
+/* MAD Icon */
+.navbar-brand img {
+  height: 20px;
+}
+
+/* Navbar Main */
+.navbar-inverse {
+    background-color: $primary;
+    border-color: transparent;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: $primary;
+}
+
+/* Navbar Selected Tab */
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    background-color: $primary-dark;
+    color: $white;
+}
+
+/* Navbar Text */
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+    color: $primary-text;
+  }
+}
+
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-brand {
+    color: $primary-text;
+}
+
+////////////////////////////////
+		//Django Toolbar//
+////////////////////////////////
+
+// Display django-debug-toolbar.
+// See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+// and https://github.com/pydanny/cookiecutter-django/issues/317
+
+[hidden][style="display: block;"] {
+  display: block !important;
+}

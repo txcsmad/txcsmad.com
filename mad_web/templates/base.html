@@ -1,0 +1,141 @@
+{% load staticfiles i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}MAD{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% block css %}
+        <!-- Latest compiled and minified CSS -->
+        <!-- Your stuff: Third-party css libraries go here -->
+
+        <!-- This file store project specific CSS -->
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}"/>
+        <link href="{% static 'css/bootstrap_paper.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+        {% block extra-css %}{% endblock %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<div class="m-b">
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/mad-logo-15-16.svg' %}" alt="MAD Logo"/>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{% block about_tab %}{% endblock %} nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    {% if request.user.is_staff %}
+                        <li class="{% block members_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'users:list' %}">Members</a>
+                        </li>
+                        <li class="{% block notify_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'notify:notify' %}">Notify</a>
+                        </li>
+                        <li class="{% block go_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'go:list' %}">Go</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               aria-expanded="false"
+                               role="button"
+                               href="#">
+                                {{ user.get_username }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu"
+                                role="menu">
+                                <li>
+                                    <a href="{% url 'users:detail' request.user.username %}">{% trans "Profile" %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'users:update' %}">{% trans "Settings" %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a id="log-in-link" href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}
+        <p>Use this document as a way to quick start any new project.</p>
+    {% endblock content %}
+
+</div> <!-- /container -->
+
+{% block modal %}{% endblock modal %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+    <!-- Latest JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- Tether - a requirement for Bootstrap tooltips -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <!-- Your stuff: Third-party javascript libraries go here -->
+
+    <!-- place project specific Javascript in this file -->
+    <script src="{% static 'js/project.min.js' %}"></script>
+    {% block extra-js %}{% endblock %}
+{% endblock javascript %}
+</body>
+</html>
+

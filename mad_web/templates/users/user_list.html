@@ -1,0 +1,52 @@
+{% extends "users/base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Members{% endblock %}
+
+{% block extra-css %}
+    <link href="{% static 'css/bootstrap-sortable.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/bootstrap-sortable.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Members</h1>
+            </div>
+            <div class="tab-content">
+                <table class="table table-bordered table-striped sortable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th data-defaultsort="disabled">Actions</th>
+                    </tr>
+                    </thead>
+                    {% for user in user_list %}
+                        <tr>
+                            <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                {#                                <form class="btn-toolbar" method="post">#}
+                                {#                                    <button#}
+                                {#                                            type="submit"#}
+                                {#                                            class="btn btn-danger"#}
+                                {#                                            name="delete">#}
+                                {#                                        Delete#}
+                                {#                                    </button>#}
+                                {#                                </form>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

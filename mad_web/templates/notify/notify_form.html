@@ -1,0 +1,23 @@
+{% extends "notify/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Notify{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Send Notification</h1>
+            </div>
+            <div class="panel-body">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

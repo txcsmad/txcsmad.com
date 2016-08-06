@@ -1,0 +1,41 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block title %}Profile: {{ object.username }}{% endblock %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img src="{{ object.get_gravatar_image_url }}" class="img-thumbnail"/>
+                    {% if object == request.user %}
+                        <div class="caption">
+                            <p>
+                                <a href="https://en.gravatar.com/emails/" class="match_parent_width btn btn-primary"
+                                   role="button">
+                                    Change on Gravatar
+                                </a>
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h1>{{ object.full_name }}</h1>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Member Information</h1>
+                    </div>
+                    <div class="panel-body">
+                        <h5>Email: </h5>
+                        <p>{{ object.email }}</p>
+                        <h5>Graduation Date: </h5>
+                        <p>{{ object.graduation_date }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
