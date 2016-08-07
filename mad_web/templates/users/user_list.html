@@ -16,34 +16,110 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">Members</h1>
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="presentation">
+                        <a href="#disabled" aria-controls="profile" role="tab" data-toggle="tab">
+                            Disabled
+                        </a>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a href="#member" aria-controls="home" role="tab" data-toggle="tab">
+                            Member
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#officer" aria-controls="profile" role="tab" data-toggle="tab">
+                            Officer
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#sponsor" aria-controls="profile" role="tab" data-toggle="tab">
+                            Sponsor
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="tab-content">
-                <table class="table table-bordered table-striped sortable">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th data-defaultsort="disabled">Actions</th>
-                    </tr>
-                    </thead>
-                    {% for user in user_list %}
+                <div role="tabpanel" class="tab-pane" id="disabled">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
                         <tr>
-                            <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
-                            <td>{{ user.email }}</td>
-                            <td>
-                                {#                                <form class="btn-toolbar" method="post">#}
-                                {#                                    <button#}
-                                {#                                            type="submit"#}
-                                {#                                            class="btn btn-danger"#}
-                                {#                                            name="delete">#}
-                                {#                                        Delete#}
-                                {#                                    </button>#}
-                                {#                                </form>#}
-                            </td>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th data-defaultsort="disabled">Actions</th>
                         </tr>
-                    {% endfor %}
-                </table>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_disabled %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="member">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th data-defaultsort="disabled">Actions</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_member %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="officer">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th data-defaultsort="disabled">Actions</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_officer %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="sponsor">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th data-defaultsort="disabled">Actions</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_sponsor %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
 

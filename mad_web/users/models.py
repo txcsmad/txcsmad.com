@@ -25,6 +25,20 @@ class User(AbstractUser):
         return 'https://secure.gravatar.com/avatar/' + hashlib.md5(
             self.email.lower().encode('utf-8')).hexdigest() + '?s=300'
 
+    # User Type
+
+    def is_disabled(self):
+        return not self.is_active
+
+    def is_member(self):
+        return self.is_active and not self.is_staff and not self.groups.filter(name="Sponsor").exists()
+
+    def is_officer(self):
+        return self.is_staff
+
+    def is_sponsor(self):
+        return self.groups.filter(name="Sponsor").exists()
+
 
 class UserService():
     # User Getters
@@ -34,7 +48,7 @@ class UserService():
         user_list = User.objects.all()
         inactive_list = []
         for user in user_list:
-            if not user.is_active:
+            if user.is_disabled():
                 inactive_list.append(user)
         return inactive_list
 
@@ -43,7 +57,7 @@ class UserService():
         user_list = User.objects.all()
         active_list = []
         for user in user_list:
-            if user.is_active and not user.is_staff and not user.groups.get("Sponsor"):
+            if user.is_member():
                 active_list.append(user)
         return active_list
 
@@ -52,7 +66,7 @@ class UserService():
         user_list = User.objects.all()
         staff_list = []
         for user in user_list:
-            if user.is_staff:
+            if user.is_officer():
                 staff_list.append(user)
         return staff_list
 
@@ -60,14 +74,14 @@ class UserService():
     def get_sponsor_users(self):
         return Group.objects.get("Sponsor").user_set
 
-        # Email Getters
+    # Email Getters
 
     @staticmethod
     def get_inactive_users_emails(self):
         user_list = User.objects.all()
         inactive_email_list = []
         for user in user_list:
-            if not user.is_active:
+            if user.is_disabled():
                 inactive_email_list.append(user.email)
         return inactive_email_list
 
@@ -76,7 +90,7 @@ class UserService():
         user_list = User.objects.all()
         active_email_list = []
         for user in user_list:
-            if user.is_active and not user.is_staff and not user.groups.get("Sponsor"):
+            if user.is_member():
                 active_email_list.append(user.email)
         return active_email_list
 
@@ -85,7 +99,7 @@ class UserService():
         user_list = User.objects.all()
         officer_email_list = []
         for user in user_list:
-            if user.is_staff:
+            if user.is_officer():
                 officer_email_list.append(user.email)
         return officer_email_list
 
