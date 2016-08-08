@@ -29,6 +29,10 @@ select {
   background-color: transparent;
 }
 
+.btn-primary {
+  background-color: $primary;
+}
+
 ////////////////////////////////
 //Alerts//
 ////////////////////////////////
@@ -91,13 +95,13 @@ select {
 /* Navbar Text */
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: $primary-text;
+    color: $primary-light;
   }
 }
 
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-brand {
-  color: $primary-text;
+  color: $primary-light;
 }
 
 ////////////////////////////////

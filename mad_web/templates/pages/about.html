@@ -3,7 +3,7 @@
 {% block about_tab %}active{% endblock %}
 
 {% block extra-css %}
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/about.min.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -112,7 +112,7 @@
             </div>
         </div>
     </section>
-    <section id="officers" class="dark-section">
+    <section id="officers">
         <div class="container text-center">
             <h2>Officers</h2>
             <ul class="team-members">
@@ -309,7 +309,7 @@
             </div>
         </div>
     </section>
-    <section id="contact" class="dark-section">
+    <section id="contact">
         <div class="container">
             <div class="text">
                 <ul class="social">

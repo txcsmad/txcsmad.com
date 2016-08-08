@@ -16,6 +16,9 @@ select {
   width: 100%;
   background-color: transparent; }
 
+.btn-primary {
+  background-color: #1EBD5F; }
+
 .alert-debug {
   background-color: #fff;
   border-color: #d6e9c6;
