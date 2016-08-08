@@ -13,7 +13,8 @@ input[type=text] {
   width: 100%; }
 
 select {
-  width: 100%; }
+  width: 100%;
+  background-color: transparent; }
 
 .alert-debug {
   background-color: #fff;
