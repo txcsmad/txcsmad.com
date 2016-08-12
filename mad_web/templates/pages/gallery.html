@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_footer.html" %}
 {% load static %}
 {% block gallery_tab %}active{% endblock %}
 
 {% block extra-css %}
-
+    {{ block.super }}
 {% endblock %}
 
 {% block content %}

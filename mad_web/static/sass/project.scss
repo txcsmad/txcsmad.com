@@ -1,4 +1,4 @@
-@import "./_variables.scss";
+@import "variables";
 
 // project specific CSS goes here
 
@@ -7,15 +7,16 @@
 ////////////////////////////////
 
 body {
-    line-height: 1.5;
     font-weight: 400;
+  font-size: 16px;
     font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #5D5D5D;
-    background-color: #FFFBF5;
+  background-color: $off-white;
     margin: 0;
 }
 
 section {
+  line-height: 1.5;
     height: auto;
     overflow: auto;
     position: relative;
@@ -26,15 +27,19 @@ section {
 .primary-color-section {
     background-color: $primary;
   color: $white;
-}
 
-.primary-color-section h1,
-.primary-color-section h2,
-.primary-color-section h3,
-.primary-color-section h4 {
+  a.btn {
+    border-color: $white;
+    color: $white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
   color: inherit;
 }
-
+}
 
 section .container {
     padding: 24px 0 0 0;
@@ -171,12 +176,52 @@ select {
 }
 
 ////////////////////////////////
+//Footer//
+////////////////////////////////
+#contact {
+  background-color: $charcoal;
+  color: $white;
+  text-align: center;
+}
+
+#contact .text {
+  display: flex;
+}
+
+#contact li:hover {
+  color: rgba(255, 255, 255, 0.6)
+}
+
+#contact * {
+  color: inherit;
+  font-weight: 300;
+}
+
+#contact .social {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 6px;
+  opacity: .8;
+}
+
+#contact .social li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+#contact .social li a {
+  font-size: 18px;
+}
+
+#contact .copyright {
+  opacity: .8;
+}
+
+////////////////////////////////
 //Wide devices//
 ////////////////////////////////
 
 @media screen and (min-width: 900px) {
-
-
   section .text .lead {
     font-weight: bold;
   }
@@ -191,7 +236,6 @@ select {
     font-weight: 900;
   }
 
-
   section {
     padding: 0 0 82px 0;
   }
@@ -202,5 +246,20 @@ select {
 
   section .container {
     padding: 82px 24px 0px 24px;
+  }
+
+  #contact {
+    padding: 0 0 12px 0;
+  }
+  #contact .text p {
+    flex: 1;
+  }
+  #contact .social {
+    margin: 0;
+    float: left;
+  }
+  #contact .copyright {
+    display: inline-block;
+    text-align: right;
   }
 }

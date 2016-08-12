@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_footer.html" %}
 {% load static %}
 {% block about_tab %}active{% endblock %}
 
 {% block extra-css %}
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    {{ block.super }}
     <link href="{% static 'css/about.min.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -37,7 +37,7 @@
 
                     <p>At the core of MAD's teaching are the weekly workshops that provide UT students with a place to
                         learn Android, iOS, Web Dev and Windows.</p>
-                    <a class="button" href="#">Workshops</a>
+                    <a class="btn btn-outline-inverse" href="#">Workshops</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -48,7 +48,7 @@
 
                     <p>MAD gives students to opportunity to learn from their peers, work together on projects, and get
                         mentorship from industry engineers at special monthly Hack Nights.</p>
-                    <a class="button" href="#">Calendar</a>
+                    <a class="btn btn-outline-inverse" href="#">Calendar</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -60,7 +60,7 @@
                     <p>The University of MAD is an annual student-run developer conference that aims to provide an
                         environment to learn, develop, and grow. The schedule is a mixture of technical sessions taught
                         by industry engineers, tech talks, and coding challenges.</p>
-                    <a href="http://umad.me" class="button">uMAD</a>
+                    <a href="http://umad.me" class="btn btn-outline-inverse">uMAD</a>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                     <p>We post Facebook events for all MAD workshops and special events. Join
                         our group to keep connected.
                     </p>
-                    <a class="button" href="https://facebook.com/groups/MADstudentorg/">Facebook</a>
+                    <a class="btn btn-outline-inverse" href="https://facebook.com/groups/MADstudentorg/">Facebook</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -95,7 +95,7 @@
                     <p>We send out a period snapshot of upcoming events and news. It's the best way
                         to start your week.
                     </p>
-                    <a class="button"
+                    <a class="btn btn-outline-inverse"
                        href="http://utexas.us11.list-manage2.com/subscribe?u=6f3fe0c9b406d07293921cf6f&amp;id=51457d076d">Subscribe</a>
                 </div>
                 <div class="col-md-4">
@@ -108,7 +108,7 @@
                     <p>Our calendar has the name, location and time of all our upcoming events.
                         Check back for breaking changes.
                     </p>
-                    <a class="button" href="#">Calendar</a></div>
+                    <a class="btn btn-outline-inverse" href="#">Calendar</a></div>
             </div>
         </div>
     </section>
@@ -257,13 +257,13 @@
             </ul>
         </div>
     </section>
-    <section id="sponsors">
+    <section id="partners">
         <div class="container text-center">
             <h2>Partners</h2>
             <ul class="thumbnails">
                 <li class="full-width">
                     <a href="http://a16z.com/" target="_new">
-                        <img title="Sponsor" src="{% static 'images/partners/a16z.svg' %}"/>
+                        <img src="{% static 'images/partners/a16z.svg' %}"/>
                     </a></li>
                 <li class="full-width">
                     <a href="http://www.microsoft.com/en-us/default.aspx" target="_new">
@@ -305,24 +305,6 @@
             <div class="text">
                 <p>Interested in becoming a partner? Email us at <a
                         href="mailto:mad@cs.utexas.edu">mad@cs.utexas.edu</a>
-                </p>
-            </div>
-        </div>
-    </section>
-    <section id="contact">
-        <div class="container">
-            <div class="text">
-                <ul class="social">
-                    <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
-                            class="fa fa-slack"></i></a></li>
-                    <li><a href="https://facebook.com/groups/MADstudentorg/" data-toggle="tooltip" title="Facebook"><i
-                            class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/txcsmad" data-toggle="tooltip" title="Twitter"><i
-                            class="fa fa-twitter"></i></a></li>
-                    <li><a href="https://github.com/txcsmad" data-toggle="tooltip" title="Github"><i
-                            class="fa fa-github"></i></a></li>
-                </ul>
-                <p class="copyright"> © 2016 MAD at The University of Texas at Austin
                 </p>
             </div>
         </div>

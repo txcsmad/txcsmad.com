@@ -1,10 +1,126 @@
-{% extends "base.html" %}
+{% extends "base_footer.html" %}
 {% load static %}
 {% block labs_tab %}active{% endblock %}
 
 {% block extra-css %}
+    {{ block.super }}
+    <link href="{% static 'css/labs.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <section id="labs-head" class=" labs-head">
+        <canvas id="bubbles"></canvas>
+        <div class="container">
+            <img class="logo" alt="MAD"
+                 src="{% static 'images/madlabs-wordmark.svg' %}">
+
+            <div class="text">
+                <p>MAD Labs is a subset of the most <em>technically experienced</em> and <em>passionate</em> MAD members
+                    that focuses on creating <em>quality mobile apps</em> for others. Members specialize in iOS,
+                    Android, Windows or web platforms.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container full-width-text">
+            <div class="text emphasized">
+                <p><span class="lead">Simple apps can have an extraordinary impact,</span> but the communities that
+                    might benefit often don't have the means or expertise to build them. MAD Labs aims to provide
+                    development work to non-profit groups to help them achieve their goals. As a student organization,
+                    many of our projects serve the larger Austin community, other student orgs at UT Austin, or MAD
+                    itself.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-figure dark-section">
+        <div class="container">
+            <div class="two-up">
+                <div class="figure-block">
+                    <img class="screen" src="{% static "images/screenshots/umad-app-android.png" %}"/>
+                </div>
+                <div class="figure-block text">
+                    <h2>Featured Work</h2>
+                    <h3>uMAD</h3>
+                    <p>Developed simultaneously across four platforms, the uMAD application provides
+                        attendees with up to date information about schedule changes, event locations, food
+                        and more. The app is updated for each uMAD and is in its second release.</p>
+                    <ul class="platform-icons">
+                        <li><a href="https://play.google.com/store/apps/details?id=com.mad.umad&hl=en"><i
+                                class="fa fa-android"></i></a></li>
+                        <li><a href="http://itunes.apple.com/us/app/umad-university-of-mad/id964728751?mt=8&uo=4"><i
+                                class="fa fa-apple"></i></a></li>
+                        <li><a href="http://www.windowsphone.com/s?appid=40f88ecc-dcf0-44ff-8deb-a88e5fc0d77b"><i
+                                class="fa fa-windows"></i></a></li>
+                        <li><a href="http://umad.me/"><i class="fa fa-link"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="apps-background idea-submission">
+        <div class="container full-width-text">
+            <div class="text centered"><p><span class="lead">Have an idea for a not-for-profit app that could benefit the community?</span>
+            </p>
+                <a href="http://goo.gl/forms/nVjsBsSo5o" class="button">Submit an idea</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>The Team</h2>
+            <div class="two-up">
+                <div class="figure-block text">
+                    <p><span class="lead">Labs members have a passion for mobile development and a desire to create things that help others.</span>
+                        Every new project is an opportunity for service, leadership and learning. The MAD Labs team
+                        welcomes new members through one-to-one mentorships with our current members.
+                    </p>
+                </div>
+                <div class="figure-block">
+                    <p>Join some of your most skilled peers to create apps with purpose!</p>
+                    <a href="http://goo.gl/forms/xhPxVAPt1W" class="button disabled">Interest form closed</a>
+                </div>
+            </div>
+    </section>
+
+    <section class="labs-color-section">
+        <div class="container full-width-text">
+            <h2>FAQ</h2>
+            <div class="text faq">
+                <dl>
+                    <dt>I'm not sure if my app proposal would work for Labs. Who should I talk to?</dt>
+                    <dd>We encourage you to submit with as much information as you have. We will reach out for
+                        clarification if needed, and will respond promptly to let you know whether Labs can work on your
+                        project.
+                    </dd>
+                    <dt>What are the obligations of a Labs member?</dt>
+                    <dd>Be willing to learn, and be willing to mentor. Be available for monthly
+                        meetings, and have time to make contributions on a regular basis.
+                    </dd>
+                    <dt>What does Labs look for in new developers?</dt>
+                    <dd>Demonstrated experience in mobile development or a belligerent desire to learn, as
+                        well as shared values.
+                    </dd>
+                    <dt>When will the developer interest form open?</dt>
+                    <dd>Labs projects take varying amounts of coordination and planning before
+                        development can begin, and the team roster fluctuates according to availability.
+                        We collect interest forms only when we are confident that we have a project
+                        ready for development.
+                    </dd>
+                    <dt>What if I become busy and can no longer contribute?</dt>
+                    <dd>It happens. We ask members to give us as much advance notice as possible, and to mentor a new
+                        developer if they can.
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
 
-{% block content %}
+{% block extra-js %}
+    <script src="{% static 'js/bubbles.js' %}"></script>
 {% endblock %}

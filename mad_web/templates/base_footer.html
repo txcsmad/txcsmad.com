@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra-css %}
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <p>Extend this template</p>
+{% endblock %}
+
+{% block footer %}
+    <section id="contact">
+        <div class="container">
+            <div class="text">
+                <ul class="social">
+                    <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
+                            class="fa fa-slack"></i></a></li>
+                    <li><a href="https://facebook.com/groups/MADstudentorg/" data-toggle="tooltip" title="Facebook"><i
+                            class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/txcsmad" data-toggle="tooltip" title="Twitter"><i
+                            class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://github.com/txcsmad" data-toggle="tooltip" title="Github"><i
+                            class="fa fa-github"></i></a></li>
+                </ul>
+                <p class="copyright"> © 2016 MAD at The University of Texas at Austin
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

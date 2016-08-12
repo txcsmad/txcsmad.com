@@ -1,10 +1,151 @@
-{% extends "base.html" %}
+{% extends "base_footer.html" %}
 {% load static %}
 {% block workshops_tab %}active{% endblock %}
 
 {% block extra-css %}
-
+    {{ block.super }}
 {% endblock %}
 
 {% block content %}
+
+    <section id="schedule">
+        <div class="container">
+            <h2>Workshops</h2>
+
+            <div class="text row">
+                <div class="col-md-4">
+                    <h3>Beginner</h3>
+                    <p>Our weekly workshops aim to help new developers get started with mobile technologies, regardless
+                        of their background. Every week, one or multiple sessions of
+                        our beginner classes meets to discuss and program. Instructors prepare materials in advance and
+                        publish resources before and after each session. These resources can be found under our <a
+                                href="https://github.com/txcsmad" title="MAD Github Org">GitHub organization</a>.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Spotlight</h3>
+                    <p>Topical workshops are scheduled occasionally for each platform, providing a place to dive deeper
+                        on specific technologies. They may cover advanced frameworks, in depth case studies or
+                        interesting API use cases, anything that will enrich a developer's understanding of the
+                        platform.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Partner</h3>
+                    <p>MAD has more than ten fantastic partners who are regularly invited to host their own workshops.
+                        They provide a unique perspective on various topics, and give you the chance to chat with
+                        professional engineers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="instructors" class="dark-section">
+        <div class="container">
+            <h2>Instructors</h2>
+            <div class="text">
+                Our instructors work hard to put together materials for workshops, and make themselves
+                regularly available for office hours. They're friendly people who are interested in helping you learn,
+                and will
+                always foster a positive learning environment.
+            </div>
+            <div class="instructors">
+                <div class="two-items">
+                    <h3>Web</h3>
+                    <ul>
+                        <li>
+                            <img alt="" src="{% static "images/team/brian.jpg" %}">
+                            <h4>Brian Cui</h4>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static "images/team/nishanth.jpg" %}">
+                            <h4>Nishanth Shanmugham</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="two-items">
+                    <h3>Android</h3>
+                    <ul>
+                        <li>
+                            <img alt="" src="{% static "images/team/frank.jpg" %}">
+                            <h4>Frank Long</h4>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static "images/team/kieran.jpg" %}">
+                            <h4>Kieran Vanderslice</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Windows</h3>
+                    <ul>
+                        <li>
+                            <img alt="" src="{% static "images/team/mustafa.jpg" %}">
+                            <h4>Mustafa Taleb</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="two-items">
+                    <h3>iOS</h3>
+                    <ul>
+                        <li>
+                            <img alt="" src="{% static "images/team/jesse.jpg" %}">
+                            <h4>Jesse Tipton</h4>
+                        </li>
+                        <li>
+                            <img alt="" src={% static "images/team/matt.jpg" %}">
+                        <h4>Matt Ruston</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id=" courses">
+                            <div class="container">
+                                <div class="text">
+                                    <h2>Courses</h2>
+                                    <p>Keep an eye on the calendar for time and room changes. Also, follow the links to
+                                        the course's materials repo to get a better sense of content covered.</p>
+                                    <ul class="courses">
+                                        <a href="https://github.com/txcsmad/s16-android-beginner">
+                                            <li class="android beginner key"><h3>Android Beginner</h3> <span
+                                                    class="day-of-week">Mondays</span> <span class="time">6:30 pm - 7:30 pm</span>
+                                            </li>
+                                        </a>
+                                        <a href="https://github.com/txcsmad/s16-iOS-beginner">
+                                            <li class="ios beginner key"><h3>iOS Beginner</h3> <span
+                                                    class="day-of-week">Tuesdays</span> <span class="time">6:30 pm - 7:30 pm</span>
+                                            </li>
+                                        </a>
+                                        <a href="https://github.com/txcsmad/s16-web">
+                                            <li class="web beginner key"><h3>Web</h3> <span class="day-of-week">Wednesdays</span><span
+                                                    class="time"> 6:30 pm - 7:30 pm</span></li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+    </section>
+    <section id="calendar" class="dark-section">
+        <div class="container">
+            <div id="clndr"></div>
+            <div class="text">
+                <p>Subscribe to our <a
+                        href="https://www.google.com/calendar/ical/pha78jqta89ctlsjhou0due2jk%40group.calendar.google.com/public/basic.ics">calendar</a>.
+                    For all of the latest, join our
+                    <a href="https://www.facebook.com/groups/MADstudentorg/">Facebook group</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="umad-callout" class="mad-color-section">
+        <div class="container">
+            <div class="umad-block">
+                <img src="{% static "images/umad-emblem.png" %}" alt="uMAD Emblem" class="emblem"/>
+                <div class="text-side">
+                    <p>The best student conference in the nation.</p>
+                    <a class="button" href="http://umad.me">uMAD</a>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
