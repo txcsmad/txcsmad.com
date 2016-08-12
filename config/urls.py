@@ -11,6 +11,9 @@ from django.views import defaults as default_views
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
+    url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
+    url(r'^gallery/$', TemplateView.as_view(template_name='pages/gallery.html'), name='gallery'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, include(admin.site.urls)),

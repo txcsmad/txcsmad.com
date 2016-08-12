@@ -8,8 +8,15 @@ Main hub for MAD online
      :alt: Built with Cookiecutter Django
 
 
-LICENSE: MIT
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+    :target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
+    :alt: MIT Licensed
 
+
+Usage
+------------
+
+Install Python 3.5, Postgres, and Sass. Use pip to install the local requirements. Create a Postgres database named `mad_web` and a user with your username. To use the bundled run configurations, install PyCharm.
 
 Settings
 ------------
