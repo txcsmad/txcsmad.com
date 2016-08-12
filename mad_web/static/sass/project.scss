@@ -6,6 +6,60 @@
 //General//
 ////////////////////////////////
 
+body {
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #5D5D5D;
+    background-color: #FFFBF5;
+    margin: 0;
+}
+
+section {
+    height: auto;
+    overflow: auto;
+    position: relative;
+    padding: 0 0 24px 0;
+    box-sizing: border-box;
+}
+
+.primary-color-section {
+    background-color: $primary;
+  color: $white;
+}
+
+.primary-color-section h1,
+.primary-color-section h2,
+.primary-color-section h3,
+.primary-color-section h4 {
+  color: inherit;
+}
+
+
+section .container {
+    padding: 24px 0 0 0;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 900;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 21px;
+}
+
+h4 {
+    font-weight: 700;
+}
+
 a {
   color: $primary;
 }
@@ -114,4 +168,39 @@ select {
 
 [hidden][style="display: block;"] {
   display: block !important;
+}
+
+////////////////////////////////
+//Wide devices//
+////////////////////////////////
+
+@media screen and (min-width: 900px) {
+
+
+  section .text .lead {
+    font-weight: bold;
+  }
+
+  section .text.emphasized {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 900;
+  }
+
+
+  section {
+    padding: 0 0 82px 0;
+  }
+
+  section h2 {
+    margin: 0 0 48px 0;
+  }
+
+  section .container {
+    padding: 82px 24px 0px 24px;
+  }
 }
