@@ -3,10 +3,11 @@ from django import forms
 
 from .models import User
 
+
 class UserSignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['full_name','nick_name', 'graduation_date']
+        fields = ['full_name', 'nick_name', 'graduation_date']
         widgets = {
             'full_name': forms.TextInput(attrs={'placeholder': 'Full Name'}),
             'nick_name': forms.TextInput(attrs={'placeholder': 'Nick Name'}),

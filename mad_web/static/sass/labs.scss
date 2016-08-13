@@ -1,13 +1,8 @@
-@import "variables";
+@import "colors";
 @import "device";
 
 .labs-page section.apps-background {
   background-image: url("../images/bg/app-icon-tile.png");
-  background-color: $charcoal;
-}
-
-.labs-page section {
-  background-color: #EEE;
 }
 
 .labs-page section.dark-section {
@@ -16,7 +11,7 @@
 
 section.labs-color-section {
   background-color: $labs-purple;
-  color: white;
+  color: $white;
 }
 
 section.labs-head {
@@ -28,8 +23,15 @@ section.labs-head {
   #694489;
   background-color: $labs-purple;
   background-size: 5px 5px, 5px 5px, cover, cover;
-  color: white;
+  color: $white;
   text-align: center;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: inherit;
+  }
 }
 
 #bubbles {

@@ -1,0 +1,27 @@
+#umad-callout {
+  background-image: url("../images/bg/shield-tile.png");
+  background-size: 15em auto, auto auto;
+  background-position: center -1em, 0% 0%; }
+
+#umad-callout .container {
+  width: 50%;
+  margin: 0 auto; }
+
+.umad-block {
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto; }
+
+.umad-block .text-side {
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding: 0 20px;
+  max-width: 200px;
+  display: -ms-flexbox;
+  display: flex; }
+
+#umad-callout .emblem {
+  display: block;
+  max-height: 150px; }

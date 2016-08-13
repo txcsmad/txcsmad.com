@@ -1,9 +1,10 @@
-{% extends "base_footer.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block workshops_tab %}active{% endblock %}
 
 {% block extra-css %}
     {{ block.super }}
+    <link href="{% static 'css/workshops.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -86,43 +87,43 @@
                     <h3>iOS</h3>
                     <ul>
                         <li>
-                            <img alt="" src="{% static "images/team/jesse.jpg" %}">
+                            <img alt="" src="{% static "images/team/jesse.jpg" %}"/>
                             <h4>Jesse Tipton</h4>
                         </li>
                         <li>
-                            <img alt="" src={% static "images/team/matt.jpg" %}">
-                        <h4>Matt Ruston</h4>
-                    </li>
+                            <img alt="" src="{% static "images/team/matt.jpg" %}"/>
+                            <h4>Matt Ruston</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=" courses">
+        <div class="container">
+            <div class="text">
+                <h2>Courses</h2>
+                <p>Keep an eye on the calendar for time and room changes. Also, follow the links to
+                    the course's materials repo to get a better sense of content covered.</p>
+                <ul class="courses">
+                    <a href="https://github.com/txcsmad/s16-android-beginner">
+                        <li class="android beginner key"><h3>Android Beginner</h3> <span
+                                class="day-of-week">Mondays</span> <span class="time">6:30 pm - 7:30 pm</span>
+                        </li>
+                    </a>
+                    <a href="https://github.com/txcsmad/s16-iOS-beginner">
+                        <li class="ios beginner key"><h3>iOS Beginner</h3> <span
+                                class="day-of-week">Tuesdays</span> <span class="time">6:30 pm - 7:30 pm</span>
+                        </li>
+                    </a>
+                    <a href="https://github.com/txcsmad/s16-web">
+                        <li class="web beginner key"><h3>Web</h3> <span class="day-of-week">Wednesdays</span><span
+                                class="time"> 6:30 pm - 7:30 pm</span></li>
+                    </a>
                 </ul>
             </div>
         </div>
-    </div>
-</section>
-
-<section id=" courses">
-                            <div class="container">
-                                <div class="text">
-                                    <h2>Courses</h2>
-                                    <p>Keep an eye on the calendar for time and room changes. Also, follow the links to
-                                        the course's materials repo to get a better sense of content covered.</p>
-                                    <ul class="courses">
-                                        <a href="https://github.com/txcsmad/s16-android-beginner">
-                                            <li class="android beginner key"><h3>Android Beginner</h3> <span
-                                                    class="day-of-week">Mondays</span> <span class="time">6:30 pm - 7:30 pm</span>
-                                            </li>
-                                        </a>
-                                        <a href="https://github.com/txcsmad/s16-iOS-beginner">
-                                            <li class="ios beginner key"><h3>iOS Beginner</h3> <span
-                                                    class="day-of-week">Tuesdays</span> <span class="time">6:30 pm - 7:30 pm</span>
-                                            </li>
-                                        </a>
-                                        <a href="https://github.com/txcsmad/s16-web">
-                                            <li class="web beginner key"><h3>Web</h3> <span class="day-of-week">Wednesdays</span><span
-                                                    class="time"> 6:30 pm - 7:30 pm</span></li>
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div>
     </section>
     <section id="calendar" class="dark-section">
         <div class="container">
@@ -137,13 +138,13 @@
         </div>
     </section>
 
-    <section id="umad-callout" class="mad-color-section">
+    <section id="umad-callout" class="primary-color-section">
         <div class="container">
             <div class="umad-block">
                 <img src="{% static "images/umad-emblem.png" %}" alt="uMAD Emblem" class="emblem"/>
                 <div class="text-side">
                     <p>The best student conference in the nation.</p>
-                    <a class="button" href="http://umad.me">uMAD</a>
+                    <a class="btn btn-default" href="http://umad.me">uMAD</a>
                 </div>
             </div>
         </div>

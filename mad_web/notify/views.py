@@ -5,6 +5,7 @@ from django.views.generic.edit import FormView
 
 from .forms import NotifyForm
 
+
 class NotifyView(FormView):
     template_name = 'notify/notify_form.html'
     form_class = NotifyForm

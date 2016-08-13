@@ -7,7 +7,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('go', '0002_auto_20160731_1747'),
     ]
@@ -16,6 +15,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='go',
             name='url',
-            field=models.CharField(help_text='Required. 255 characters or fewer.', max_length=255, validators=[django.core.validators.RegexValidator('(https?|ftp)://(-\\.)?([^\\s/?\\.#-]+\\.?)+(/[^\\s]*)?$@i', 'Enter a valid Go URL.')], verbose_name='URL'),
+            field=models.CharField(help_text='Required. 255 characters or fewer.', max_length=255, validators=[
+                django.core.validators.RegexValidator('(https?|ftp)://(-\\.)?([^\\s/?\\.#-]+\\.?)+(/[^\\s]*)?$@i',
+                                                      'Enter a valid Go URL.')], verbose_name='URL'),
         ),
     ]

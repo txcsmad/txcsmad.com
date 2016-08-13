@@ -8,7 +8,6 @@ from django.utils.timezone import utc
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('users', '0002_auto_20160731_1740'),
     ]
@@ -27,7 +26,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='graduation_year',
-            field=models.DateField(default=datetime.datetime(2016, 7, 31, 23, 37, 40, 904906, tzinfo=utc), verbose_name='Graduation Year'),
+            field=models.DateField(default=datetime.datetime(2016, 7, 31, 23, 37, 40, 904906, tzinfo=utc),
+                                   verbose_name='Graduation Year'),
             preserve_default=False,
         ),
         migrations.AddField(

@@ -1,5 +1,99 @@
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/Merriweather-Sans-regular/Merriweather-Sans-regular.eot");
+  src: url("../fonts/Merriweather-Sans-regular/Merriweather-Sans-regular.eot?#iefix") format("embedded-opentype"), local("Merriweather Sans"), local("Merriweather-Sans-regular"), url("../fonts/Merriweather-Sans-regular/Merriweather-Sans-regular.woff2") format("woff2"), url("../fonts/Merriweather-Sans-regular/Merriweather-Sans-regular.woff") format("woff"), url("../fonts/Merriweather-Sans-regular/Merriweather-Sans-regular.ttf") format("truetype"), url("../fonts/Merriweather-Sans-regular/Merriweather-Sans-regular.svg#MerriweatherSans") format("svg"); }
+
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-weight: 700;
+  font-style: normal;
+  src: url("../fonts/Merriweather-Sans-700/Merriweather-Sans-700.eot");
+  src: url("../fonts/Merriweather-Sans-700/Merriweather-Sans-700.eot?#iefix") format("embedded-opentype"), local("Merriweather Sans Bold"), local("Merriweather-Sans-700"), url("../fonts/Merriweather-Sans-700/Merriweather-Sans-700.woff2") format("woff2"), url("../fonts/Merriweather-Sans-700/Merriweather-Sans-700.woff") format("woff"), url("../fonts/Merriweather-Sans-700/Merriweather-Sans-700.ttf") format("truetype"), url("../fonts/Merriweather-Sans-700/Merriweather-Sans-700.svg#MerriweatherSans") format("svg"); }
+
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-weight: 400;
+  font-style: italic;
+  src: url("../fonts/Merriweather-Sans-italic/Merriweather-Sans-italic.eot");
+  src: url("../fonts/Merriweather-Sans-italic/Merriweather-Sans-italic.eot?#iefix") format("embedded-opentype"), local("Merriweather Sans Italic"), local("Merriweather-Sans-italic"), url("../fonts/Merriweather-Sans-italic/Merriweather-Sans-italic.woff2") format("woff2"), url("../fonts/Merriweather-Sans-italic/Merriweather-Sans-italic.woff") format("woff"), url("../fonts/Merriweather-Sans-italic/Merriweather-Sans-italic.ttf") format("truetype"), url("../fonts/Merriweather-Sans-italic/Merriweather-Sans-italic.svg#MerriweatherSans") format("svg"); }
+
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-weight: 700;
+  font-style: italic;
+  src: url("../fonts/Merriweather-Sans-700italic/Merriweather-Sans-700italic.eot");
+  src: url("../fonts/Merriweather-Sans-700italic/Merriweather-Sans-700italic.eot?#iefix") format("embedded-opentype"), local("Merriweather Sans Bold Italic"), local("Merriweather-Sans-700italic"), url("../fonts/Merriweather-Sans-700italic/Merriweather-Sans-700italic.woff2") format("woff2"), url("../fonts/Merriweather-Sans-700italic/Merriweather-Sans-700italic.woff") format("woff"), url("../fonts/Merriweather-Sans-700italic/Merriweather-Sans-700italic.ttf") format("truetype"), url("../fonts/Merriweather-Sans-700italic/Merriweather-Sans-700italic.svg#MerriweatherSans") format("svg"); }
+
+body {
+  padding-top: 64px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #5D5D5D;
+  background-color: #FAFAFA;
+  margin: 0; }
+
+.panel {
+  margin-top: 23px;
+  margin-bottom: 23px; }
+
+section {
+  line-height: 1.5;
+  height: auto;
+  overflow: auto;
+  position: relative;
+  padding: 0 0 24px 0;
+  box-sizing: border-box; }
+
+.primary-color-section {
+  background-color: #1EBD5F;
+  color: #fff; }
+  .primary-color-section h1,
+  .primary-color-section h2,
+  .primary-color-section h3,
+  .primary-color-section h4 {
+    color: inherit; }
+
+.dark-section {
+  background-color: #36454f;
+  color: #fff; }
+  .dark-section a.btn {
+    border-color: #fff;
+    color: #fff; }
+  .dark-section h1,
+  .dark-section h2,
+  .dark-section h3,
+  .dark-section h4 {
+    color: inherit; }
+
+section .container {
+  padding: 24px 0 0 0; }
+
+h1 {
+  font-size: 24px;
+  font-weight: 900; }
+
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 900; }
+
+h3 {
+  font-size: 21px;
+  font-weight: 700; }
+
+h4 {
+  font-weight: 700; }
+
 a {
   color: #1EBD5F; }
+
+.btn-disabled {
+  cursor: none;
+  opacity: .5;
+  pointer-events: none; }
 
 .match_parent_width {
   width: 100%; }
@@ -44,7 +138,8 @@ select {
 /* Navbar Main */
 .navbar-inverse {
   background-color: #1EBD5F;
-  border-color: transparent; }
+  border-color: transparent;
+  z-index: 10; }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
   border-color: #1EBD5F; }
@@ -62,7 +157,75 @@ select {
 
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-brand {
-  color: #F2FFF2; }
+  color: #F2FFF2;
+  font-size: 13px; }
 
 [hidden][style="display: block;"] {
   display: block !important; }
+
+html {
+  position: relative;
+  min-height: 100%; }
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  background-color: #36454f;
+  color: #fff;
+  text-align: center; }
+
+#footer .text {
+  display: -ms-flexbox;
+  display: flex; }
+
+#footer li:hover {
+  color: rgba(255, 255, 255, 0.6); }
+
+#footer * {
+  color: inherit;
+  font-weight: 300; }
+
+#footer .social {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 6px;
+  opacity: .8; }
+
+#footer .social li {
+  display: inline-block;
+  margin: 0 5px; }
+
+#footer .social li a {
+  font-size: 18px; }
+
+#footer .copyright {
+  opacity: .8; }
+
+@media screen and (min-width: 900px) {
+  section .text .lead {
+    font-weight: bold; }
+  section .text.emphasized {
+    font-size: 24px; }
+  h2 {
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 900; }
+  section {
+    padding: 0 0 82px 0; }
+  section h2 {
+    margin: 0 0 48px 0; }
+  section .container {
+    padding: 82px 24px 0px 24px; }
+  #footer {
+    padding: 0 0 12px 0; }
+  #footer .text p {
+    -ms-flex: 1;
+        flex: 1; }
+  #footer .social {
+    margin: 0;
+    float: left; }
+  #footer .copyright {
+    display: inline-block;
+    text-align: right; } }

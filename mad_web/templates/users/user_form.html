@@ -1,6 +1,18 @@
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
 
+{% block extra-css %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css"/>
+{% endblock %}
+
+{% block extra-js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $('#id_graduation_date').datepicker({});
+    </script>
+{% endblock %}
+
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block content %}

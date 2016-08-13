@@ -1,4 +1,6 @@
-@import "variables";
+@import "colors";
+@import "dimens";
+@import "fonts";
 
 // project specific CSS goes here
 
@@ -7,25 +9,43 @@
 ////////////////////////////////
 
 body {
-    font-weight: 400;
+  padding-top: $nav-bar-height;
+  font-weight: 400;
   font-size: 16px;
-    font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #5D5D5D;
-  background-color: $off-white;
-    margin: 0;
+  font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: $primary-text;
+  background-color: $primary-bg;
+  margin: 0;
+}
+
+.panel {
+  margin-top: 23px;
+  margin-bottom: 23px;
 }
 
 section {
   line-height: 1.5;
-    height: auto;
-    overflow: auto;
-    position: relative;
-    padding: 0 0 24px 0;
-    box-sizing: border-box;
+  height: auto;
+  overflow: auto;
+  position: relative;
+  padding: 0 0 24px 0;
+  box-sizing: border-box;
 }
 
 .primary-color-section {
-    background-color: $primary;
+  background-color: $primary;
+  color: $white;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: inherit;
+  }
+}
+
+.dark-section {
+  background-color: $charcoal;
   color: $white;
 
   a.btn {
@@ -37,36 +57,42 @@ section {
   h2,
   h3,
   h4 {
-  color: inherit;
-}
+    color: inherit;
+  }
 }
 
 section .container {
-    padding: 24px 0 0 0;
+  padding: 24px 0 0 0;
 }
 
 h1 {
-    font-size: 24px;
-    font-weight: 900;
+  font-size: 24px;
+  font-weight: 900;
 }
 
 h2 {
-    font-size: 24px;
-    line-height: 36px;
-    font-weight: 900;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 900;
 }
 
 h3 {
-    font-weight: 700;
-    font-size: 21px;
+  font-size: 21px;
+  font-weight: 700;
 }
 
 h4 {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 a {
   color: $primary;
+}
+
+.btn-disabled {
+  cursor: none;
+  opacity: .5;
+  pointer-events: none;
 }
 
 .match_parent_width {
@@ -112,7 +138,7 @@ select {
 }
 
 ////////////////////////////////
-//Tabs//
+//Non-Navbar Tabs//
 ////////////////////////////////
 
 .nav-tabs > li > a:hover,
@@ -138,6 +164,7 @@ select {
 .navbar-inverse {
   background-color: $primary;
   border-color: transparent;
+  z-index: 10;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
@@ -161,6 +188,7 @@ select {
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-brand {
   color: $primary-light;
+  font-size: 13px;
 }
 
 ////////////////////////////////
@@ -178,42 +206,51 @@ select {
 ////////////////////////////////
 //Footer//
 ////////////////////////////////
-#contact {
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
   background-color: $charcoal;
   color: $white;
   text-align: center;
 }
 
-#contact .text {
+#footer .text {
   display: flex;
 }
 
-#contact li:hover {
+#footer li:hover {
   color: rgba(255, 255, 255, 0.6)
 }
 
-#contact * {
+#footer * {
   color: inherit;
   font-weight: 300;
 }
 
-#contact .social {
+#footer .social {
   display: block;
   margin: 0 auto;
   margin-bottom: 6px;
   opacity: .8;
 }
 
-#contact .social li {
+#footer .social li {
   display: inline-block;
   margin: 0 5px;
 }
 
-#contact .social li a {
+#footer .social li a {
   font-size: 18px;
 }
 
-#contact .copyright {
+#footer .copyright {
   opacity: .8;
 }
 
@@ -248,17 +285,17 @@ select {
     padding: 82px 24px 0px 24px;
   }
 
-  #contact {
+  #footer {
     padding: 0 0 12px 0;
   }
-  #contact .text p {
+  #footer .text p {
     flex: 1;
   }
-  #contact .social {
+  #footer .social {
     margin: 0;
     float: left;
   }
-  #contact .copyright {
+  #footer .copyright {
     display: inline-block;
     text-align: right;
   }

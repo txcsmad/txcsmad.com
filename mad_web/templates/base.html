@@ -7,7 +7,10 @@
     <title>{% block title %}MAD{% endblock title %}</title>
     <meta name="description"
           content="Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms. ">
-    <meta property="og:image" content="http://www.cs.utexas.edu/users/mad/img/open-graph-banner.png" />
+    <meta property="og:image" content="http://www.cs.utexas.edu/users/mad/img/open-graph-banner.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}"/>
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +21,7 @@
     <![endif]-->
 
     {% block css %}
-         <!-- Google Fonts -->
-        <link href='//fonts.googleapis.com/css?family=Merriweather+Sans:400italic,400,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}"/>
-        <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}"/>
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap_paper.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
         {% block extra-css %}{% endblock %}
@@ -34,7 +32,7 @@
 <body>
 
 <div class="m-b">
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button class="navbar-toggle collapsed"
@@ -124,8 +122,24 @@
     <p>Use this document as a way to quick start any new project.</p>
 {% endblock content %}
 
-{% block footer %}
-{% endblock footer %}
+<section id="footer">
+    <div class="container">
+        <div class="text">
+            <ul class="social">
+                <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
+                        class="fa fa-slack"></i></a></li>
+                <li><a href="https://facebook.com/groups/MADstudentorg/" data-toggle="tooltip" title="Facebook"><i
+                        class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/txcsmad" data-toggle="tooltip" title="Twitter"><i
+                        class="fa fa-twitter"></i></a></li>
+                <li><a href="https://github.com/txcsmad" data-toggle="tooltip" title="Github"><i
+                        class="fa fa-github"></i></a></li>
+            </ul>
+            <p class="copyright"> © 2016 MAD at The University of Texas at Austin
+            </p>
+        </div>
+    </div>
+</section>
 
 {% block modal %}{% endblock modal %}
 

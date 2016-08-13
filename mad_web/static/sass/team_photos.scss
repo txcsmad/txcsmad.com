@@ -1,3 +1,5 @@
+@import "colors";
+
 .team-members {
   display: -webkit-flex;
   display: flex;
@@ -39,12 +41,14 @@ ul.team-members {
 }
 
 .team-members h4 {
-  display: inline-block;
+  float: left;
+  display: block;
+  font-size: 16px;
 }
 
 .team-members .social {
-  display: inline-block;
   float: right;
+  display: inline-block;
   list-style: none;
 }
 
@@ -59,14 +63,15 @@ ul.team-members {
 .team-members .role {
   font-size: 14px;
   font-weight: 300;
+  text-align: left;
+  float: left;
+  width: 100%;
   display: block;
   line-height: 1.1;
 }
 
-@media screen and (min-width: 900px) {
-  .team-members > li img {
-    max-width: 100%;
-    max-height: none;
-  }
+.team-members > li img {
+  max-width: 100%;
+  max-height: none;
 }
 

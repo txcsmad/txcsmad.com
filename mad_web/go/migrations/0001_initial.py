@@ -7,7 +7,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -17,8 +16,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Go',
             fields=[
-                ('id', models.CharField(error_messages={'unique': 'A Go Link with that ID already exists.'}, help_text='Required. 255 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=255, primary_key=True, serialize=False, unique=True, validators=[django.core.validators.RegexValidator('@[^a-zA-Z0-9_]+@', 'Enter a valid Go ID. This value may contain only letters, numbers and @/./+/-/_ characters.')], verbose_name='ID for Go')),
-                ('url', models.CharField(help_text='Required. 255 characters or fewer. Letters, digits and @/./+/-/_ only.', max_length=255, validators=[django.core.validators.RegexValidator('@(https?|ftp)://(-\\.)?([^\\s/?\\.#-]+\\.?)+(/[^\\s]*)?$@i', 'Enter a valid Go URL.')], verbose_name='URL')),
+                ('id', models.CharField(error_messages={'unique': 'A Go Link with that ID already exists.'},
+                                        help_text='Required. 255 characters or fewer. Letters, digits and @/./+/-/_ only.',
+                                        max_length=255, primary_key=True, serialize=False, unique=True, validators=[
+                        django.core.validators.RegexValidator('@[^a-zA-Z0-9_]+@',
+                                                              'Enter a valid Go ID. This value may contain only letters, numbers and @/./+/-/_ characters.')],
+                                        verbose_name='ID for Go')),
+                ('url',
+                 models.CharField(help_text='Required. 255 characters or fewer. Letters, digits and @/./+/-/_ only.',
+                                  max_length=255, validators=[django.core.validators.RegexValidator(
+                         '@(https?|ftp)://(-\\.)?([^\\s/?\\.#-]+\\.?)+(/[^\\s]*)?$@i', 'Enter a valid Go URL.')],
+                                  verbose_name='URL')),
             ],
         ),
     ]

@@ -1,4 +1,4 @@
-@import "variables";
+@import "colors";
 @import "team_photos";
 @import "partners";
 
@@ -11,7 +11,7 @@
   line-height: 100px;
   width: 100px;
   height: 100px;
-  margin: 0 auto 21px auto;
+  margin: 21px auto 21px auto;
   display: block;
   text-align: center;
   border-radius: 50%;
@@ -25,12 +25,13 @@
 }
 
 #about-us .text {
-    font-weight: 400;
-    font-size: 24px;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 #how-we-do-it {
   background-image: url("../images/bg/bg_icons.png");
+  background-position: center;
   background-size: contain;
 
   color: $white;
