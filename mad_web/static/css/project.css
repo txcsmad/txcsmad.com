@@ -90,6 +90,9 @@ h4 {
 a {
   color: #1EBD5F; }
 
+a:hover {
+  color: #0E6B34; }
+
 .btn-disabled {
   cursor: none;
   opacity: .5;

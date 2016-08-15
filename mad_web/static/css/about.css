@@ -4,7 +4,8 @@
   -ms-flex-flow: row wrap;
       flex-flow: row wrap;
   -ms-flex-pack: distribute;
-      justify-content: space-around; }
+      justify-content: space-around;
+  padding-left: 0; }
 
 ul.team-members {
   list-style: none; }
@@ -78,7 +79,8 @@ ul.team-members {
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
-      align-items: center; }
+      align-items: center;
+  padding-left: 0; }
 
 #partners .thumbnails img {
   max-height: 80px;

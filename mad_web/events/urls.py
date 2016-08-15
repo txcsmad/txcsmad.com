@@ -13,6 +13,16 @@ urlpatterns = [
         name='list'
     ),
     url(
+        regex=r'^calendar/$',
+        view=views.calendar,
+        name='calendar'
+    ),
+    url(
+        regex=r'^calendar/(?P<year>\d+)/(?P<month>\d+)/$',
+        view=views.calendar,
+        name='calendar'
+    ),
+    url(
         regex=r'^(?P<id>[\w.@+-]+)/$',
         view=views.EventDetailView.as_view(),
         name='detail'

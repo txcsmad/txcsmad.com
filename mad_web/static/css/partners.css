@@ -14,7 +14,8 @@
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
-      align-items: center; }
+      align-items: center;
+  padding-left: 0; }
 
 #partners .thumbnails img {
   max-height: 80px;

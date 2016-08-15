@@ -138,6 +138,11 @@
 section.labs-color-section {
   background-color: #694489;
   color: #fff; }
+  section.labs-color-section h1,
+  section.labs-color-section h2,
+  section.labs-color-section h3,
+  section.labs-color-section h4 {
+    color: inherit; }
 
 section.labs-head {
   overflow: none;
