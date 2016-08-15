@@ -113,6 +113,23 @@ select {
 .btn-primary {
   background-color: #1EBD5F; }
 
+.btn-flat {
+  background: none;
+  box-shadow: none; }
+
+.card .card-content {
+  display: block;
+  width: 100%;
+  -ms-flex-pack: start;
+      justify-content: flex-start; }
+
+.card .card-content img {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  width: 20%; }
+
 .alert-debug {
   background-color: #fff;
   border-color: #d6e9c6;

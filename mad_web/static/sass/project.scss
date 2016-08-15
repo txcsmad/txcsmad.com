@@ -118,6 +118,23 @@ select {
   background-color: $primary;
 }
 
+.btn-flat {
+  background: none;
+  box-shadow: none;
+}
+
+.card .card-content {
+  display: block;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.card .card-content img {
+  display: flex;
+  justify-content: flex-end;
+  width: 20%;
+}
+
 ////////////////////////////////
 //Alerts//
 ////////////////////////////////

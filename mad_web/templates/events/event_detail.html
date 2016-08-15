@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="col-md-9">
+                <h1>{{ object.title }}</h1>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Event Information</h1>
+                    </div>
+                    <div class="panel-body">
+                        <h5>Starts: </h5>
+                        <p>{{ object.start_time }}</p>
+                        <h5>Ends: </h5>
+                        <p>{{ object.end_time }}</p>
+                        <h5>Description: </h5>
+                        <p>{{ object.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

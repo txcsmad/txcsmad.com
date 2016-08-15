@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
+    url(r'^events/', include('mad_web.events.urls', namespace='events')),
     url(r'^go/', include('mad_web.go.urls', namespace='go')),
     url(r'^notify/', include('mad_web.notify.urls', namespace='notify'))
 

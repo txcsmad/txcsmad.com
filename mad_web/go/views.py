@@ -12,8 +12,6 @@ from mad_web.utils.utils import OfficerRequiredMixin
 
 class GoSetupView(LoginRequiredMixin, ListView):
     model = Go
-    slug_field = 'id'
-    slug_url_kwarg = 'id'
 
 
 def go(request, go_id):

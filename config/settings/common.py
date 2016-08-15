@@ -62,7 +62,9 @@ LOCAL_APPS = (
     # custom users app
     'mad_web.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'mad_web.events.apps.EventsConfig',
     'mad_web.go.apps.GoConfig',
+    'mad_web.notify.apps.NotifyConfig',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

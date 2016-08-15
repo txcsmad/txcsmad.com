@@ -1,15 +1,17 @@
 {% extends "users/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block extra-css %}
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block extra-js %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-material-datetimepicker.js' %}"></script>
     <script>
-        $('#id_graduation_date').datepicker({});
+        $('#id_graduation_date').bootstrapMaterialDatePicker({weekStart: 0, time: false, format: "YYYY-MM-DD"});
     </script>
 {% endblock %}
 

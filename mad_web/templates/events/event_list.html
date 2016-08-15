@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Events{% endblock %}
+
+{% block extra-css %}
+    <link href="{% static 'css/bootstrap-sortable.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/bootstrap-sortable.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for event in event_list %}
+            <div class="panel card">
+                <div class="card-content">
+                    <h1>{{ event.title }}</h1>
+                    <p>{{ event.start_time }}</p>
+                    <img src="{{ event.image_url }}"/>
+                </div>
+                <div class="card-actions">
+                    <a class="btn btn-flat" href="{% url 'events:detail' event.id %}">View</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
