@@ -98,6 +98,48 @@ a {
 .match_parent_width {
   width: 100%; }
 
+.btn-primary,
+.btn-primary:focus {
+  background-color: #1EBD5F; }
+
+.btn-primary:hover {
+  background-color: #0E6B34; }
+
+.btn-primary:active {
+  background-color: #0E6B34;
+  background-image: radial-gradient(circle, #0E6B34 10%, #1EBD5F 11%); }
+
+.btn-flat {
+  background: none;
+  box-shadow: none; }
+
+.card {
+  position: relative;
+  margin-top: 25px; }
+
+.card-content {
+  position: relative;
+  top: 16px;
+  left: 16px; }
+
+.card-actions {
+  position: relative;
+  padding-top: 60px;
+  bottom: 8px;
+  left: 8px; }
+
+.card-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 16px; }
+  .card-media img {
+    object-position: center;
+    /* Center the image within the element */
+    width: 100px;
+    height: 100px;
+    overflow: hidden; }
+
 textarea {
   width: 100%;
   min-width: 100%;
@@ -110,25 +152,8 @@ select {
   width: 100%;
   background-color: transparent; }
 
-.btn-primary {
-  background-color: #1EBD5F; }
-
-.btn-flat {
-  background: none;
-  box-shadow: none; }
-
-.card .card-content {
-  display: block;
-  width: 100%;
-  -ms-flex-pack: start;
-      justify-content: flex-start; }
-
-.card .card-content img {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: end;
-      justify-content: flex-end;
-  width: 20%; }
+.controls {
+  margin-bottom: 10px; }
 
 .alert-debug {
   background-color: #fff;
@@ -155,8 +180,7 @@ select {
 /* Navbar Main */
 .navbar-inverse {
   background-color: #1EBD5F;
-  border-color: transparent;
-  z-index: 10; }
+  border-color: transparent; }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
   border-color: #1EBD5F; }

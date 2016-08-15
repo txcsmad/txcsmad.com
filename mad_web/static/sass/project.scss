@@ -89,6 +89,10 @@ a {
   color: $primary;
 }
 
+////////////////////////////////
+//Buttons//
+////////////////////////////////
+
 .btn-disabled {
   cursor: none;
   opacity: .5;
@@ -98,6 +102,67 @@ a {
 .match_parent_width {
   width: 100%;
 }
+
+.btn-primary,
+.btn-primary:focus {
+  background-color: $primary;
+}
+
+.btn-primary:hover {
+  background-color: $primary-dark;
+}
+
+.btn-primary:active {
+  background-color: $primary-dark;
+  background-image: -webkit-radial-gradient(circle, $primary-dark 10%, $primary 11%);
+  background-image: -o-radial-gradient(circle, $primary-dark 10%, $primary 11%);
+  background-image: radial-gradient(circle, $primary-dark 10%, $primary 11%);
+}
+
+.btn-flat {
+  background: none;
+  box-shadow: none;
+}
+
+////////////////////////////////
+//Cards//
+////////////////////////////////
+
+.card {
+  position: relative;
+  margin-top: 25px;
+}
+
+.card-content {
+  position: relative;
+  top: 16px;
+  left: 16px;
+}
+
+.card-actions {
+  position: relative;
+  padding-top: 60px;
+  bottom: 8px;
+  left: 8px;
+}
+
+.card-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 16px;
+
+  img {
+    object-position: center; /* Center the image within the element */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+  }
+}
+
+////////////////////////////////
+//Forms//
+////////////////////////////////
 
 textarea {
   width: 100%;
@@ -114,25 +179,8 @@ select {
   background-color: transparent;
 }
 
-.btn-primary {
-  background-color: $primary;
-}
-
-.btn-flat {
-  background: none;
-  box-shadow: none;
-}
-
-.card .card-content {
-  display: block;
-  width: 100%;
-  justify-content: flex-start;
-}
-
-.card .card-content img {
-  display: flex;
-  justify-content: flex-end;
-  width: 20%;
+.controls {
+  margin-bottom: 10px;
 }
 
 ////////////////////////////////
@@ -181,7 +229,6 @@ select {
 .navbar-inverse {
   background-color: $primary;
   border-color: transparent;
-  z-index: 10;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
