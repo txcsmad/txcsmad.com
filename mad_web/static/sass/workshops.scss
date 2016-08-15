@@ -26,3 +26,91 @@
   display: block;
   max-height: 150px;
 }
+
+/* = Workshops
+-------------------------------------------------------------- */
+
+.instructors {
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.instructiors > div {
+  flex: 1 0 400px;
+}
+
+.instructors ul {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.instructors li {
+  max-width: 150px;
+  padding: 0 15px;
+}
+
+.instructors img {
+  border-radius: 50%;
+  margin-bottom: 6px;
+  max-width: 100%;
+}
+
+.instructors h3 {
+  line-height: 2;
+  padding-bottom: 6px;
+}
+
+.instructors h4 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.courses {
+  text-align: left;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+}
+
+.courses a {
+  flex: 1 1 300px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.courses li {
+  background-color: rgba(0, 0, 0, .1);
+  border-top: 5px gray solid;
+  padding: 5px 10px 10px 10px;
+  margin: 0 10px;
+}
+
+.courses li.android {
+  border-color: green;
+}
+
+.courses li.ios {
+  border-color: blue;
+}
+
+.courses li.web {
+  border-color: purple;
+}
+
+.courses span {
+  display: block;
+}
+
+.courses .time {
+  opacity: .7;
+}

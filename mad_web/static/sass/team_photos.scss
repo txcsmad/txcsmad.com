@@ -17,7 +17,7 @@ ul.team-members {
 .team-members > li {
   -webkit-flex: 0 auto;
   flex: 0 auto;
-  max-width: 250px;
+  max-width: 200px;
   margin-bottom: 24px;
 }
 
@@ -26,6 +26,7 @@ ul.team-members {
   display: block;
   margin: 0 auto;
   margin-bottom: 6px;
+  border-radius: 50%;
 }
 
 .team-members li img::after {
