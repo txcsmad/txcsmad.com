@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': '***REMOVED***',
         'USER': '***REMOVED***',
         'PASSWORD': '***REMOVED***',
-        'PORT': '3306',
+        'PORT': '***REMOVED***',
         'ATOMIC_REQUESTS': True,
     }
 }
