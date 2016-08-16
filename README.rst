@@ -91,4 +91,4 @@ Updating Process on Server
 1) Pull from master
 2) gulp
 3) python3 manager.py collectstatic
-4) restart gunicorn and nginx
+4) sudo systemctl restart gunicorn && sudo systemctl restart nginx
