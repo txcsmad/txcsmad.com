@@ -1,9 +1,7 @@
 {
   "name": "mad_web",
   "version": "0.0.1",
-  "dependencies": {},
-  "devDependencies": {
-    
+  "dependencies": {
     "browser-sync": "^2.12.10",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
@@ -18,7 +16,8 @@
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "run-sequence": "^1.2.1"
-    
+  },
+  "devDependencies": {
   },
   "engines": {
     "node": ">=0.8.0"
