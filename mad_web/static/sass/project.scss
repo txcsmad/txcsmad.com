@@ -155,11 +155,16 @@ a:hover {
   top: 0;
   right: 0;
   margin: 16px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
 
   img {
-    object-position: center; /* Center the image within the element */
-    width: 100px;
-    height: 100px;
+    height: 100%;
+    min-width: 100%;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
     overflow: hidden;
   }
 }
