@@ -32,6 +32,8 @@ class Event(models.Model):
     event_tags = ArrayField(models.IntegerField(_("Event Tag")), verbose_name=_("Event Tags"))
     attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="event_attendees", verbose_name=_("Attendees"))
 
+    def __str__(self):
+        return self.title
 
 class EventCalendar(HTMLCalendar):
     day_abbr = ["M", "T", "W", "T", "F", "S", "S"]
