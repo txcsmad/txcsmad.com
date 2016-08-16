@@ -24,7 +24,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap_paper.min.css' %}" rel="stylesheet">
-        <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+        <link href="{% static 'generated_css/project.min.css' %}" rel="stylesheet">
         {% block extra-css %}{% endblock %}
     {% endblock %}
 
@@ -162,7 +162,7 @@
     <!-- Your stuff: Third-party javascript libraries go here -->
 
     <!-- place project specific Javascript in this file -->
-    <script src="{% static 'js/project.min.js' %}"></script>
+    <script src="{% static 'generated_js/project.min.js' %}"></script>
     {% block extra-js %}{% endblock %}
 {% endblock javascript %}
 

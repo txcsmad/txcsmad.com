@@ -33,6 +33,8 @@ var pathsConfig = function (appName) {
     fonts: this.app + '/static/fonts',
     images: this.app + '/static/images',
     js: this.app + '/static/js',
+    gen_css: this.app + '/static/generated_css',
+    gen_js: this.app + '/static/generated_js'
   }
 };
 
@@ -49,10 +51,10 @@ gulp.task('styles', function() {
     .pipe(plumber()) // Checks for errors
     .pipe(autoprefixer({browsers: ['last 2 version']})) // Adds vendor prefixes
     .pipe(pixrem())  // add fallbacks for rem units
-    .pipe(gulp.dest(paths.css))
+    .pipe(gulp.dest(paths.gen_css))
     .pipe(rename({ suffix: '.min' }))
     .pipe(cssnano()) // Minifies the result
-    .pipe(gulp.dest(paths.css));
+    .pipe(gulp.dest(paths.gen_css));
 });
 
 // Javascript minification
@@ -61,7 +63,7 @@ gulp.task('scripts', function() {
     .pipe(plumber()) // Checks for errors
     .pipe(uglify()) // Minifies the js
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(paths.js));
+    .pipe(gulp.dest(paths.gen_js));
 });
 
 // Image compression

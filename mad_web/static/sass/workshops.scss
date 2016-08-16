@@ -1,3 +1,5 @@
+@import "colors";
+
 #umad-callout {
   background-image: url('../images/bg/shield-tile.png');
   background-size: 15em auto, auto auto;
@@ -59,6 +61,14 @@
   margin-bottom: 6px;
   max-width: 100%;
 }
+
+.empty-img {
+  width: 0;
+  height: 0;
+  padding: 62px;
+  background-color: $avatar-empty;
+}
+
 
 .instructors h3 {
   line-height: 2;

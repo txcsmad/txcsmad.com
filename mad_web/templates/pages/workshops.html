@@ -4,7 +4,7 @@
 
 {% block extra-css %}
     {{ block.super }}
-    <link href="{% static 'css/workshops.min.css' %}" rel="stylesheet">
+    <link href="{% static 'generated_css/workshops.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -49,19 +49,6 @@
             </div>
             <div class="instructors">
                 <div class="two-items">
-                    <h3>Web</h3>
-                    <ul>
-                        <li>
-                            <img alt="" src="{% static "images/team/brian.jpg" %}">
-                            <h4>Brian Cui</h4>
-                        </li>
-                        <li>
-                            <img alt="" src="{% static "images/team/nishanth.jpg" %}">
-                            <h4>Nishanth Shanmugham</h4>
-                        </li>
-                    </ul>
-                </div>
-                <div class="two-items">
                     <h3>Android</h3>
                     <ul>
                         <li>
@@ -71,6 +58,19 @@
                         <li>
                             <img alt="" src="{% static "images/team/kieran.jpg" %}">
                             <h4>Kieran Vanderslice</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="two-items">
+                    <h3>iOS</h3>
+                    <ul>
+                        <li>
+                            <img alt="" src="{% static "images/team/jesse.jpg" %}"/>
+                            <h4>Jesse Tipton</h4>
+                        </li>
+                        <li>
+                            <img class="empty-img" alt="" src="{% static "images/team/matt.jpg" %}"/>
+                            <h4>Matt Ruston</h4>
                         </li>
                     </ul>
                 </div>
@@ -84,15 +84,19 @@
                     </ul>
                 </div>
                 <div class="two-items">
-                    <h3>iOS</h3>
+                    <h3>Web</h3>
                     <ul>
                         <li>
-                            <img alt="" src="{% static "images/team/jesse.jpg" %}"/>
-                            <h4>Jesse Tipton</h4>
+                            <img alt="" src="{% static "images/team/nishanth.jpg" %}">
+                            <h4>Nishanth Shanmugham</h4>
                         </li>
                         <li>
-                            <img alt="" src="{% static "images/team/matt.jpg" %}"/>
-                            <h4>Matt Ruston</h4>
+                            <img class="empty-img" alt="" src="{% static "images/team/sammmy.jpg" %}">
+                            <h4>Sammy Yousif</h4>
+                        </li>
+                        <li>
+                            <img class="empty-img" alt="" src="{% static "images/team/sammmy.jpg" %}">
+                            <h4>Shashank Kambhampati</h4>
                         </li>
                     </ul>
                 </div>
