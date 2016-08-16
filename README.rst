@@ -79,5 +79,16 @@ Make sure you are using the pip for Python 3
 ::
     $ pip install -r /path/to/requirements.txt
     $ npm install
+    
+Install with DigitalOcean: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
+Note: Has to be atleast $10 droplet for initial setup for npm install as 520mb is too little to install everything.
 
+SSL/HTTPS: https://letsencrypt.org/
+
+Updating Process on Server
+----------
+1) Pull from master
+2) gulp
+3) python3 manager.py collectstatic
+4) restart gunicorn and nginx
