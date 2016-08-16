@@ -45,3 +45,6 @@ redis>=2.10.0
 
 # Mail
 django-anymail==0.4.2
+
+# Rest API Framework
+djangorestframework==3.4.4
