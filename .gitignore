@@ -74,4 +74,4 @@ tests/.hitch
 # Generated CSS & JS
 mad_web/static/generated_css/
 mad_web/static/generated_js/
-
+staticfiles/
