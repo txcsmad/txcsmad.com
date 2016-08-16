@@ -27,9 +27,10 @@ class Event(models.Model):
     location = models.CharField(_("Location"), max_length=255)
     description = models.TextField(_("Description"), null=True, blank=True)
     image_url = models.CharField(_("Image URL"), max_length=255)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, verbose_name=_("Creator"))
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="event_creator", verbose_name=_("Creator"))
     created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
     event_tags = ArrayField(models.IntegerField(_("Event Tag")), verbose_name=_("Event Tags"))
+    attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="event_attendees", verbose_name=_("Attendees"))
 
 
 class EventCalendar(HTMLCalendar):
@@ -124,7 +125,7 @@ class EventCalendar(HTMLCalendar):
             back_year = theyear
         a('<td class="clndr-previous-button"><a href="%s">‹</a></td>' % reverse('events:calendar',
                                                                                 kwargs={'year': back_year,
-                                                                                      'month': back_month}))
+                                                                                        'month': back_month}))
         a('<td colspan="5" class="current-month">%s</td>' % s)
         if themonth == 12:
             forward_month = 1
@@ -134,6 +135,6 @@ class EventCalendar(HTMLCalendar):
             forward_year = theyear
         a('<td class="clndr-next-button"><a href="%s">›</a></td>' % reverse('events:calendar',
                                                                             kwargs={'year': forward_year,
-                                                                                  'month': forward_month}))
+                                                                                    'month': forward_month}))
         a('</tr>')
         return ''.join(v)
