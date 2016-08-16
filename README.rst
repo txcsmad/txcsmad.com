@@ -86,3 +86,9 @@ Note: Has to be atleast $10 droplet for initial setup for npm install as 520mb i
 
 SSL/HTTPS: https://letsencrypt.org/
 
+Updating Process on Server
+----------
+1) Pull from master
+2) gulp
+3) python3 manager.py collectstatic
+4) restart gunicorn and nginx
