@@ -8,8 +8,9 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from mad_web.home.views import home_feed
+
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
     url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
     url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
@@ -24,6 +25,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^events/', include('mad_web.events.urls', namespace='events')),
+    url(r'^', include('mad_web.home.urls', namespace='home')),
     url(r'^go/', include('mad_web.go.urls', namespace='go')),
     url(r'^notify/', include('mad_web.notify.urls', namespace='notify'))
 

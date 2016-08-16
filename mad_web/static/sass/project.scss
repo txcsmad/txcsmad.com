@@ -132,6 +132,19 @@ a:hover {
 //Cards//
 ////////////////////////////////
 
+.events {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .card {
+    width: 400px;
+    margin: auto;
+    margin-top: 23px;
+  }
+}
+
 .card {
   position: relative;
   margin-top: 25px;
@@ -139,8 +152,15 @@ a:hover {
 
 .card-content {
   position: relative;
-  top: 16px;
   left: 16px;
+
+  h1 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 13px;
+  }
 }
 
 .card-actions {

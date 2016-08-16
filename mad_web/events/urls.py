@@ -6,7 +6,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    # URL pattern for the GoSetupView
+    # URL pattern for the Events
     url(
         regex=r'^$',
         view=views.EventListView.as_view(),

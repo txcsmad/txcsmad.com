@@ -14,6 +14,11 @@ class EventListView(ListView):
     slug_field = 'startTime'
     slug_url_kwarg = 'startTime'
 
+    def get_queryset(self):
+        qs = super(EventListView, self).get_queryset()
+        now = datetime.datetime.now()
+        return qs.filter(start_time__gte=now)
+
 
 def calendar(request, year=datetime.datetime.now().year, month=datetime.datetime.now().month):
     template = loader.get_template('events/event_calendar.html')
