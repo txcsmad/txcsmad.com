@@ -17,6 +17,7 @@ class EventListView(ListView):
     def get_queryset(self):
         qs = super(EventListView, self).get_queryset()
         now = datetime.datetime.now()
+        now = now.replace(hour=0, minute=0, second=0, microsecond=0)
         return qs.filter(start_time__gte=now)
 
 
