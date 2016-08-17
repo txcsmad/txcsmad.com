@@ -8,7 +8,24 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
-from mad_web.home.views import home_feed
+from rest_framework import routers, serializers, viewsets
+from mad_web.users.models import User
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
 
 urlpatterns = [
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
@@ -22,6 +39,10 @@ urlpatterns = [
     # User management
     url(r'^users/', include('mad_web.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
+
+    # API Rest Framework
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # Your stuff: custom urls includes go here
     url(r'^events/', include('mad_web.events.urls', namespace='events')),
