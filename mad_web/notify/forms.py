@@ -20,7 +20,7 @@ class NotifyForm(forms.Form):
     def send_email(self):
 
         email_to = []
-        list_option = self.cleaned_data['mailing_list']
+        list_option = int(self.cleaned_data['mailing_list'])
         if list_option == 1:
             email_to = UserService.get_inactive_users_emails()
         elif list_option == 2:
