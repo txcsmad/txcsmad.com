@@ -40,11 +40,11 @@ class User(AbstractUser):
         return self.groups.filter(name="Sponsor").exists()
 
 
-class UserService():
+class UserService:
     # User Getters
 
     @staticmethod
-    def get_inactive_users(self):
+    def get_inactive_users():
         user_list = User.objects.all()
         inactive_list = []
         for user in user_list:
@@ -53,7 +53,7 @@ class UserService():
         return inactive_list
 
     @staticmethod
-    def get_active_users(self):
+    def get_active_users():
         user_list = User.objects.all()
         active_list = []
         for user in user_list:
@@ -62,7 +62,7 @@ class UserService():
         return active_list
 
     @staticmethod
-    def get_officer_users(self):
+    def get_officer_users():
         user_list = User.objects.all()
         staff_list = []
         for user in user_list:
@@ -71,13 +71,13 @@ class UserService():
         return staff_list
 
     @staticmethod
-    def get_sponsor_users(self):
+    def get_sponsor_users():
         return Group.objects.get("Sponsor").user_set
 
     # Email Getters
 
     @staticmethod
-    def get_inactive_users_emails(self):
+    def get_inactive_users_emails():
         user_list = User.objects.all()
         inactive_email_list = []
         for user in user_list:
@@ -86,7 +86,7 @@ class UserService():
         return inactive_email_list
 
     @staticmethod
-    def get_active_users_emails(self):
+    def get_active_users_emails():
         user_list = User.objects.all()
         active_email_list = []
         for user in user_list:
@@ -95,7 +95,7 @@ class UserService():
         return active_email_list
 
     @staticmethod
-    def get_officer_users_emails(self):
+    def get_officer_users_emails():
         user_list = User.objects.all()
         officer_email_list = []
         for user in user_list:
@@ -104,7 +104,7 @@ class UserService():
         return officer_email_list
 
     @staticmethod
-    def get_sponsor_users_emails(self):
+    def get_sponsor_users_emails():
         user_list = Group.objects.get("Sponsor").user_set
         sponsor_email_list = []
         for user in user_list:

@@ -10,13 +10,15 @@
                 <h1 class="panel-title">Send Notification</h1>
             </div>
             <div class="panel-body">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="control-group">
-                    <div class="controls">
-                        <button type="submit" class="btn btn-primary">Send</button>
+                <form class="form-horizontal" method="post" action="{% url 'notify:notify' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

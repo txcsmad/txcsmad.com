@@ -224,6 +224,11 @@ select {
 // bootstrap alert CSS, translated to the django-standard levels of
 // debug, info, success, warning, error
 
+.alert {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
 .alert-debug {
   background-color: $white;
   border-color: $mint-green;
@@ -337,6 +342,7 @@ html {
   margin: 0 auto;
   margin-bottom: 6px;
   opacity: .8;
+  padding-left: 0;
 }
 
 #footer .social li {

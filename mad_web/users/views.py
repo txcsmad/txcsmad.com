@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
@@ -32,6 +33,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     # send the user back to their own page after a successful update
     def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'Your profile was successfully saved!')
         return reverse('users:detail',
                        kwargs={'username': self.request.user.username})
 
