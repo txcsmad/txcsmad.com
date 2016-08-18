@@ -1,6 +1,7 @@
 @import "colors";
 @import "dimens";
 @import "fonts";
+@import "navbar";
 
 // project specific CSS goes here
 
@@ -255,44 +256,9 @@ select {
   color: $primary !important;
 }
 
-////////////////////////////////
-//Navbar//
-////////////////////////////////
 
-/* MAD Icon */
-.navbar-brand img {
-  height: 20px;
-}
 
-/* Navbar Main */
-.navbar-inverse {
-  background-color: $primary;
-  border-color: transparent;
-}
 
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-  border-color: $primary;
-}
-
-/* Navbar Selected Tab */
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus,
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: $primary-dark;
-  color: $white;
-}
-
-/* Navbar Text */
-@media (max-width: 767px) {
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: $primary-light;
-  }
-}
-
-.navbar-inverse .navbar-nav > li > a,
-.navbar-inverse .navbar-brand {
-  color: $primary-light;
-  font-size: 13px;
-}
 
 ////////////////////////////////
 //Django Toolbar//
@@ -369,6 +335,9 @@ html {
 
   section .text.emphasized {
     font-size: 24px;
+    .lead {
+      font-size: 28px;
+    }
   }
 
   h2 {
@@ -403,4 +372,5 @@ html {
     display: inline-block;
     text-align: right;
   }
+
 }

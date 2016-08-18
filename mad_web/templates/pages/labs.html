@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block title %} Labs || MAD {% endblock title %}
 {% block labs_tab %}active{% endblock %}
+{% block open_graph_image %}{% static 'images/labs-banner.jpg' %}{% endblock %}
 
 {% block extra-css %}
     {{ block.super }}
@@ -36,11 +38,11 @@
 
     <section class="app-figure dark-section">
         <div class="container">
-            <div class="two-up">
-                <div class="figure-block">
+            <div class="row">
+                <div class="col-sm-6">
                     <img class="screen" src="{% static "images/screenshots/umad-app-android.png" %}"/>
                 </div>
-                <div class="figure-block text">
+                <div class="col-sm-6 text">
                     <h2>Featured Work</h2>
                     <h3>uMAD</h3>
                     <p>Developed simultaneously across four platforms, the uMAD application provides
@@ -72,18 +74,19 @@
     <section>
         <div class="container">
             <h2>The Team</h2>
-            <div class="two-up">
-                <div class="figure-block text">
+            <div class="row">
+                <div class="col-md-6 text">
                     <p><span class="lead">Labs members have a passion for mobile development and a desire to create things that help others.</span>
                         Every new project is an opportunity for service, leadership and learning. The MAD Labs team
                         welcomes new members through one-to-one mentorships with our current members.
                     </p>
                 </div>
-                <div class="figure-block">
+                <div class="col-md-6">
                     <p>Join some of your most skilled peers to create apps with purpose!</p>
                     <a href="http://goo.gl/forms/xhPxVAPt1W" class="btn btn-default btn-disabled">Interest form closed</a>
                 </div>
             </div>
+        </div>
     </section>
 
     <section class="labs-color-section">
@@ -122,5 +125,5 @@
 {% endblock %}
 
 {% block extra-js %}
-    <script src="{% static 'js/bubbles.js' %}"></script>
+    <script src="{% static 'generated_js/bubbles.min.js' %}"></script>
 {% endblock %}

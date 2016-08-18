@@ -41,12 +41,6 @@ section.labs-head {
   }
 }
 
-.two-up, .three-up {
-    display: flex;
-    flex-flow: row wrap;
-    flex: 1 100%;
-}
-
 #bubbles {
   height: 100%;
   top: 0;
@@ -102,6 +96,10 @@ dd {
 
 }
 
+.apps-background {
+  background: #efefef url("../images/bg/app-icon-tile.png");
+}
+
 @media screen and (min-width: 900px) {
   /*--- = Labs  */
   .labs-head .logo {
@@ -116,14 +114,4 @@ dd {
     text-align: left;
     padding: 0;
   }
-
-  .two-up .figure-block {
-        flex: 0 44%;
-        margin: 0 3%;
-    }
-
-    .three-up .figure-block {
-        flex: 0 27%;
-        margin: 0 3%;
-    }
 }
