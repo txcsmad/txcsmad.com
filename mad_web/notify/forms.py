@@ -1,5 +1,5 @@
 from django import forms
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.utils.translation import ugettext_lazy as _
 
 from config.settings.common import EMAIL_WEBMASTER, DEFAULT_FROM_EMAIL
@@ -32,8 +32,10 @@ class NotifyForm(forms.Form):
         else:
             email_to = [EMAIL_WEBMASTER]
 
-        send_mail(self.cleaned_data['subject'],
-                  self.cleaned_data['message'],
-                  DEFAULT_FROM_EMAIL,
-                  email_to)
+        mail = EmailMessage(subject=self.cleaned_data['subject'],
+                            body=self.cleaned_data['message'],
+                            from_email=DEFAULT_FROM_EMAIL)
+        mail.bcc = email_to
+        mail.to = [DEFAULT_FROM_EMAIL]
+        mail.send()
         pass
