@@ -1,16 +1,13 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
 from .models import Go
-
 from mad_web.utils.utils import OfficerRequiredMixin
 
 
-class GoSetupView(LoginRequiredMixin, ListView):
+class GoSetupView(OfficerRequiredMixin, ListView):
     model = Go
 
 

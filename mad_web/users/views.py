@@ -8,6 +8,7 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import User
+from mad_web.utils.utils import OfficerRequiredMixin
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -42,7 +43,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return User.objects.get(username=self.request.user.username)
 
 
-class UserListView(LoginRequiredMixin, ListView):
+class UserListView(OfficerRequiredMixin, ListView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
