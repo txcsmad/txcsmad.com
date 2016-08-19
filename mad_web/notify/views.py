@@ -4,9 +4,10 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 
 from .forms import NotifyForm
+from mad_web.utils.utils import OfficerRequiredMixin
 
 
-class NotifyView(FormView):
+class NotifyView(OfficerRequiredMixin, FormView):
     template_name = 'notify/notify_form.html'
     form_class = NotifyForm
     success_url = '/thanks/'

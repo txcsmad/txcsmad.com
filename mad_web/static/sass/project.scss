@@ -200,22 +200,22 @@ a:hover {
 ////////////////////////////////
 
 textarea {
-  width: 100%;
   min-width: 100%;
   max-width: 100%;
 }
 
-input[type=text] {
-  width: 100%;
-}
-
-select {
-  width: 100%;
-  background-color: transparent;
-}
-
 .controls {
   margin-bottom: 10px;
+
+  input[type=text], input[type=password], select, textarea {
+    outline: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .checkbox {
+    padding-left: 25px;
+  }
 }
 
 ////////////////////////////////
@@ -255,10 +255,6 @@ select {
   box-shadow: inset 0 -2px 0 $primary !important;
   color: $primary !important;
 }
-
-
-
-
 
 ////////////////////////////////
 //Django Toolbar//
