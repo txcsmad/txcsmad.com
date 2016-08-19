@@ -110,9 +110,9 @@ There is on our server an 'updatemad' alias command that does the below for you 
 1) Pull from master
 :: 
     $ git pull origin master
-2) gulp
+2) Update sass and js files
 :: 
-    $ Update sass and js files
+    $ gulp
 3) Gather all static files and update them
 :: 
     $ python3 manage.py collectstatic --noinput
