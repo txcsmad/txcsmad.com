@@ -108,10 +108,14 @@ Updating Process on Server
 There is on our server an 'updatemad' alias command that does the below for you automatically.
 
 1) Pull from master
-:: $ git pull origin master
+:: 
+    $ git pull origin master
 2) gulp
-:: $ Update sass and js files
+:: 
+    $ Update sass and js files
 3) Gather all static files and update them
-:: $ python3 manage.py collectstatic --noinput
+:: 
+    $ python3 manage.py collectstatic --noinput
 4) Restart server with new code
-:: $ sudo systemctl restart gunicorn && sudo systemctl restart nginx
+:: 
+    $ sudo systemctl restart gunicorn && sudo systemctl restart nginx
