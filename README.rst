@@ -105,7 +105,13 @@ Also need to have a config.json in config/settings folder. with information like
 
 Updating Process on Server
 ----------
+There is on our server an 'updatemad' alias command that does the below for you automatically.
+
 1) Pull from master
+:: $ git pull origin master
 2) gulp
-3) python3 manager.py collectstatic
-4) sudo systemctl restart gunicorn && sudo systemctl restart nginx
+:: $ Update sass and js files
+3) Gather all static files and update them
+:: $ python3 manage.py collectstatic --noinput
+4) Restart server with new code
+:: $ sudo systemctl restart gunicorn && sudo systemctl restart nginx
