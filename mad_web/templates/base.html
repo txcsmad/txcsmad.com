@@ -86,9 +86,6 @@
                     <li class="{% block labs_tab %}{% endblock %} nav-item">
                         <a class="nav-link" href="{% url 'labs' %}">Labs</a>
                     </li>
-                    <li class="{% block gallery_tab %}{% endblock %} nav-item">
-                        <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
-                    </li>
                     {% if request.user.is_staff %}
                         <li class="{% block members_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'users:list' %}">Members</a>
