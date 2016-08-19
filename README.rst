@@ -86,6 +86,23 @@ Note: Has to be atleast $10 droplet for initial setup for npm install as 520mb i
 
 SSL/HTTPS: https://letsencrypt.org/
 
+Also need to have a config.json in config/settings folder. with information like this
+::
+{
+"DJANGO_KEY": "DJANGO_KEY_HERE",
+
+  "SENDGRID_USERNAME": "USERNAME",
+  "SENDGRID_PASSWORD": "PASSWORD",
+
+  "ALLOWED_HOSTS": ["www.exampleurl.com"],
+  "DEBUG": true,
+  "ALLOW_REGISTRATION": true,
+
+  "SECURE_HSTS_INCLUDE_SUBDOMAINS": true,
+  "SECURE_CONTENT_TYPE_NOSNIFF": true,
+  "SECURE_SSL_REDIRECT": true
+  }
+
 Updating Process on Server
 ----------
 1) Pull from master
