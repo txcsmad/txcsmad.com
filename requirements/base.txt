@@ -48,3 +48,6 @@ django-anymail==0.4.2
 
 # Rest API Framework
 djangorestframework==3.4.4
+
+# Cleanup unused user uploaded files
+django_cleanup==0.4.2

@@ -14,6 +14,7 @@ class User(AbstractUser):
     full_name = models.CharField(_('Full Name'), max_length=255)
     nick_name = models.CharField(_('Nick Name'), max_length=255)
     graduation_date = models.DateField(_('Graduation Date'))
+    resume = models.FileField(_('Resume'), upload_to='resumes', blank=True, null=True)
 
     def __str__(self):
         return self.username

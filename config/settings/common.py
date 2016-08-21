@@ -68,8 +68,13 @@ LOCAL_APPS = (
     'mad_web.notify.apps.NotifyConfig',
 )
 
+CLEANUP_APP = (
+    # has to go last in order to work
+    'django_cleanup',
+)
+
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + CLEANUP_APP
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
