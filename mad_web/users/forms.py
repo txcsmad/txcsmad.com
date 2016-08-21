@@ -36,7 +36,7 @@ class UserSignupForm(forms.ModelForm):
             # If file is over 1MB, then don't allow
             if resumeFile.size > self.ONE_MB:
                 raise forms.ValidationError(_('Please keep resume filesize under %s. Current filesize %s') % (
-                filesizeformat(self.ONE_MB), filesizeformat(resumeFile.size)))
+                    filesizeformat(self.ONE_MB), filesizeformat(resumeFile.size)))
 
         return cleaned_data
 
@@ -47,3 +47,28 @@ class UserSignupForm(forms.ModelForm):
         user.graduation_date = self.cleaned_data['graduation_date']
         user.resume = self.cleaned_data['resume']
         user.save()
+
+
+class UserUpdateForm(forms.ModelForm):
+    ONE_MB = 1048576
+    PDF_TYPE = '.pdf'
+
+    class Meta:
+        model = User
+        fields = ['full_name', 'nick_name', 'graduation_date', 'resume']
+
+    def clean(self):
+        cleaned_data = super(UserUpdateForm, self).clean()
+        resumeFile = cleaned_data['resume']
+
+        if resumeFile:
+            # If file is not PDF, then don't allow
+            fileName, fileExt = path.splitext(resumeFile.name)
+            if fileExt != self.PDF_TYPE:
+                raise forms.ValidationError(_('Please put in a pdf file for your resume'))
+            # If file is over 1MB, then don't allow
+            if resumeFile.size > self.ONE_MB:
+                raise forms.ValidationError(_('Please keep resume filesize under %s. Current filesize %s') % (
+                    filesizeformat(self.ONE_MB), filesizeformat(resumeFile.size)))
+
+        return cleaned_data

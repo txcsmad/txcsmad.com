@@ -7,6 +7,7 @@ from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .forms import UserUpdateForm
 from .models import User
 from mad_web.utils.utils import OfficerRequiredMixin
 
@@ -27,7 +28,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
-    fields = ['full_name', 'nick_name', 'graduation_date', 'resume']
+    form_class = UserUpdateForm
 
     # we already imported User in the view code above, remember?
     model = User
