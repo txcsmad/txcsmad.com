@@ -107,9 +107,9 @@ Updating Process on Server
 ----------
 There is on our server an 'updatemad' alias command that does the below for you automatically.
 
-Note: If there was a change in a model you have to go through these steps manually and after a pull you must call these commands 
+Note: If there was a change in a model you have to go through this method commands before you do the ones below
 :: 
-    $ python3 manage.py makemigrations
+    $ git pull origin master
     $ python3 manage.py migrate
 
 
