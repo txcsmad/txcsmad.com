@@ -224,6 +224,20 @@ textarea {
   }
 }
 
+input[type=checkbox]:focus:after,
+input[type=radio]:checked:after {
+  border-color: $primary;
+}
+
+input[type=radio]:checked:before {
+  background-color: $primary;
+}
+
+input[type=checkbox]:checked:after {
+  border-color: $primary;
+  background-color: $primary;
+}
+
 ////////////////////////////////
 //Alerts//
 ////////////////////////////////
