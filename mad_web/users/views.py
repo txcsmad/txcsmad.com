@@ -27,7 +27,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
-    fields = ['full_name', 'nick_name', 'graduation_date']
+    fields = ['full_name', 'nick_name', 'graduation_date', 'resume']
 
     # we already imported User in the view code above, remember?
     model = User
