@@ -45,6 +45,7 @@ redis>=2.10.0
 
 # Mail
 django-anymail==0.4.2
+sendgrid==3.2.10
 
 # Rest API Framework
 djangorestframework==3.4.4

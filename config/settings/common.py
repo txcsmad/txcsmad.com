@@ -256,6 +256,10 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 # django-compressor
 # ------------------------------------------------------------------------------
 
+# Sendgrid
+# ------------------------------------------------------------------------------
+SENDGRID_API_KEY = get_config("SENDGRID_API_KEY")
+SENDGRID_MAILING_LIST_ID = get_config("SENDGRID_MAILING_LIST_ID")
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'

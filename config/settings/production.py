@@ -43,6 +43,8 @@ X_FRAME_OPTIONS = 'DENY'
 
 # SITE CONFIGURATION
 # ------------------------------------------------------------------------------
+DEBUG = False
+
 # Hosts/domain names that are valid for this site
 # See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = get_config("ALLOWED_HOSTS")
@@ -55,10 +57,7 @@ INSTALLED_APPS += ('gunicorn', )
 
 # Anymail with Sendgrid
 INSTALLED_APPS += ("anymail", )
-ANYMAIL = {
-    "SENDGRID_USERNAME": get_config("SENDGRID_USERNAME"),
-    "SENDGRID_PASSWORD": get_config("SENDGRID_PASSWORD"),
-}
+# Uses SENDGRID_API_KEY in common.py
 EMAIL_BACKEND = "anymail.backends.sendgrid.SendGridBackend"
 
 # TEMPLATE CONFIGURATION
