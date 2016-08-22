@@ -8,6 +8,7 @@
     <meta name="description"
           content="Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms. ">
     <meta property="og:image" content="
+
             {{ request.build_absolute_uri }}{% block open_graph_image %}{% static 'images/mad-logo-banner-color.png' %}{% endblock open_graph_image %}"/>
     <meta name="theme-color" content="#1EBD5F">
 
@@ -132,11 +133,15 @@
     </nav>
 </div>
 
-<div class="container">
+<div class="alert-container text-center">
 
     {% if messages %}
         {% for message in messages %}
-            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+            <div class="alert alert-dismissable {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                <p>{{ message }}</p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
         {% endfor %}
     {% endif %}
 

@@ -99,6 +99,29 @@ a:hover {
 }
 
 ////////////////////////////////
+//Welcome//
+////////////////////////////////
+
+.welcome {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg/welcome_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  * {
+    color: white;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+////////////////////////////////
 //Buttons//
 ////////////////////////////////
 
@@ -142,6 +165,7 @@ a:hover {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 15px;
 
   .card {
     width: 400px;
@@ -252,8 +276,8 @@ input[type=number]:focus,
 [type=email].form-control:focus,
 [type=tel].form-control:focus,
 [contenteditable].form-control:focus {
-    -webkit-box-shadow: inset 0 -2px 0 $primary;
-    box-shadow: inset 0 -2px 0 $primary;
+  -webkit-box-shadow: inset 0 -2px 0 $primary;
+  box-shadow: inset 0 -2px 0 $primary;
 }
 
 ////////////////////////////////
@@ -263,9 +287,30 @@ input[type=number]:focus,
 // bootstrap alert CSS, translated to the django-standard levels of
 // debug, info, success, warning, error
 
+.alert-container {
+  padding-top: 14px;
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+  text-align:center;
+}
+
 .alert {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 6px;
   margin-bottom: 6px;
+
+  p {
+    display: inline-block;
+    float: left;
+  }
+
+  .close {
+    display: inline-block;
+    float: right;
+  }
 }
 
 .alert-debug {
@@ -363,6 +408,12 @@ html {
 ////////////////////////////////
 
 @media screen and (min-width: 900px) {
+
+  .welcome {
+    padding-top: 115px;
+    padding-bottom: 115px;
+  }
+
   section .text .lead {
     font-weight: bold;
   }

@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if not request.user.is_authenticated %}
+        <div class="welcome text-center">
+            <h2>We teach you mobile and web programming</h2>
+            <p>Learn how to program for Android, iOS, Web, and Windows for free and no pressure at our workshops.</p>
+            <a class="btn btn-primary" href="{% url 'about' %}">LEARN MORE</a>
+        </div>
+    {% endif %}
     <div class="container events">
         {% for event in event_list %}
             <div class="panel card">
