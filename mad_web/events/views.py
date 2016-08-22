@@ -1,7 +1,7 @@
 import datetime
 
-from django.template import loader, RequestContext
-from django.shortcuts import render, HttpResponse
+from django.template import loader
+from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.utils.safestring import mark_safe
 
@@ -33,10 +33,10 @@ def calendar(request, year=datetime.datetime.now().year, month=datetime.datetime
     )
     calendar_html = EventCalendar(event_list).formatmonth(year, month)
 
-    context = RequestContext(request, {
+    data = {
         'calendar': mark_safe(calendar_html)
-    })
-    return HttpResponse(template.render(context))
+    }
+    return render(request, 'events/event_calendar.html', context=data)
 
 
 class EventDetailView(DetailView):

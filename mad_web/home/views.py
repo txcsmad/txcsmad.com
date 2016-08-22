@@ -1,20 +1,19 @@
 import datetime
 
-from django.template import loader, RequestContext
-from django.shortcuts import HttpResponse
+from django.template import loader
+from django.shortcuts import render
 
 from mad_web.events.models import Event
 
 
 # Create your views here.
 def home_feed(request):
-    template = loader.get_template('home/home_feed.html')
-
     now = datetime.datetime.now()
     now = now.replace(hour=0, minute=0, second=0, microsecond=0)
     event_list = Event.objects.order_by('start_time').filter(start_time__gte=now)
 
-    context = RequestContext(request, {
-        'event_list': event_list
-    })
-    return HttpResponse(template.render(context))
+    data = {
+        'event_list': event_list,
+    }
+
+    return render(request, 'home/home_feed.html', context=data)
