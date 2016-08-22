@@ -7,7 +7,6 @@ Test settings
 
 from .common import *  # noqa
 
-
 # DEBUG
 # ------------------------------------------------------------------------------
 # Turn debug off so tests run faster
@@ -42,14 +41,6 @@ CACHES = {
 # TESTING
 # ------------------------------------------------------------------------------
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
-
-# PASSWORD HASHING
-# ------------------------------------------------------------------------------
-# Use fast password hasher so tests run faster
-PASSWORD_HASHERS = (
-    'django.contrib.auth.hashers.MD5PasswordHasher',
-)
 
 # TEMPLATE LOADERS
 # ------------------------------------------------------------------------------
