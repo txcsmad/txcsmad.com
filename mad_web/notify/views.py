@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 
-from .forms import NotifyForm
+from .forms import NotifyForm, NotifyMeForm
 from mad_web.utils.utils import OfficerRequiredMixin
 
 
@@ -21,3 +21,17 @@ class NotifyView(OfficerRequiredMixin, FormView):
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, 'Notification successfully sent!')
         return reverse('notify:notify')
+
+
+class NotifyMeView(FormView):
+    template_name = 'notify/notify_me_form.html'
+    form_class = NotifyMeForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        form.subscribe()
+        return super(NotifyMeView, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'Successfully subscribed!')
+        return reverse('home:feed')

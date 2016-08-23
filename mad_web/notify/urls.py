@@ -12,4 +12,9 @@ urlpatterns = [
         view=views.NotifyView.as_view(),
         name='notify'
     ),
+    url(
+        regex=r'^me/$',
+        view=views.NotifyMeView.as_view(),
+        name='me'
+    ),
 ]

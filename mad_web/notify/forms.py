@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from config.settings.common import EMAIL_WEBMASTER, DEFAULT_FROM_EMAIL
 from mad_web.users.models import UserService
+from mad_web.utils.utils import subscribe_to_newsletter
 
 
 class NotifyForm(forms.Form):
@@ -38,4 +39,16 @@ class NotifyForm(forms.Form):
         mail.bcc = email_to
         mail.to = [DEFAULT_FROM_EMAIL]
         mail.send()
+        pass
+
+
+class NotifyMeForm(forms.Form):
+    email = forms.CharField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+
+    def subscribe(self):
+        subscribe_to_newsletter(self.cleaned_data['email'],
+                                first_name=self.cleaned_data['first_name'],
+                                last_name=self.cleaned_data['last_name'])
         pass
