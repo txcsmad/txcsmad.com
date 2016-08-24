@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra-css %}
+    <link href="{% static 'css/atc-style-blue.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/atc.min.js' %}"></script>
+{% endblock %}
+
 {% block title %}{{ object.title }}{% endblock %}
 
 {% block content %}
@@ -16,18 +24,30 @@
                 <p>{{ object.start_time }}</p>
                 <h5>Ends: </h5>
                 <p>{{ object.end_time }}</p>
+                <span class="addtocalendar atc-style-blue">
+                    <var class="atc_event">
+                        <var class="atc_date_start">{{ object.start_time }}</var>
+                        <var class="atc_date_end">{{ object.end_time }}</var>
+                        <var class="atc_timezone">America/Chicago</var>
+                        <var class="atc_title">{{ object.title }}</var>
+                        <var class="atc_description">{{ object.description }}</var>
+                        <var class="atc_location">{{ object.location }}</var>
+                        <var class="atc_organizer">{{ object.creator.full_name }}</var>
+                        <var class="atc_organizer_email">{{ object.creator.email }}</var>
+                    </var>
+                </span>
                 <h5>Creator: </h5>
                 <p>{{ object.creator.full_name }}</p>
                 <h5>Description: </h5>
                 <p>{{ object.description }}</p>
-                <h5>Attendees: </h5>
-                <ul>
-                {% for attendee in object.attendees.all %}
-                    <li>{{ attendee.full_name }}</li>
-                {% endfor %}
-                </ul>
-
-
+                {% if request.user.is_authenticated %}
+                    <h5>Attendees: </h5>
+                    <ul>
+                        {% for attendee in object.attendees.all %}
+                            <li>{{ attendee.full_name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
         </div>
     </div>
