@@ -10,7 +10,7 @@ window.onresize = function(event) {
 };
 
 function footerUpdate() {
-    var footerHeight = document.getElementById("footer").clientHeight;
+    var footerHeight = document.getElementsByTagName("footer")[0].clientHeight;
     var body = document.getElementsByTagName("body")[0];
     body.style.marginBottom = footerHeight + "px";
 }

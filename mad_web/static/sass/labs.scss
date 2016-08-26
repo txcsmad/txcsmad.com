@@ -22,7 +22,7 @@ section.labs-color-section {
 }
 
 section.labs-head {
-  overflow: none;
+  overflow: hidden;
   /* Grid pattern over a purple background with a light gradient at an angle from the left*/
   background: repeating-linear-gradient(180deg, transparent, transparent 1px, rgba(255, 255, 255, .05) 1px, rgba(255, 255, 255, .05) 2px, transparent 3px, transparent),
   repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255, 255, 255, .05) 1px, rgba(255, 255, 255, .05) 2px, transparent 3px, transparent),

@@ -24,7 +24,7 @@ body {
   margin-bottom: 23px;
 }
 
-.section {
+section {
   line-height: 1.5;
   padding: 24px 0 24px 0;
 }
@@ -59,7 +59,7 @@ body {
 }
 
 section .container {
-  padding: 24px 0 0 0;
+  padding-top: 0px;
 }
 
 h1 {
@@ -355,7 +355,7 @@ html {
   min-height: 100%;
 }
 
-#footer {
+footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -365,23 +365,21 @@ html {
   text-align: center;
 }
 
-#footer .text {
+footer .text {
   padding-top: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
   display: flex;
 }
 
-#footer li:hover {
+footer li:hover {
   color: rgba(255, 255, 255, 0.6)
 }
 
-#footer * {
+footer * {
   color: inherit;
   font-weight: 300;
 }
 
-#footer .social {
+footer .social {
   display: block;
   margin: 0 auto;
   margin-bottom: 6px;
@@ -389,16 +387,16 @@ html {
   padding-left: 0;
 }
 
-#footer .social li {
+footer .social li {
   display: inline-block;
   margin: 0 5px;
 }
 
-#footer .social li a {
+footer .social li a {
   font-size: 18px;
 }
 
-#footer .copyright {
+footer .copyright {
   opacity: .8;
 }
 
@@ -442,17 +440,17 @@ html {
     padding: 82px 24px 0px 24px;
   }
 
-  #footer {
+  footer {
     padding: 0 0 12px 0;
   }
-  #footer .text p {
+  footer .text p {
     flex: 1;
   }
-  #footer .social {
+  footer .social {
     margin: 0;
     float: left;
   }
-  #footer .copyright {
+  footer .copyright {
     display: inline-block;
     text-align: right;
   }
