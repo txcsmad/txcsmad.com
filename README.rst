@@ -1,5 +1,5 @@
 MAD Web
-==============================
+=======
 
 Main hub for MAD online
 
@@ -14,12 +14,12 @@ Main hub for MAD online
 
 
 Usage
-------------
+-----
 
 Install Python 3.5, Postgres, and Sass. Use pip to install the local requirements. Create a Postgres database named `mad_web` and a user with your username. To use the bundled run configurations, install PyCharm.
 
 Settings
-------------
+--------
 
 Moved to settings_.
 
@@ -49,7 +49,7 @@ To run the tests, check your test coverage, and generate an HTML coverage report
     $ open htmlcov/index.html
 
 Running tests with py.test
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -64,64 +64,46 @@ Moved to `Live reloading and SASS compilation`_.
 .. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
 
 
-
-
 Deployment
 ----------
-How to setup and install
-Requirements:
-NPM, Python3
-::
+
+First time
+^^^^^^^^^^
+Ensure you have the requirements noted under "Usage"::
 
     $ git clone git@github.com:txcsmad/MAD-Web.git
-
-Make sure you are using the pip for Python 3
-::
     $ pip install -r /path/to/requirements.txt
     $ npm install
-    
-Install with DigitalOcean: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
-Note: Has to be atleast $10 droplet for initial setup for npm install as 520mb is too little to install everything.
+Install a `Django stack`_ on a DigitalOcean Droplet. You will need more than the base droplet as 512Mb of RAM is too little to install everything.
 
-SSL/HTTPS: https://letsencrypt.org/
+.. _Django stack: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
-Also need to have a config.json in config/settings folder. with information like this
-::
-{
-"DJANGO_KEY": "DJANGO_KEY_HERE",
+Get SSL certificates from `Let's Encrypt`_
 
-  "SENDGRID_USERNAME": "USERNAME",
-  "SENDGRID_PASSWORD": "PASSWORD",
+.. _Let's Encrypt: https://letsencrypt.org/
 
-  "ALLOWED_HOSTS": ["www.exampleurl.com"],
-  "DEBUG": true,
-  "ALLOW_REGISTRATION": true,
+Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. The site will still function for basic local testing without modifying the remaining placeholders
 
-  "SECURE_HSTS_INCLUDE_SUBDOMAINS": true,
-  "SECURE_CONTENT_TYPE_NOSNIFF": true,
-  "SECURE_SSL_REDIRECT": true
-  }
+Updates
+^^^^^^^
+The MAD server is configured with an ``updatemad`` command, which is an alias for all of the below.
 
-Updating Process on Server
-----------
-There is on our server an 'updatemad' alias command that does the below for you automatically.
+Note: If there was a change in a model you will need to run the migrations::
 
-Note: If there was a change in a model you have to go through this method commands before you do the ones below
-:: 
-    $ git pull origin master
-    $ python3 manage.py migrate
+    git pull origin master
+    python3 manage.py migrate
 
+Otherwise::
 
-1) Pull from master
-:: 
-    $ git pull origin master
-2) Update sass and js files
-:: 
-    $ gulp
-3) Gather all static files and update them
-:: 
-    $ python3 manage.py collectstatic --noinput
-4) Restart server with new code
-:: 
-    $ sudo systemctl restart gunicorn && sudo systemctl restart nginx
+    # Pull from master
+    git pull origin master
+
+    # Update sass and js files
+    gulp
+
+    # Gather all static files and update them
+    python3 manage.py collectstatic --noinput
+
+    # Restart server with new code::
+    sudo systemctl restart gunicorn && sudo systemctl restart nginx
