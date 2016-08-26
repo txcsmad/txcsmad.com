@@ -9,6 +9,7 @@
           content="Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms. ">
     <meta property="og:image" content="
 
+
             {{ request.build_absolute_uri }}{% block open_graph_image %}{% static 'images/mad-logo-banner-color.png' %}{% endblock open_graph_image %}"/>
     <meta name="theme-color" content="#1EBD5F">
 
@@ -151,24 +152,23 @@
     <p>Use this document as a way to quick start any new project.</p>
 {% endblock content %}
 
-<section id="footer">
-    <div class="container">
-        <div class="text">
-            <ul class="social">
-                <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
-                        class="fa fa-slack"></i></a></li>
-                <li><a href="https://facebook.com/groups/MADstudentorg/" data-toggle="tooltip" title="Facebook"><i
-                        class="fa fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/txcsmad" data-toggle="tooltip" title="Twitter"><i
-                        class="fa fa-twitter"></i></a></li>
-                <li><a href="https://github.com/txcsmad" data-toggle="tooltip" title="Github"><i
-                        class="fa fa-github"></i></a></li>
-            </ul>
-            <p class="copyright"> © 2016 MAD at The University of Texas at Austin
-            </p>
-        </div>
+
+<div id="footer" class="container">
+    <div class="text">
+        <ul class="social">
+            <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
+                    class="fa fa-slack"></i></a></li>
+            <li><a href="https://facebook.com/groups/MADstudentorg/" data-toggle="tooltip" title="Facebook"><i
+                    class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/txcsmad" data-toggle="tooltip" title="Twitter"><i
+                    class="fa fa-twitter"></i></a></li>
+            <li><a href="https://github.com/txcsmad" data-toggle="tooltip" title="Github"><i
+                    class="fa fa-github"></i></a></li>
+        </ul>
+        <p class="copyright"> © 2016 MAD at The University of Texas at Austin
+        </p>
     </div>
-</section>
+</div>
 
 {% block modal %}{% endblock modal %}
 

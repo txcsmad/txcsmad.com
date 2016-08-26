@@ -24,13 +24,9 @@ body {
   margin-bottom: 23px;
 }
 
-section {
+.section {
   line-height: 1.5;
-  height: auto;
-  overflow: auto;
-  position: relative;
-  padding: 0 0 24px 0;
-  box-sizing: border-box;
+  padding: 24px 0 24px 0;
 }
 
 .primary-color-section {
@@ -370,6 +366,9 @@ html {
 }
 
 #footer .text {
+  padding-top: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
 }
 

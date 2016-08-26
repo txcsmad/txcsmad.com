@@ -1,14 +1,17 @@
 @import "colors";
 
 #umad-callout {
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-image: url('../images/bg/shield-tile.png');
   background-size: 15em auto, auto auto;
   background-position: center -1em, 0% 0%;
+  text-align: center;
 }
 
 #umad-callout .container {
-  width: 50%;
   margin: 0 auto;
+  display: inline-block;
 }
 
 .umad-block {
@@ -39,12 +42,9 @@
   justify-content: space-around;
 }
 
-.instructiors > div {
-  flex: 1 0 400px;
-}
-
 .instructors ul {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-around;
   margin-bottom: 12px;
   list-style: none;
@@ -68,7 +68,6 @@
   padding: 62px;
   background-color: $avatar-empty;
 }
-
 
 .instructors h3 {
   line-height: 2;

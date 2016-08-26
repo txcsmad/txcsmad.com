@@ -7,9 +7,7 @@
   display: flex;
   overflow: visible;
   -webkit-flex-flow: row wrap;
-  -webkit-justify-content: flex-start;
   flex-flow: row wrap;
-  justify-content: flex-start;
   -webkit-justify-content: center;
   justify-content: center;
   -webkit-align-items: center;
@@ -24,7 +22,7 @@
 
 #partners .thumbnails li.full-width img {
   max-height: 100px;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 #partners .thumbnails li {
