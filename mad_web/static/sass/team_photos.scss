@@ -80,6 +80,17 @@ ul.team-members {
   line-height: 1.1;
 }
 
+.team-members .year {
+  font-size: 16px;
+  font-weight: 300;
+  text-align: left;
+  margin-bottom: 8px;
+  float: left;
+  width: 100%;
+  display: block;
+  line-height: 1.1;
+}
+
 .team-members > li img {
   max-width: 100%;
   max-height: none;
