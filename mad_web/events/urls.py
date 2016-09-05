@@ -27,9 +27,4 @@ urlpatterns = [
         view=views.EventDetailView.as_view(),
         name='detail'
     ),
-    url(
-        regex=r'^(?P<id>[\w.@+-]+)/(?P<username>[\w.@+-]+)/$',
-        view=views.EventConfirmAttendanceView.as_view(),
-        name='confirm'
-    ),
 ]
