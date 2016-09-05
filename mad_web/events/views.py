@@ -1,11 +1,16 @@
 import datetime
 
+from django.contrib import messages
+from django.core.urlresolvers import reverse
 from django.template import loader
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView, ListView, FormView
 from django.utils.safestring import mark_safe
 
 from .models import Event, EventCalendar
+from .forms import ConfirmAttendanceForm
+from ..users.models import User
+from mad_web.utils.utils import TaOrOfficerRequiredMixin
 
 
 class EventListView(ListView):
@@ -22,8 +27,6 @@ class EventListView(ListView):
 
 
 def calendar(request, year=datetime.datetime.now().year, month=datetime.datetime.now().month):
-    template = loader.get_template('events/event_calendar.html')
-
     # setup arguments, as it is a string and needs to be an int
     year = int(year)
     month = int(month)
@@ -43,3 +46,26 @@ class EventDetailView(DetailView):
     model = Event
     slug_field = 'id'
     slug_url_kwarg = 'id'
+
+
+class EventConfirmAttendanceView(FormView, TaOrOfficerRequiredMixin):
+    template_name = 'events/event_confirm_attendance.html'
+    form_class = ConfirmAttendanceForm
+    success_url = '/thanks/'
+
+    def get_context_data(self, **kwargs):
+        context = super(EventConfirmAttendanceView, self).get_context_data(**kwargs)
+        id = int(self.kwargs.get("id"))
+        context['event'] = get_object_or_404(Event, pk=id)
+        context['user'] = get_object_or_404(User, username=self.kwargs.get("username"))
+        return context
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.confirm_attendance()
+        return super(EventConfirmAttendanceView, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'Confirmed!')
+        return reverse('home:feed')

@@ -37,6 +37,9 @@ class User(AbstractUser):
     def is_officer(self):
         return self.is_staff
 
+    def is_ta(self):
+        return self.groups.filter(name="TA").exists()
+
     def is_sponsor(self):
         return self.groups.filter(name="Sponsor").exists()
 

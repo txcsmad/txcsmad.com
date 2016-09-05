@@ -11,6 +11,11 @@ class OfficerRequiredMixin(UserPassesTestMixin):
         return self.request.user.is_staff
 
 
+class TaOrOfficerRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff or self.request.user.is_ta
+
+
 def subscribe_to_newsletter(email, first_name, last_name):
     sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
 
