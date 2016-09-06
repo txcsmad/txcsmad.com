@@ -10,7 +10,7 @@ from django.utils.safestring import mark_safe
 from .models import Event, EventCalendar
 from .forms import ConfirmAttendanceForm
 from ..users.models import User
-from mad_web.utils.utils import OfficerRequiredMixin
+from mad_web.utils.utils import TaOrOfficerRequiredMixin
 
 
 class EventListView(ListView):
@@ -48,7 +48,7 @@ class EventDetailView(DetailView):
     slug_url_kwarg = 'id'
 
 
-class EventConfirmAttendanceView(OfficerRequiredMixin, FormView):
+class EventConfirmAttendanceView(TaOrOfficerRequiredMixin, FormView):
     template_name = 'events/event_confirm_attendance.html'
     form_class = ConfirmAttendanceForm
     success_url = '/thanks/'

@@ -1,0 +1,20 @@
+[
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "Officer"
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "Sponsor"
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "TA"
+    }
+  }
+]

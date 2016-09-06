@@ -1,4 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.views import redirect_to_login
+from django.core.exceptions import PermissionDenied
 
 from config.settings.common import SENDGRID_MAILING_LIST_ID, SENDGRID_API_KEY
 
@@ -8,13 +10,23 @@ import sendgrid
 
 class OfficerRequiredMixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_staff
+        return not self.request.user.is_anonymous and self.request.user.is_officer()
+
+    def handle_no_permission(self):
+        if not self.request.user.is_anonymous:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
 
 # doesnt work
 class TaOrOfficerRequiredMixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_staff or self.request.user.is_ta
+        return not self.request.user.is_anonymous and (self.request.user.is_officer() or self.request.user.is_ta())
+
+    def handle_no_permission(self):
+        if not self.request.user.is_anonymous:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
 
 def subscribe_to_newsletter(email, first_name, last_name):

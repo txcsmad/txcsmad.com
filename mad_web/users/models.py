@@ -32,10 +32,10 @@ class User(AbstractUser):
         return not self.is_active
 
     def is_member(self):
-        return self.is_active and not self.is_staff and not self.groups.filter(name="Sponsor").exists()
+        return self.is_active and not self.is_officer() and not self.is_ta() and not self.is_sponsor()
 
     def is_officer(self):
-        return self.is_staff
+        return self.groups.filter(name="Officer").exists() and self.is_staff
 
     def is_ta(self):
         return self.groups.filter(name="TA").exists()
