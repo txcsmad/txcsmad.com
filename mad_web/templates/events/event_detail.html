@@ -9,11 +9,13 @@
     <script src="{% static 'js/atc.min.js' %}"></script>
     <script src="{% static 'js/jquery.qrcode.js' %}"></script>
     <script src="{% static 'js/qrcode.js' %}"></script>
-    <script>
-        jQuery('#qrcode').qrcode({
-            text: "{{ request.get_host }}{% url 'events:confirm' object.id request.user.username %}"
-        });
-    </script>
+    {% if request.user.is_authenticated %}
+        <script>
+            jQuery('#qrcode').qrcode({
+                text: "{{ request.get_host }}{% url 'events:confirm' object.id request.user.username %}"
+            });
+        </script>
+    {% endif %}
 {% endblock %}
 
 {% block title %}{{ object.title }}{% endblock %}
