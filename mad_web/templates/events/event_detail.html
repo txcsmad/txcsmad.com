@@ -22,7 +22,7 @@
 
 {% block content %}
     <div class="container">
-        {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated and not request.user in object.attendees.all %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1 class="panel-title">Sign in to event</h1>
