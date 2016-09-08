@@ -108,7 +108,7 @@ Get SSL certificates from `Let's Encrypt`_
 
 .. _Let's Encrypt: https://letsencrypt.org/
 
-Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. The site will still function for basic local testing without modifying the remaining placeholders
+Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. You can generate a new key here: http://www.miniwebtool.com/django-secret-key-generator/. The site will still function for basic local testing without modifying the remaining placeholders
 
 Updates
 ^^^^^^^
