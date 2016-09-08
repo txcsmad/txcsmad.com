@@ -1,11 +1,13 @@
 {
   "DJANGO_KEY": "DJANGO_KEY_HERE",
-  "SENDGRID_USERNAME": "USERNAME",
+  
   "SENDGRID_API_KEY": "KEY",
-  "SENDGRID_MAILING_LIST_ID": "ID",
+  "SENDGRID_MAILING_LIST_ID": 0,
+  
   "ALLOWED_HOSTS": [
     "www.exampleurl.com"
   ],
+  
   "DEBUG": true,
   "ALLOW_REGISTRATION": true,
   "SECURE_HSTS_INCLUDE_SUBDOMAINS": true,
