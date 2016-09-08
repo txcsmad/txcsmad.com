@@ -63,17 +63,42 @@ Moved to `Live reloading and SASS compilation`_.
 
 .. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
 
-
-Deployment
+Local Deployment
 ----------
 
 First time
 ^^^^^^^^^^
-Ensure you have the requirements noted under "Usage"::
+Install Postgres app(http://postgresapp.com/) and make it run
+::
+
+    $ brew install python3
+    $ brew install npm
+    $ git clone git@github.com:txcsmad/MAD-Web.git
+    $ pip3 install -r requirements/local.txt
+    $ npm install
+    $ npm install --global gulp-cli
+    $ createdb mad_web
+    $ python3 manage.py migrate
+    $ python4 manage.py runserver --settings=config.settings.local
+    
+Set user to superuser & staff
+^^^^^^^^^^
+So you can access the /admin portal. ::
+    $ psql mad_web
+    mad_web# UPDATE users_user SET is_superuser = true AND is_staff = true WHERE id = 1;
+
+Server Deployment
+----------
+First time
+^^^^^^^^^^
+Install Python3, postgres. ::
 
     $ git clone git@github.com:txcsmad/MAD-Web.git
-    $ pip install -r /path/to/requirements.txt
+    $ pip3 install -r requirements/production.txt
     $ npm install
+    $ npm install --global gulp-cli
+    $ createdb mad_web
+    $ python3 manage.py migrate
 
 Install a `Django stack`_ on a DigitalOcean Droplet. You will need more than the base droplet as 512Mb of RAM is too little to install everything.
 
@@ -87,17 +112,13 @@ Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The D
 
 Updates
 ^^^^^^^
-The MAD server is configured with an ``updatemad`` command, which is an alias for all of the below.
-
-Note: If there was a change in a model you will need to run the migrations::
-
-    git pull origin master
-    python3 manage.py migrate
-
-Otherwise::
+The MAD server is configured with an ``updatemad`` command, which is an alias for all of the below.::
 
     # Pull from master
     git pull origin master
+    
+    # migrate database changes
+    python3 manage.py migrate
 
     # Update sass and js files
     gulp
