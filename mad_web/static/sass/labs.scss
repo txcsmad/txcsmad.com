@@ -32,6 +32,7 @@ section.labs-head {
   background-size: 5px 5px, 5px 5px, cover, cover;
   color: $white;
   text-align: center;
+  position: relative; /* Bubbles canvas is an absolutely positioned child, so this is important! */
 
   h1,
   h2,
