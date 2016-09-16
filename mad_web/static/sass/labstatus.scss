@@ -1,0 +1,218 @@
+@import "labstatus_tooltip";
+
+/* = Global
+-------------------------------------------------------------- */
+
+body {
+  line-height: 1.5;
+  font-weight: 400;
+  height: 100vh; /* Fullscreen app*/
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+  background-color: black;
+  margin: 0;
+}
+
+p {
+  margin-bottom: 12px;
+}
+
+img {
+  max-width: 100%;
+}
+
+p i {
+  font-style: italic;
+}
+
+a {
+  text-decoration: underline;
+}
+
+p a:link,
+p a:visited {
+  color: #FFBB2B;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+h4 {
+  font-weight: 700;
+}
+
+em {
+  font-weight: 700;
+  display: inline;
+}
+
+/* = Sections
+-------------------------------------------------------------- */
+
+section {
+  display: inline-block;
+}
+
+section h1 {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  margin: 12px 0;
+}
+
+/* = Labs
+-------------------------------------------------------------- */
+
+section#labs {
+  flex-direction: row;
+  width: 100vw;
+  height: 80%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  font-size: 0;
+  -webkit-scroll-snap-points-x: repeat(99.9%);
+  scroll-snap-points-x: repeat(99.9%);
+  -webkit-overflow-scrolling: touch;
+  -webkit-scroll-snap-type: mandatory;
+}
+
+.lab {
+  display: inline-block;
+  width: 100vw;
+  height: 100%;
+}
+
+.lab .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.lab h1 {
+
+}
+
+.machines-container {
+  padding-right: 14px;
+  flex: 1 1 90%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.machines {
+  min-width: 280px;
+  min-height: 300px;
+  position: relative;
+  align-self: center;
+  flex: 1 1 80%;
+}
+
+/* = Machine
+-------------------------------------------------------------- */
+
+.space {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  transition: all 0.2s;
+}
+
+.machine[data-occupied="true"] {
+  background-color: red;
+}
+
+.machine[data-occupied="false"] {
+  background-color: green;
+}
+
+/* = Search
+-------------------------------------------------------------- */
+
+nav {
+  padding: 0 12px;
+}
+
+#search-icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+}
+
+#search-input {
+  font-size: 21px;
+  font-weight: 100;
+  display: inline-block;
+}
+
+.no-match {
+  opacity: .5
+}
+
+#help-icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+}
+
+/* = Footer
+-------------------------------------------------------------- */
+
+footer a {
+  display: inline-block;
+  color: white;
+}
+
+.mad-labs-logo {
+  background-image: url("../img/mad-labs.svg");
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* = Media Queries
+-------------------------------------------------------------- */
+
+@media screen and (min-width: 800px) {
+
+  section#labs {
+    display: flex;
+    flex-direction: row;
+  }
+  .lab {
+    flex: 0 1 50%;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 700px) {
+  .machines {
+  }
+  .space {
+    height: 50px;
+    width: 50px;
+  }
+}

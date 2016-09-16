@@ -5,10 +5,10 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
-
+from django.views.generic import TemplateView
 from rest_framework import routers, serializers, viewsets
+
 from mad_web.users.models import User
 
 
@@ -35,6 +35,9 @@ urlpatterns = [
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, include(admin.site.urls)),
+
+                  # Lab Status
+                  url(r'^labstatus/$', include("mad_web.labstatus.urls")),
 
     # User management
     url(r'^users/', include('mad_web.users.urls', namespace='users')),
