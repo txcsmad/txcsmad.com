@@ -76,7 +76,7 @@
                                 <td>{{ attendee.email }}</td>
                                 <td>
                                     {% if attendee.resume %}
-                                        {{ attendee.resume.url }}
+                                        {{ request.get_host }}{{ attendee.resume.url }}
                                     {% endif %}
                                 </td>
                             </tr>
