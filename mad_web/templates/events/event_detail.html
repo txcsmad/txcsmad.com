@@ -69,16 +69,20 @@
                             <th>Graduation Date</th>
 
                         </tr>
-                    {% for attendee in object.attendees.all %}
-                        <tr>
-                            <td>{{ attendee.full_name }}</td>
-                            <td>{{ attendee.graduation_date }}</td>
-                            <td>{{ attendee.email }}</td>
-                            <td>{{ attendee.resume.url }}</td>
-                        </tr>
-                    {% endfor %}
+                        {% for attendee in object.attendees.all %}
+                            <tr>
+                                <td>{{ attendee.full_name }}</td>
+                                <td>{{ attendee.graduation_date }}</td>
+                                <td>{{ attendee.email }}</td>
+                                <td>
+                                    {% if attendee.resume %}
+                                        {{ attendee.resume.url }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </table>
-                {%  endif %}
+                {% endif %}
             </div>
         </div>
     </div>
