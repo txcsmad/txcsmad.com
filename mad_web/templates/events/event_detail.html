@@ -63,11 +63,21 @@
                 <h5>Attendees: </h5>
                 <p>{{ object.attendees.all|length }}</p>
                 {% if request.user.is_staff %}
-                    <ul>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Graduation Date</th>
+
+                        </tr>
                     {% for attendee in object.attendees.all %}
-                        <li>{{ attendee.full_name }}</li>
+                        <tr>
+                            <td>{{ attendee.full_name }}</td>
+                            <td>{{ attendee.graduation_date }}</td>
+                            <td>{{ attendee.email }}</td>
+                            <td>{{ attendee.resume.url }}</td>
+                        </tr>
                     {% endfor %}
-                    </ul>
+                    </table>
                 {%  endif %}
             </div>
         </div>
