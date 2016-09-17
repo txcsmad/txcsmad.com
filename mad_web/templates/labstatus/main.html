@@ -14,12 +14,8 @@
     <script src="js/rendering.js"></script>
     <script>
         $(function () {
-            var data =;
-            <
-            ? php echo;
-            UTCS::getLabsData();
-            ?
-            >
+            var data ={% data %};
+
             var searchField = $("#search-input");
             var machines;
             $.getJSON("third-floor.json", function (json) {
