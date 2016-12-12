@@ -5,7 +5,7 @@
 {% block content %}
     {% if not request.user.is_authenticated %}
         <div class="welcome text-center">
-            <h2>Learn to program for Android, iOS, Web and Windows.<br/> Free.<br/> No pressure.</h2>
+            <h2>Learn to program for Android, iOS, Web, and Windows.<br/> Free.<br/> No pressure.</h2>
             <a class="btn btn-primary" href="{% url 'about' %}">LEARN MORE</a>
             <a class="btn btn-primary" href="{% url 'account_signup' %}">SIGN UP</a>
             <a class="btn btn-primary" href="{% url 'notify:me' %}">SUBSCRIBE</a>
