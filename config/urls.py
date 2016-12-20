@@ -18,42 +18,43 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('username', 'is_staff')
 
+
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
-
 urlpatterns = [
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
-    url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
-    url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
+                  url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                  url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
+                  url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
 
-    # Django Admin, use {% url 'admin:index' %}
-    url(settings.ADMIN_URL, include(admin.site.urls)),
+                  # Django Admin, use {% url 'admin:index' %}
+                  url(settings.ADMIN_URL, include(admin.site.urls)),
 
                   # Lab Status
-                  url(r'^labstatus/$', include("mad_web.labstatus.urls")),
+                  url(r'^labstatus/', include("mad_web.labstatus.urls")),
 
-    # User management
-    url(r'^users/', include('mad_web.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+                  # User management
+                  url(r'^users/', include('mad_web.users.urls', namespace='users')),
+                  url(r'^accounts/', include('allauth.urls')),
 
-    # API Rest Framework
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+                  # API Rest Framework
+                  url(r'^api/', include(router.urls)),
+                  url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    # Your stuff: custom urls includes go here
-    url(r'^events/', include('mad_web.events.urls', namespace='events')),
-    url(r'^', include('mad_web.home.urls', namespace='home')),
-    url(r'^go/', include('mad_web.go.urls', namespace='go')),
-    url(r'^notify/', include('mad_web.notify.urls', namespace='notify'))
+                  # Your stuff: custom urls includes go here
+                  url(r'^events/', include('mad_web.events.urls', namespace='events')),
+                  url(r'^', include('mad_web.home.urls', namespace='home')),
+                  url(r'^go/', include('mad_web.go.urls', namespace='go')),
+                  url(r'^notify/', include('mad_web.notify.urls', namespace='notify'))
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

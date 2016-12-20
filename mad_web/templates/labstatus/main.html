@@ -8,22 +8,15 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:400,300,600" rel='stylesheet'
           type='text/css'>
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
     <script src="js/search.js"></script>
     <script src="js/rendering.js"></script>
     <script>
         $(function () {
-            var data ={% data %};
-
             var searchField = $("#search-input");
             var machines;
-            $.getJSON("third-floor.json", function (json) {
-                renderLab(json, data.values[0].machines, $("#third-floor .machines"))
-            });
-            $.getJSON("basement.json", function (json) {
-                renderLab(json, data.values[1].machines, $("#basement .machines"))
-            });
+
             $(document).on("input", function (e) {
                 var text = searchField.val();
                 if (!machines || machines.length > 0) {
@@ -35,12 +28,9 @@
                 searchField.focus()
             })
         });
-    </script>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+
+    </script>
 
     <!-- Google Analytics -->
     <script>
@@ -58,6 +48,8 @@
 
         ga('create', 'UA-66239364-1', 'auto');
         ga('send', 'pageview');
+
+
     </script>
 
     {% block css %}
@@ -76,7 +68,19 @@
         <div class="container">
             <h1>Third Floor</h1>
             <div class="machines-container">
-                <div class="machines"></div>
+                <div class="machines">
+                    {% for machine in labs.0 %}
+                        {% if machine.is_monitor %}
+                            <div class="space monitor" data-name="{{ machine.name }}" style=""></div>
+                        {% else %}
+                            <div class="space machine {{ machine.characteristics }}" data-name="{{ machine.name }}"
+                                 data-occupied="{{ machine.occupied }}" data-users="{{ machine.users }}"
+                                 style="left:<%=data.left%>;top:<%=data.top%>;">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
     </div>
@@ -84,7 +88,11 @@
         <div class="container">
             <h1>Basement</h1>
             <div class="machines-container">
-                <div class="machines"></div>
+                <div class="machines">
+                    {% for machine in labs.1 %}
+
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -95,17 +103,6 @@
     <div class="mad-labs-logo"></div>
 </a></footer>
 
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js" type="text/javascript"></script>
-
-<script type="text/template" id="machineTemplate">
-    <% var classes = data.occupied ? "occupied": ""
-    classes += (data.users > 4) ? " heavy-use" : "" %>
-    <div class="space machine <%= classes%>" data-name="<%= data.name%>" data-occupied="<%= data.occupied %>"
-         data-users="<%= data.users %>" style="left:<%=data.left%>;top:<%=data.top%>;">
-    </div>
-</script>
 
 <script type="text/template" id="monitorTemplate">
     <div class="space monitor" data-name="<%= data.name%>" style="left:<%=data.left%>;top:<%=data.top%>;">
