@@ -58,7 +58,6 @@ class LabMachine:
         self.uptime = json["uptime"]
         self.load = json["load"]
         self.users = json["users"]
-        self.characteristics = ""
         self.location = (0, 0)
 
 
