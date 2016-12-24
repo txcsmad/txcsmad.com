@@ -1,32 +1,55 @@
 MAD Web
 =======
 
-Main hub for MAD online
-
-.. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
-     :target: https://github.com/pydanny/cookiecutter-django/
-     :alt: Built with Cookiecutter Django
-
-
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
+:target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
     :alt: MIT Licensed
 
+        The main online hub for MAD, built with Django.
 
-Usage
+        * User system
+        * Event system with QR code check-in
+        * URL shortener
+        * Admin panel
+        * REST API
+        * Information about MAD
+        * UTCS lab status page
+
+Development
 -----
 
-Install Python 3.5, Postgres, and Sass. Use pip to install the local requirements. Create a Postgres database named `mad_web` and a user with your username. To use the bundled run configurations, install PyCharm.
+Local Deployment
+^^^^^^^^^^^^^^^^
 
-Settings
---------
+Get all the dependencies we'll need to run Django.
+::
+    brew install python3
+    git clone git@github.com:txcsmad/MAD-Web.git
+    pip3 install -r requirements/local.txt
 
-Moved to settings_.
+Install Postgres app(http://postgresapp.com/) and start Postgres.
+::
+    # Create the Postgres DB
+    createdb mad_web
+    # Populate the DB with test data
+    python3 manage.py migrate
 
-.. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
+We use Gulp_ for our build system. It automates the process of compiling styles and minifying static assets. To install it\:
+::
+    brew install npm
+    npm install
+    npm install --global gulp-cli
 
-Basic Commands
---------------
+.. _Gulp: http://gulpjs.com
+
+In ``config/settings``, lename ``config.template.json`` to ``config.json``. The default values should be fine for local development.
+
+Several run configurations are available. Check ``gulpfile.js`` for more details.
+::
+    # Runs all build steps, then launches the site
+    gulp run
+
+Use ``gulp watch`` to automatically recompile any assets you modify in the background while you work.
 
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
@@ -35,88 +58,65 @@ Setting Up Your Users
 
 * To create an **superuser account**, use this command::
 
-    $ python manage.py createsuperuser
+    python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
-Test coverage
+Running Tests
 ^^^^^^^^^^^^^
+
+::
+
+  py.test
+
+Checking Coverage
+^^^^^^^^^^^^^^^^^
 
 To run the tests, check your test coverage, and generate an HTML coverage report::
 
-    $ coverage run manage.py test
-    $ coverage html
-    $ open htmlcov/index.html
+    coverage run manage.py test
+    coverage html
+    open htmlcov/index.html
 
-Running tests with py.test
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Configuring User Privileges
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only users marked as superusers and staff can access the admin portal.
 ::
-
-  $ py.test
-
-
-Live reloading and Sass CSS compilation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Moved to `Live reloading and SASS compilation`_.
-
-.. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
-
-Local Deployment
-----------
-
-First time
-^^^^^^^^^^
-Install Postgres app(http://postgresapp.com/) and make it run
-::
-
-    $ brew install python3
-    $ brew install npm
-    $ git clone git@github.com:txcsmad/MAD-Web.git
-    $ pip3 install -r requirements/local.txt
-    $ npm install
-    $ npm install --global gulp-cli
-    $ createdb mad_web
-    $ python3 manage.py migrate
-    $ python4 manage.py runserver --settings=config.settings.local
-    
-Set user to superuser & staff
-^^^^^^^^^^
-So you can access the /admin portal. ::
-    $ psql mad_web
+    psql mad_web
     mad_web# UPDATE users_user SET is_superuser = true AND is_staff = true WHERE id = 1;
 
 Server Deployment
 ----------
+
 First time
 ^^^^^^^^^^
-Install Python3, postgres. ::
+Ensure that Python 3.5 and Postgres are installed, then run the below. ::
 
-    $ git clone git@github.com:txcsmad/MAD-Web.git
-    $ pip3 install -r requirements/production.txt
-    $ npm install
-    $ npm install --global gulp-cli
-    $ createdb mad_web
-    $ python3 manage.py migrate
+    git clone git@github.com:txcsmad/MAD-Web.git
+    pip3 install -r requirements/production.txt
+    npm install
+    npm install --global gulp-cli
+    createdb mad_web
+    python3 manage.py migrate
 
 Install a `Django stack`_ on a DigitalOcean Droplet. You will need more than the base droplet as 512Mb of RAM is too little to install everything.
 
 .. _Django stack: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
-Get SSL certificates from `Let's Encrypt`_
+Get SSL certificates from `Let's Encrypt`_, and configure Nginx to serve them.
 
 .. _Let's Encrypt: https://letsencrypt.org/
 
-Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. You can generate a new key here: http://www.miniwebtool.com/django-secret-key-generator/. The site will still function for basic local testing without modifying the remaining placeholders
+Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. You can generate a new key here: http://www.miniwebtool.com/django-secret-key-generator/. Make sure that you generate or retrieve the other keys as well.
 
 Updates
 ^^^^^^^
-The MAD server is configured with an ``updatemad`` command, which is an alias for all of the below.::
+The MAD server is configured with an ``updatemad`` command, which is an alias for the below.::
 
     # Pull from master
     git pull origin master
-    
+
     # migrate database changes
     python3 manage.py migrate
 
