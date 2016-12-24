@@ -2,18 +2,18 @@ MAD Web
 =======
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-:target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
+    :target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
     :alt: MIT Licensed
 
-        The main online hub for MAD, built with Django.
+The main online hub for MAD, built with Django.
 
-        * User system
-        * Event system with QR code check-in
-        * URL shortener
-        * Admin panel
-        * REST API
-        * Information about MAD
-        * UTCS lab status page
+* User system
+* Event system with QR code check-in
+* URL shortener
+* Admin panel
+* REST API
+* Information about MAD
+* UTCS lab status page
 
 Development
 -----
