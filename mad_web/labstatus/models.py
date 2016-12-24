@@ -52,13 +52,17 @@ class UTCSBackend:
 
 class LabMachine:
     def __init__(self, json):
-        self.name = json["name"]
-        self.occupied = json["occupied"]
-        self.up = json["up"]
-        self.uptime = json["uptime"]
-        self.load = json["load"]
-        self.users = json["users"]
+        self.name = json.get("name")
+        self.occupied = json.get("occupied")
+        self.up = json.get("up")
+        self.uptime = json.get("uptime")
+        self.load = json.get("load")
+        self.users = json.get("users")
         self.location = (0, 0)
+
+    @staticmethod
+    def get_empty():
+        return LabMachine({})
 
 
 class LabsResponse:

@@ -29,11 +29,11 @@ function renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate) {
         $(space).tooltipster({
             content: $(tooltipContent),
             theme: "tooltip",
-            speed: 200
+            speed: 200,
+            trigger: "hover",
+            // Using the click trigger may be helpful for debugging styles
+            //trigger: "click"
         });
-        space.click(function () {
-            $(this).tooltipster('show')
-        })
     }
 }
 

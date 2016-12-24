@@ -5,6 +5,12 @@
     <title>UTCS Lab Status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="description"
+          content="See the status of UTCS lab machines.">
+
+    <link rel="icon" type="image/png" sizes="256x256" href="{% static 'images/icons/labstatus-256.png' %}">
+    <link rel="icon" type="image/png" sizes="64x64" href="{% static 'images/icons/labstatus-64.png' %}"/>
+
     <link href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:400,300,600" rel='stylesheet'
           type='text/css'>
     <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -14,6 +20,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
     <script src="{% static 'generated_js/labstatus/rendering.min.js' %}"></script>
+    <script src="{% static 'generated_js/labstatus/search.min.js' %}"></script>
     <script>
         window.addEventListener("load", function () {
 
@@ -31,6 +38,7 @@
                 const data = element.dataset;
                 element.style.left = data.xPercent * 100.0 + "%";
                 element.style.top = data.yPercent * 100.0 + "%";
+                element.className = element.className.replace("to-be-rendered", "");
             }
             renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
             searchField.addEventListener("input", function (e) {
@@ -75,60 +83,53 @@
 </head>
 <body>
 <nav>
-    <div class="ion-ios-search-strong" id="search-icon"></div>
+    <div class="ion-search" id="search-icon"></div>
     <input type="search" placeholder="machine name" id="search-input"/>
-    <div class="ion-ios-help-empty" id="help-icon"></div>
+    <div class="ion-help" id="help-icon"></div>
 </nav>
 <section id="labs">
-    <div id="third-floor" class="lab">
-        <div class="container">
+    {% for lab in labs %}
+        {% if forloop.first %}
+            <div id="third-floor" class="lab">
+        {% else %}
+            <div id="basement" class="lab">
+        {% endif %}
+    <div class="container">
+        {% if forloop.first %}
             <h1>Third Floor</h1>
-            <div class="machines-container">
-                <div class="machines">
-                    {% for machine in labs.0 %}
-                        {% if machine.is_monitor %}
-                            <div class="space monitor" data-name="{{ machine.name }}"
-                                 data-x-percent="{{ machine.location.0 }}"
-                                 data-y-percent="{{ machine.location.1 }}"></div>
-                        {% else %}
-                            <div class="space machine" data-name="{{ machine.name }}"
-                                 data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
-                                 data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
-                            >
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="basement" class="lab">
-        <div class="container">
+        {% else %}
             <h1>Basement</h1>
-            <div class="machines-container">
-                <div class="machines">
-                    {% for machine in labs.1 %}
-                        {% if machine.is_monitor %}
-                            <div class="space monitor" data-name="{{ machine.name }}"
-                                 data-x-percent="{{ machine.location.0 }}"
-                                 data-y-percent="{{ machine.location.1 }}"></div>
-                        {% else %}
-                            <div class="space machine" data-name="{{ machine.name }}"
-                                 data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
-                                 data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
-                            >
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+        {% endif %}
+
+        <div class="machines-container">
+            <div class="machines">
+                {% for machine in lab %}
+                    {% if machine.is_monitor %}
+                        <div class="space monitor to-be-rendered" data-name="{{ machine.name }}"
+                             data-x-percent="{{ machine.location.0 }}"
+                             data-y-percent="{{ machine.location.1 }}"
+                        ></div>
+                    {% else %}
+                        <div class="space machine to-be-rendered" data-name="{{ machine.name }}"
+                             data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
+                             data-up="{{ machine.up | lower }}" data-uptime="{{ machine.uptime }}"
+                             data-load="{{ machine.load }}"
+                             data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
+
+                        >
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
             </div>
         </div>
     </div>
+    </div>
+    {% endfor %}
 </section>
-<footer><a href="https://github.com/utcsmad/UTCS-lab-status">
+<footer><a href="https://github.com/txcsmad/">
     <div class="ion-social-github"></div>
-</a><a href="http://www.cs.utexas.edu/users/mad/labs/">
+</a><a href="{% url 'labs' %}">
     <div class="mad-labs-logo"></div>
 </a></footer>
 
