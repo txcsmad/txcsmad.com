@@ -32,6 +32,7 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
                   url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
+                  url(r'^madcon/$', TemplateView.as_view(template_name='pages/madcon.html'), name='madcon'),
                   url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
 
                   # Django Admin, use {% url 'admin:index' %}

@@ -121,6 +121,7 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = (
     ("""Drew Romanyk""", 'drew.romanyk@utexas.edu'),
+    ("""Nick Walker""", 'nickswalker@icloud.com'),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
