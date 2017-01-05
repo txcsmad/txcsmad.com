@@ -26,12 +26,12 @@ var pathsConfig = function (appName) {
 
     return {
         app: this.app,
-        templates: this.app + '/templates',
-        css: this.app + '/static/css',
-        sass: this.app + '/static/sass',
-        fonts: this.app + '/static/fonts',
-        images: this.app + '/static/images',
-        js: this.app + '/static/js',
+        templates: this.app + '/templates/**/*.html',
+        css: this.app + '/static/css/**/*.css',
+        sass: this.app + '/static/sass/**/*.scss',
+        fonts: this.app + '/static/fonts/**/*',
+        images: this.app + '/static/images/',
+        js: this.app + '/static/js/**/*.js',
         gen_css: this.app + '/static/generated_css',
         gen_js: this.app + '/static/generated_js'
     }
@@ -45,7 +45,7 @@ var paths = pathsConfig();
 
 // Styles autoprefixing and minification
 gulp.task('styles', function () {
-    return gulp.src(paths.sass + '/*')
+    return gulp.src(paths.sass)
         .pipe(sass().on('error', sass.logError))
         .pipe(plumber()) // Checks for errors
         .pipe(autoprefixer({browsers: ['last 2 version']})) // Adds vendor prefixes
@@ -58,16 +58,17 @@ gulp.task('styles', function () {
 
 // Javascript minification
 gulp.task('scripts', function () {
-    return gulp.src(paths.js + '/*')
+    return gulp.src(paths.js)
         .pipe(plumber()) // Checks for errors
-        .pipe(uglify()) // Minifies the js
+        // Minification doesn't work for ES6. Need to figure out a new pipeline here.
+        //.pipe(uglify()) // Minifies the js
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(paths.gen_js));
 });
 
 // Image compression
 gulp.task('imgCompression', function () {
-    return gulp.src(paths.images + '/*')
+    return gulp.src(paths.images + "**/*")
         .pipe(imagemin()) // Compresses PNG, JPEG, GIF and SVG images
         .pipe(gulp.dest(paths.images))
 });
@@ -83,15 +84,13 @@ gulp.task('runServer', function () {
 // Browser sync server for live reload
 gulp.task('browserSync', function () {
     browserSync.init(
-        [paths.css + "/*.css", paths.js + "*.js", paths.templates + '*.html'], {
+        [paths.css, paths.js, paths.templates], {
             proxy: "localhost:8000"
         });
 });
 
 // Default task
-gulp.task('default', function () {
-    runSequence(['styles', 'scripts', 'imgCompression']);
-});
+gulp.task('default', ['styles', 'scripts', 'imgCompression']);
 
 // Gulp with runServer and browserSync
 gulp.task('run', function () {
@@ -104,10 +103,10 @@ gulp.task('run', function () {
 
 // Watch
 gulp.task('watch', ['default'], function () {
-
-    gulp.watch(paths.sass + '/*.scss', ['styles']);
-    gulp.watch(paths.js + '/*.js', ['scripts']);
-    gulp.watch(paths.images + '/*', ['imgCompression']);
-    gulp.watch('templates/*.html');
+    // Register watchers and return immediately
+    gulp.watch(paths.sass, ['styles']);
+    gulp.watch(paths.js, ['scripts']);
+    gulp.watch(paths.images, ['imgCompression']);
 
 });
+
