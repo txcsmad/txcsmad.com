@@ -10,9 +10,10 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from __future__ import absolute_import, unicode_literals
 
-import environ
-import os
 import json
+import os
+
+import environ
 from django.core.exceptions import ImproperlyConfigured
 
 ROOT_DIR = environ.Path(__file__) - 3  # (mad_web/config/settings/common.py - 3 = mad_web/)
@@ -66,6 +67,7 @@ LOCAL_APPS = (
     'mad_web.events.apps.EventsConfig',
     'mad_web.go.apps.GoConfig',
     'mad_web.notify.apps.NotifyConfig',
+    'mad_web.labstatus.apps.LabstatusConfig'
 )
 
 CLEANUP_APP = (
@@ -119,6 +121,7 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = (
     ("""Drew Romanyk""", 'drew.romanyk@utexas.edu'),
+    ("""Nick Walker""", 'nickswalker@icloud.com'),
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -260,6 +263,8 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 # ------------------------------------------------------------------------------
 SENDGRID_API_KEY = get_config("SENDGRID_API_KEY")
 SENDGRID_MAILING_LIST_ID = get_config("SENDGRID_MAILING_LIST_ID")
+
+UTCS_API_KEY = get_config("UTCS_API_KEY")
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'

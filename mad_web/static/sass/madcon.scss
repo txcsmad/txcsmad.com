@@ -1,0 +1,13 @@
+@import "about";
+
+.mad-con-head .logo {
+  max-height: 200px;
+  margin: 0 auto;
+  width: 100%;
+  /* Necessary for Chrome to give the element non-zero height */ }
+@media screen and (min-width: 900px) {
+  /*--- = Labs  */
+  .mad-con-head .logo {
+    max-height: 300px;
+  }
+}

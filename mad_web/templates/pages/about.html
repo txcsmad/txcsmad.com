@@ -57,12 +57,12 @@
                         <i class="fa fa-ticket"></i>
                     </div>
 
-                    <h3 class="event-header">uMAD</h3>
+                    <h3 class="event-header">MADcon</h3>
 
-                    <p>The University of MAD is an annual student-run developer conference that aims to provide an
+                    <p>MAD Conference is an annual student-run developer conference that aims to provide an
                         environment to learn, develop, and grow. The schedule is a mixture of workshops, tech talks, and
                         coding challenges led by industry engineers.</p>
-                    <a class="btn btn-default" href="http://umad.me">uMAD</a>
+                    <a class="btn btn-default" href="{% url 'madcon' %}">MADcon</a>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                         to start your week.
                     </p>
                     <a class="btn btn-default"
-                       href="http://utexas.us11.list-manage2.com/subscribe?u=6f3fe0c9b406d07293921cf6f&amp;id=51457d076d">Subscribe</a>
+                       href="{% url 'notify:me' %}">Subscribe</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -402,27 +402,13 @@
             <h2>Partners</h2>
             <ul class="thumbnails">
                 <li class="full-width">
+                    <a href="https://www.amazon.jobs/" target="_new">
+                        <img src="{% static 'images/partners/amazon.png' %}"/>
+                    </a>
+                </li>
+                <li class="full-width">
                     <a href="http://a16z.com/" target="_new">
                         <img src="{% static 'images/partners/a16z.svg' %}"/>
-                    </a></li>
-                <li class="full-width">
-                    <a href="http://www.microsoft.com/en-us/default.aspx" target="_new">
-                        <img src="{% static 'images/partners/microsoft.svg' %}"/>
-                    </a>
-                </li>
-                <li class="full-width">
-                    <a href="http://www.gm.com/" target="_new">
-                        <img src="{% static 'images/partners/gm.svg' %}"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.tilt.com/learn/jobs" target="_new">
-                        <img src="{% static 'images/partners/tilt.png' %}"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.google.com/" target="_new">
-                        <img src="{% static 'images/partners/google.svg' %}"/>
                     </a>
                 </li>
             </ul>

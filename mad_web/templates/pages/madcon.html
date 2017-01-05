@@ -1,12 +1,113 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} MAD Con || MAD {% endblock title %}
+{% block title %} MADcon || MAD {% endblock title %}
 {% block madcon_tab %}active{% endblock %}
 
 {% block extra-css %}
-{{ block.super }}
+    <link href="{% static 'generated_css/madcon.min.css' %}" rel="stylesheet">
 {% endblock %}
+
 {% block content %}
+    <section id="mad-con-head" class="mad-con-head primary-color-section">
+        <div class="container text-center">
+            <img class="logo" src="{% static 'images/mad-con-logo-sq-16-17.svg' %}" alt="MADcon Logo"/>
+        </div>
+        <div class="text text-center">
+            <p>MAD Conference is an annual student-run developer conference that aims to provide an environment to
+                learn, develop, and grow. The schedule is a mixture of workshops, tech talks, and coding challenges led
+                by industry engineers.</p>
+        </div>
+    </section>
+    <section id="mad-con-intro">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-laptop"></i>
+                    </div>
 
+                    <h3 class="event-header">Workshops</h3>
 
+                    <p>At the core of MAD is our drive to help those learn, develop, and grow. These workshops symbolize
+                        those ideals and bring the best and brightest from the industry to make you the best you can
+                        be.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-rocket"></i>
+                    </div>
+
+                    <h3 class="event-header">Project Showcase</h3>
+
+                    <p>MAD gives students to opportunity to show off their projects they've made and to potentially win
+                        a prize.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+
+                    <h3 class="event-header">People</h3>
+
+                    <p>This is ultimately a conference, which you can meet new people from industry or from campus to
+                        help you change and empower the world. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="dark-section">
+        <div class="container text-center">
+            <h2>FAQ</h2>
+            <div class="text row">
+                <div class="col-md-4">
+                    <h3 class="event-header">Is this a hackathon?</h3>
+                    <p>No, we are a developers conference.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="event-header">Who can attend?</h3>
+                    <p>All UT Austin students are allowed to attend. You will be notified in late January.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="event-header">How much does it cost?</h3>
+                    <p>Nothing, it's completely free.</p>
+                </div>
+            </div>
+            <div class="text row">
+                <div class="col-md-4">
+                    <h3 class="event-header">What should I bring?</h3>
+                    <p>Just yourself, your computer, and your conference badge.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="event-header">Do I need to have experience in mobile or web development?</h3>
+                    <p>Nope, there will be courses for both beginners and advanced folks.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="event-header">More questions?</h3>
+                    <p>Email us at <a href="mailto:mad@cs.utexas.edu">mad@cs.utexas.edu</a></p>
+                </div>
+            </div>
+    </section>
+    <section id="partners">
+        <div class="container text-center">
+            <h2>Partners</h2>
+            <ul class="thumbnails">
+                <li class="full-width">
+                    <a href="https://www.amazon.jobs/" target="_new">
+                        <img src="{% static 'images/partners/amazon.png' %}"/>
+                    </a>
+                </li>
+                <li class="full-width">
+                    <a href="http://a16z.com/" target="_new">
+                        <img src="{% static 'images/partners/a16z.svg' %}"/>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="text">
+                <p>Interested in becoming a partner? Email us at <a
+                        href="mailto:mad@cs.utexas.edu">mad@cs.utexas.edu</a>
+                </p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
+
 from rest_framework import routers
 
 from mad_web.events.views import EventViewSet
@@ -21,9 +22,11 @@ urlpatterns = [
                   url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
                   url(r'^madcon/$', TemplateView.as_view(template_name='pages/madcon.html'), name='madcon'),
                   url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
-
                   # Django Admin, use {% url 'admin:index' %}
                   url(settings.ADMIN_URL, include(admin.site.urls)),
+
+                  # Lab Status
+                  url(r'^labstatus/', include("mad_web.labstatus.urls")),
 
                   # User management
                   url(r'^users/', include('mad_web.users.urls', namespace='users')),
