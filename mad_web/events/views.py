@@ -2,15 +2,18 @@ import datetime
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.template import loader
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import DetailView, ListView, FormView
 from django.utils.safestring import mark_safe
+from django.views.generic import DetailView, ListView, FormView
+from rest_framework import viewsets
+from rest_framework.renderers import JSONRenderer
 
-from .models import Event, EventCalendar
-from .forms import ConfirmAttendanceForm
-from ..users.models import User
+from mad_web.events.serializers import EventSerializer
 from mad_web.utils.utils import TaOrOfficerRequiredMixin
+from .forms import ConfirmAttendanceForm
+from .models import Event, EventCalendar
+from ..users.models import User
 
 
 class EventListView(ListView):
@@ -69,3 +72,9 @@ class EventConfirmAttendanceView(TaOrOfficerRequiredMixin, FormView):
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, 'Confirmed!')
         return reverse('home:feed')
+
+
+# ViewSets define the view behavior.
+class EventViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer

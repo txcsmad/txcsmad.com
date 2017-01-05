@@ -2,14 +2,15 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
+from rest_framework import viewsets
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from mad_web.users.serializers import UserSerializer
+from mad_web.utils.utils import OfficerRequiredMixin
 from .forms import UserUpdateForm
 from .models import User
-from mad_web.utils.utils import OfficerRequiredMixin
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -49,3 +50,9 @@ class UserListView(OfficerRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
