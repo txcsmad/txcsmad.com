@@ -4,13 +4,10 @@
 body {
   line-height: 1.5;
   font-weight: 400;
-  height: 100vh; /* Fullscreen app*/
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
   background-color: black;
   margin: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 p {
@@ -71,17 +68,39 @@ footer {
   margin: 12px 0;
 }
 
+/* = Layout
+-------------------------------------------------------------- */
+/* Top level page structure*/
+
+body {
+  display: flex;
+  height: 100vh; /* Fullscreen app*/
+  flex-direction: column;
+}
+
+nav {
+  flex: 0 1 auto;
+}
+
+footer {
+  flex: 0 1 auto;
+}
+
+#labs {
+  flex: 1 1 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  min-height: 450px;
+  display: flex;
+}
+
 /* = Labs
 -------------------------------------------------------------- */
 
-section#labs {
-  flex: 1;
-  flex-direction: row;
+#labs {
+  flex-flow: row nowrap;
   position: relative;
-  min-height: 450px;
   width: 100vw;
-  overflow: auto;
-  white-space: nowrap;
   font-size: 0;
   scroll-snap-points-x: repeat(99.9%);
   -webkit-overflow-scrolling: touch;
@@ -90,22 +109,24 @@ section#labs {
 }
 
 .lab {
-  display: inline-block;
+  display: flex;
+  flex: 1 0 auto;
   width: 100vw;
-  height: 100%;
+  flex-direction: column;
 }
 
 .lab .container {
-  height: 100%;
+  flex: 1 0 0;
   display: flex;
   flex-direction: column;
   padding: 0 12px;
   max-width: 500px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .lab h1 {
-  flex: 1 0 0;
+  flex: 0 0 auto;
 }
 
 .machines-container {
@@ -157,10 +178,19 @@ section#labs {
 
 nav {
   padding: 0 12px;
+  min-height: 40px;
+  display: flex;
 }
 
 #search-icon {
   display: inline-block;
+  flex: 0 1 0;
+  margin-right: 4px;
+}
+
+#search-icon::before,
+#help-icon::before {
+  padding-top: 12px;
 }
 
 input[type="search"]::-webkit-search-decoration,
@@ -179,6 +209,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border: none;
   background-color: transparent;
   color: white;
+  flex: 1 0 0;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.6);
@@ -198,7 +229,13 @@ input[type="search"]::-webkit-search-results-decoration {
 /* = Footer
 -------------------------------------------------------------- */
 
+footer {
+  display: flex;
+  justify-content: center;
+}
+
 footer a {
+  flex: none;
   display: inline-block;
   color: white;
   width: 1.2em;
@@ -206,11 +243,20 @@ footer a {
   line-height: 1;
 }
 
+footer .ion-social-github {
+  margin-top: 2px;
+}
+
 .mad-labs-logo {
+  width: 100%;
+  height: 100%;
+}
+
+.mad-labs-logo::before {
+  content: " ";
   background-image: url("/static/images/madlabs-beaker.svg");
   width: 100%;
   height: 100%;
-  margin-top: -10px;
   display: inline-block;
 }
 
@@ -220,12 +266,13 @@ footer a {
 @media screen and (min-width: 800px) {
 
   section#labs {
-    display: flex;
     flex-direction: row;
   }
   // Labs grow and fill the width of the screen 50-50
   .lab {
-    flex: 1 0 0;
+    flex: 1 0 auto;
+    width: auto;
+    height: auto;
   }
 }
 
