@@ -1,0 +1,32 @@
+[
+  {
+    "model": "users.User",
+    "pk": 1,
+    "fields": {
+      "username": "test",
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE=",
+      "full_name": "Johny Appleseed",
+      "nick_name": "John",
+      "graduation_date": "2018-05-01",
+      "is_active": true,
+      "is_staff": false,
+      "is_superuser": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "users.User",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE=",
+      "full_name": "Administrator",
+      "nick_name": "Admin",
+      "graduation_date": "2018-05-01",
+      "is_active": true,
+      "is_staff": true,
+      "is_superuser": true
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  }
+]
