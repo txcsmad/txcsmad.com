@@ -14,7 +14,7 @@
     <module name="MAD-Web" />
     <option name="launchJavascriptDebuger" value="false" />
     <option name="host" value="" />
-    <option name="additionalOptions" value="mad_web/events/fixtures/test_event.json mad_web/users/fixtures/test_users.json" />
+    <option name="additionalOptions" value="mad_web/events/fixtures/test_event.json mad_web/users/fixtures/test_users.json mad_web/users/fixtures/user_type_groups.json" />
     <option name="browserUrl" value="" />
     <option name="runTestServer" value="false" />
     <option name="runNoReload" value="false" />

@@ -1,12 +1,13 @@
 [
   {
     "model": "users.User",
-    "pk": 1,
+    "pk": 0,
     "fields": {
-      "username": "test",
+      "username": "user",
       "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE=",
       "full_name": "Johny Appleseed",
       "nick_name": "John",
+      "email": "test@test.com",
       "graduation_date": "2018-05-01",
       "is_active": true,
       "is_staff": false,
@@ -18,14 +19,37 @@
     "model": "users.User",
     "pk": 1,
     "fields": {
-      "username": "admin",
+      "username": "officer_super",
       "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE=",
       "full_name": "Administrator",
       "nick_name": "Admin",
+      "email": "officer_super@test.com",
       "graduation_date": "2018-05-01",
       "is_active": true,
       "is_staff": true,
-      "is_superuser": true
+      "is_superuser": true,
+      "groups": [
+        0
+      ]
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "users.User",
+    "pk": 1,
+    "fields": {
+      "username": "ta",
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE=",
+      "full_name": "Teaching Assistant",
+      "nick_name": "TA",
+      "email": "ta@test.com",
+      "graduation_date": "2018-05-01",
+      "is_active": true,
+      "is_staff": true,
+      "is_superuser": false,
+      "groups": [
+        2
+      ]
     },
     "created_on": "2017-01-01 01:00+06:00"
   }

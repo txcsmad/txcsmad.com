@@ -8,9 +8,9 @@ Local settings
 - Add django-extensions as app
 """
 
-from .common import *  # noqa
 import socket
-import os
+
+from .common import *  # noqa
 
 # DEBUG
 # ------------------------------------------------------------------------------
@@ -26,10 +26,10 @@ SECRET_KEY = get_config("DJANGO_KEY")
 # EMAIL
 # ------------------------------------------------------------------------------
 
-# Anymail with Sendgrid
-INSTALLED_APPS += ("anymail", )
-# Uses SENDGRID_API_KEY in common.py
-EMAIL_BACKEND = "anymail.backends.sendgrid.SendGridBackend"
+
+INSTALLED_APPS += ("anymail",)
+# Output emails to stdout
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # CACHING
 # ------------------------------------------------------------------------------
@@ -43,13 +43,13 @@ CACHES = {
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-INSTALLED_APPS += ('debug_toolbar', )
+INSTALLED_APPS += ('debug_toolbar',)
 
 INTERNAL_IPS = ['127.0.0.1', '10.0.2.2', ]
 # tricks to have debug toolbar when developing with docker
 if os.environ.get('USE_DOCKER') == 'yes':
     ip = socket.gethostbyname(socket.gethostname())
-    INTERNAL_IPS += [ip[:-1]+"1"]
+    INTERNAL_IPS += [ip[:-1] + "1"]
 
 DEBUG_TOOLBAR_CONFIG = {
     'DISABLE_PANELS': [
@@ -60,7 +60,7 @@ DEBUG_TOOLBAR_CONFIG = {
 
 # django-extensions
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ('django_extensions', )
+INSTALLED_APPS += ('django_extensions',)
 
 # TESTING
 # ------------------------------------------------------------------------------

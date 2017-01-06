@@ -1,18 +1,21 @@
 [
   {
     "model": "auth.group",
+    "pk": 0,
     "fields": {
       "name": "Officer"
     }
   },
   {
     "model": "auth.group",
+    "pk": 1,
     "fields": {
       "name": "Sponsor"
     }
   },
   {
     "model": "auth.group",
+    "pk": 2,
     "fields": {
       "name": "TA"
     }
