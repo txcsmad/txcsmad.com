@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Apply for MAD con</h1>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" method="post" action="{% url 'madcon:apply' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

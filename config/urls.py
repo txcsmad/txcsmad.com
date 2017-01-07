@@ -7,7 +7,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
-
 from rest_framework import routers
 
 from mad_web.events.views import EventViewSet
@@ -38,6 +37,7 @@ urlpatterns = [
 
                   # Your stuff: custom urls includes go here
                   url(r'^events/', include('mad_web.events.urls', namespace='events')),
+                  url(r'^madcon/', include('mad_web.madcon.urls', namespace='madcon')),
                   url(r'^', include('mad_web.home.urls', namespace='home')),
                   url(r'^go/', include('mad_web.go.urls', namespace='go')),
                   url(r'^notify/', include('mad_web.notify.urls', namespace='notify'))

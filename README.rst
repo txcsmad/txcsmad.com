@@ -2,7 +2,7 @@ MAD Web
 =======
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
+:target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
     :alt: MIT Licensed
 
 The main online hub for MAD, built with Django.
@@ -14,6 +14,7 @@ The main online hub for MAD, built with Django.
 * REST API
 * Information about MAD
 * UTCS lab status page
+    * MADcon registration
 
 Development
 -----
@@ -51,37 +52,43 @@ Several run configurations are available. Check ``gulpfile.js`` for more details
 
 Use ``gulp watch`` to automatically recompile any assets you modify in the background while you work.
 
-Setting Up Your Users
+Importing test data and users
 ^^^^^^^^^^^^^^^^^^^^^
 
-* To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+Each app includes fixtures_. Load them with
+::
+    python manage.py loaddata <fixture-name>
 
-* To create an **superuser account**, use this command::
+.. _fixtures: https://docs.djangoproject.com/en/1.10/howto/initial-data/
 
-    python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+All included test users have the password ``test``.
 
 Running Tests
 ^^^^^^^^^^^^^
 
 ::
-
   py.test
 
 Checking Coverage
 ^^^^^^^^^^^^^^^^^
 
-To run the tests, check your test coverage, and generate an HTML coverage report::
-
+To run the tests, check your test coverage, and generate an HTML coverage report
+::
     coverage run manage.py test
     coverage html
     open htmlcov/index.html
 
 
-Configuring User Privileges
+Manually manipulating data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Only users marked as superusers and staff can access the admin portal.
+
+To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. In the local environment, check your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+
+To create an **superuser account**
+::
+    python manage.py createsuperuser
+
+To mark an existing account as superuser and staff
 ::
     psql mad_web
     mad_web# UPDATE users_user SET is_superuser = true AND is_staff = true WHERE id = 1;
@@ -91,8 +98,8 @@ Server Deployment
 
 First time
 ^^^^^^^^^^
-Ensure that Python 3.5 and Postgres are installed, then run the below. ::
-
+Ensure that Python 3.5 and Postgres are installed, then run the below.
+::
     git clone git@github.com:txcsmad/MAD-Web.git
     pip3 install -r requirements/production.txt
     npm install
@@ -112,8 +119,8 @@ Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The D
 
 Updates
 ^^^^^^^
-The MAD server is configured with an ``updatemad`` command, which is an alias for the below.::
-
+The MAD server is configured with an ``updatemad`` command, which is an alias for the below.
+::
     # Pull from master
     git pull origin master
 

@@ -56,7 +56,7 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
-    'rest_framework', # Rest API
+    'rest_framework',  # Rest API
 )
 
 # Apps specific for this project go here.
@@ -67,7 +67,8 @@ LOCAL_APPS = (
     'mad_web.events.apps.EventsConfig',
     'mad_web.go.apps.GoConfig',
     'mad_web.notify.apps.NotifyConfig',
-    'mad_web.labstatus.apps.LabstatusConfig'
+    'mad_web.labstatus.apps.LabstatusConfig',
+    'mad_web.madcon.apps.MadconConfig'
 )
 
 CLEANUP_APP = (
@@ -268,7 +269,6 @@ UTCS_API_KEY = get_config("UTCS_API_KEY")
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'
-
 
 # Your common stuff: Below this line define 3rd party library settings
 REST_FRAMEWORK = {
