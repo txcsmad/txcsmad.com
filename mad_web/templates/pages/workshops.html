@@ -3,8 +3,7 @@
 {% load static %}
 {% block workshops_tab %}active{% endblock %}
 
-{% block extra-css %}
-    {{ block.super }}
+{% block css %}
     <link href="{% static 'generated_css/workshops.min.css' %}" rel="stylesheet">
 {% endblock %}
 
