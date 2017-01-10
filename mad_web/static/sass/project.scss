@@ -164,9 +164,24 @@ a:hover {
   padding-bottom: 15px;
 
   .card {
-    width: 400px;
     margin: auto;
     margin-top: 23px;
+    -webkit-flex: 0 90%;
+    flex: 0 90%;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .events .card {
+    -webkit-flex: 0 45%;
+    flex: 0 45%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .events .card {
+    width: 400px;
+    flex: 0 400px;
   }
 }
 
@@ -406,7 +421,7 @@ footer .copyright {
 
 @media screen and (min-width: 900px) {
 
-  .welcome {
+  .welcome, .mad-con-head {
     padding-top: 115px;
     padding-bottom: 115px;
   }
