@@ -10,10 +10,10 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title">Apply for MAD con</h1>
+                <h1 class="panel-title">Register for MADcon</h1>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" method="post" action="{% url 'madcon:apply' %}">
+                <form class="form-horizontal" method="post" action="{% url 'madcon:register' %}">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <div class="control-group">

@@ -9,13 +9,13 @@ from . import views
 urlpatterns = [
     # URL pattern for the Events
     url(
-        regex=r'^apply$',
-        view=login_required(views.MADconApplicationView.as_view()),
-        name='apply'
+        regex=r'^register$',
+        view=login_required(views.MADconRegistrationView.as_view()),
+        name='register'
     ),
     url(
         regex=r'^(?P<id>[\w.@+-]+)/$',
-        view=login_required(views.MADconApplicationStatusView.as_view()),
+        view=login_required(views.MADconRegistrationStatusView.as_view()),
         name='status'
     ),
     url(

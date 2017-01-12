@@ -10,8 +10,8 @@ from mad_web.madcon.forms import MADconApplicationForm, MADconConfirmAttendanceF
 from mad_web.madcon.models import MADconApplication, MADcon
 
 
-class MADconApplicationView(FormView):
-    template_name = 'madcon/application.html'
+class MADconRegistrationView(FormView):
+    template_name = 'madcon/registration.html'
     form_class = MADconApplicationForm
     success_url = '/thanks/'
 
@@ -20,15 +20,15 @@ class MADconApplicationView(FormView):
         # It should return an HttpResponse.
 
         most_recent_madcon = MADcon.objects.get(date__year=datetime.datetime.now().year)
-        return super(MADconApplicationView, self).form_valid(form)
+        return super(MADconRegistrationView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
-        context = super(MADconApplicationView, self).get_context_data(**kwargs)
+        context = super(MADconRegistrationView, self).get_context_data(**kwargs)
 
         return context
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.SUCCESS, 'Confirmed!')
+        messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
         return reverse('madcon')
 
 
@@ -41,9 +41,9 @@ class MADconConfirmAttendanceView(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
 
-        return super(MADconApplicationView, self).form_valid(form)
+        return super(MADconRegistrationView, self).form_valid(form)
 
 
-class MADconApplicationStatusView(DetailView):
+class MADconRegistrationStatusView(DetailView):
     model = MADconApplication
     slug_field = id
