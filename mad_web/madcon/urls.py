@@ -9,17 +9,17 @@ from . import views
 urlpatterns = [
     # URL pattern for the Events
     url(
-        regex=r'^register$',
+        regex=r'^register/$',
         view=login_required(views.MADconRegistrationView.as_view()),
         name='register'
     ),
     url(
-        regex=r'^(?P<id>[\w.@+-]+)/$',
+        regex=r'^status/$',
         view=login_required(views.MADconRegistrationStatusView.as_view()),
         name='status'
     ),
     url(
-        regex=r'^confirm/(?P<id>[\w.@+-]+)/(?P<username>[\w.@+-]+)/$',
+        regex=r'^confirm/$',
         view=login_required(views.MADconConfirmAttendanceView.as_view()),
         name='confirm'
     ),

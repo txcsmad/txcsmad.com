@@ -3,8 +3,8 @@ import datetime
 
 from django.contrib import messages
 from django.urls import reverse
-from django.views.generic import DetailView
 from django.views.generic import FormView
+from django.views.generic import TemplateView
 
 from mad_web.madcon.forms import MADconApplicationForm, MADconConfirmAttendanceForm
 from mad_web.madcon.models import MADconApplication, MADcon
@@ -44,6 +44,17 @@ class MADconConfirmAttendanceView(FormView):
         return super(MADconRegistrationView, self).form_valid(form)
 
 
-class MADconRegistrationStatusView(DetailView):
+class MADconRegistrationStatusView(TemplateView):
     model = MADconApplication
-    slug_field = id
+    template_name = 'madcon/status.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MADconRegistrationStatusView, self).get_context_data(**kwargs)
+        user = self.request.user
+        registration = None
+        try:
+            registration = MADconApplication.objects.get(user=user)
+        except MADconApplication.DoesNotExist:
+            registration = None
+        context['registration'] = registration
+        return context

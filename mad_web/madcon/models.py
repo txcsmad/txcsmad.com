@@ -10,7 +10,7 @@ class MADcon(models.Model):
 class MADconApplication(models.Model):
     APPLICATION_STATUS_CHOICES = (
         ("P", "Pending"),
-        ("A", "Accepetd"),
+        ("A", "Accepted"),
         ("W", "Waitlisted"),
         ("R", "Rejected"),
         ("C", "Confirmed")
