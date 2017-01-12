@@ -1,14 +1,5 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% load static %}
-
-{% block extra-css %}
-    <link href="{% static 'css/atc-style-blue.min.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block extra-js %}
-    <script src="{% static 'js/atc.min.js' %}"></script>
-{% endblock %}
 
 {% block title %}{{ event.title }} & {{ user.username }}{% endblock %}
 

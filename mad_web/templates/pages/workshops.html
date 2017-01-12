@@ -3,8 +3,7 @@
 {% load static %}
 {% block workshops_tab %}active{% endblock %}
 
-{% block extra-css %}
-    {{ block.super }}
+{% block css %}
     <link href="{% static 'generated_css/workshops.min.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -53,12 +52,20 @@
                     <h3>Android</h3>
                     <ul>
                         <li>
-                            <img alt="" src="{% static "images/team/frank.jpg" %}">
-                            <h4>Frank Long</h4>
-                        </li>
-                        <li>
                             <img alt="" src="{% static "images/team/kieran.jpg" %}">
                             <h4>Kieran Vanderslice</h4>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static "images/team/ali.jpg" %}">
+                            <h4>Ali Naqvi</h4>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static "images/team/daniel_loera.jpg" %}">
+                            <h4>Daniel Matthew Loera</h4>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static "images/team/jacob.jpg" %}">
+                            <h4>Jacob Lubecki</h4>
                         </li>
                     </ul>
                 </div>
@@ -88,10 +95,6 @@
                     <h3>Web</h3>
                     <ul>
                         <li>
-                            <img alt="" src="{% static "images/team/nishanth.jpg" %}">
-                            <h4>Nishanth Shanmugham</h4>
-                        </li>
-                        <li>
                             <img alt="" src="{% static "images/team/sammy.jpg" %}">
                             <h4>Sammy Yousif</h4>
                         </li>
@@ -114,25 +117,30 @@
                 <ul class="courses">
                     <a href="https://github.com/txcsmad/s16-android-beginner">
                         <li class="android beginner key"><h3>Android Beginner</h3>
-                            <span class="day-of-week">Date: Tuesday</span>
-                            <span class="time">Time: 6:30-8pm</span>
+                            <span class="day-of-week">Date: TBD</span>
+                            <span class="time">Time: </span>
                         </li>
                     </a>
                     <a href="https://github.com/txcsmad/f16-iOS-beginner">
                         <li class="ios beginner key"><h3>iOS Beginner</h3>
-                            <span class="day-of-week">Date: Thursday</span>
-                            <span class="time">Time: 6:30-8pm</span>
+                            <span class="day-of-week">Date: TBD</span>
+                            <span class="time">Time: </span>
                         </li>
                     </a>
                     <a href="https://github.com/txcsmad/f16-beginner-web">
                         <li class="web beginner key"><h3>Web Beginner</h3>
-                            <span class="day-of-week">Date: Wednesday</span>
-                            <span class="time">Time: 5-6:30pm</span></li>
+                            <span class="day-of-week">Date: TBD</span>
+                            <span class="time">Time: </span></li>
+                    </a>
+                    <a href="https://github.com/txcsmad/f16-spotlight-web">
+                        <li class="android beginner key"><h3>Spotlight Android</h3>
+                            <span class="day-of-week">Date: TBD</span>
+                            <span class="time">Time: </span></li>
                     </a>
                     <a href="https://github.com/txcsmad/f16-spotlight-web">
                         <li class="web beginner key"><h3>Spotlight Web</h3>
-                            <span class="day-of-week">Date: Monday</span>
-                            <span class="time">Time: 5-6:30pm</span></li>
+                            <span class="day-of-week">Date: TBD</span>
+                            <span class="time">Time: </span></li>
                     </a>
                 </ul>
             </div>

@@ -1,6 +1,7 @@
-@import "colors";
-@import "dimens";
-@import "fonts";
+@import "_bootstrap_paper";
+@import "_colors";
+@import "_dimens";
+@import "_fonts";
 @import "navbar";
 
 // project specific CSS goes here
@@ -103,7 +104,7 @@ a:hover {
   padding-bottom: 15px;
   padding-left: 15px;
   padding-right: 15px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg/welcome_bg.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg/welcome_bg.min.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -164,9 +165,24 @@ a:hover {
   padding-bottom: 15px;
 
   .card {
-    width: 400px;
     margin: auto;
     margin-top: 23px;
+    -webkit-flex: 0 90%;
+    flex: 0 90%;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .events .card {
+    -webkit-flex: 0 45%;
+    flex: 0 45%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .events .card {
+    width: 400px;
+    flex: 0 400px;
   }
 }
 
@@ -406,7 +422,7 @@ footer .copyright {
 
 @media screen and (min-width: 900px) {
 
-  .welcome {
+  .welcome, .mad-con-head {
     padding-top: 115px;
     padding-bottom: 115px;
   }

@@ -4,8 +4,7 @@
 {% block labs_tab %}active{% endblock %}
 {% block open_graph_image %}{% static 'images/labs-banner.jpg' %}{% endblock %}
 
-{% block extra-css %}
-    {{ block.super }}
+{% block css %}
     <link href="{% static 'generated_css/labs.min.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}

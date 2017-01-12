@@ -3,23 +3,25 @@
 {% block title %} MADcon || MAD {% endblock title %}
 {% block madcon_tab %}active{% endblock %}
 
-{% block extra-css %}
+{% block css %}
     <link href="{% static 'generated_css/madcon.min.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <section id="mad-con-head" class="mad-con-head primary-color-section">
-        <div class="container text-center">
-            <img class="logo" src="{% static 'images/mad-con-logo-sq-16-17.svg' %}" alt="MADcon Logo"/>
+    <div class="mad-con-head text-center">
+        <div class="man-con-logo-circle">
+            <img class="mad-con-logo" src="{% static 'images/mad-con-logo-sq-16-17.svg' %}" alt="MADcon Logo"/>
+
         </div>
-        <div class="text text-center">
-            <p>MAD Conference is an annual student-run developer conference that aims to provide an environment to
-                learn, develop, and grow. The schedule is a mixture of workshops, tech talks, and coding challenges led
-                by industry engineers.</p>
-        </div>
-    </section>
+        <h2>Empowering students with programming.<br/> Free Ticket.<br/> Free Food.<br/> No pressure.</h2>
+        <a class="btn btn-primary disabled" href="{% url 'madcon' %}">REGISTER</a>
+        <a class="btn btn-primary" href="https://goo.gl/forms/FiyCFjoK4HbIO6z62">VOLUNTEER</a>
+        <a class="btn btn-primary" href="https://goo.gl/forms/S53GAf8eonYeDb743">Teach a Workshop</a>
+        <a class="btn btn-primary" href="https://goo.gl/forms/36n1soVH3fAA8qYk2">Apply for Showcase</a>
+    </div>
     <section id="mad-con-intro">
         <div class="container text-center">
+            <h2>What Is MADcon?</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="icon">
@@ -31,6 +33,7 @@
                     <p>At the core of MAD is our drive to help those learn, develop, and grow. These workshops symbolize
                         those ideals and bring the best and brightest from the industry to make you the best you can
                         be.</p>
+                    <a class="btn btn-default" href="https://goo.gl/forms/S53GAf8eonYeDb743">Teach a Workshop</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -41,6 +44,7 @@
 
                     <p>MAD gives students to opportunity to show off their projects they've made and to potentially win
                         a prize.</p>
+                    <a class="btn btn-default" href="https://goo.gl/forms/36n1soVH3fAA8qYk2">Apply for Showcase</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -51,6 +55,7 @@
 
                     <p>This is ultimately a conference, which you can meet new people from industry or from campus to
                         help you change and empower the world. </p>
+                    <a class="btn btn-default disabled" href="{% url 'madcon' %}">Register</a>
                 </div>
             </div>
         </div>
@@ -86,6 +91,74 @@
                     <p>Email us at <a href="mailto:mad@cs.utexas.edu">mad@cs.utexas.edu</a></p>
                 </div>
             </div>
+        </div>
+    </section>
+    <section id="gallery" class="primary-color-section">
+        <div id="gallery-images" class="container text-center">
+            <h2>Gallery</h2>
+            <ul class="thumbnails">
+                <li>
+                    <a href="{% static 'images/madcon/madcon_00.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_00.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_01.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_01.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_02.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_02.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_03.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_03.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_04.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_04.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_05.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_05.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_06.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_06.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_07.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_07.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_08.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_08.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_09.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_09.jpg' %}">
+                    </a>
+                </li>
+            </ul>
+        </div>
     </section>
     <section id="partners">
         <div class="container text-center">

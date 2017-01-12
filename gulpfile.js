@@ -61,7 +61,7 @@ gulp.task('scripts', function () {
     return gulp.src(paths.js)
         .pipe(plumber()) // Checks for errors
         // Minification doesn't work for ES6. Need to figure out a new pipeline here.
-        //.pipe(uglify()) // Minifies the js
+        // .pipe(uglify()) // Minifies the js
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(paths.gen_js));
 });
