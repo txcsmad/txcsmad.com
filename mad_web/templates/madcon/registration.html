@@ -13,6 +13,9 @@
                 <h1 class="panel-title">Register for MADcon</h1>
             </div>
             <div class="panel-body">
+                <p>Note: No information you provide will have an impact on your acceptance, MADcon is first come first
+                    serve.
+                </p>
                 <form class="form-horizontal" method="post" action="{% url 'madcon:register' %}">
                     {% csrf_token %}
                     {{ form|crispy }}
