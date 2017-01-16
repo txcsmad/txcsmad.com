@@ -1,38 +1,45 @@
 # Create your views here.
-import datetime
 
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import FormView
+from django.views import View
 from django.views.generic import TemplateView
 
 from mad_web.madcon.forms import MADconApplicationForm, MADconConfirmAttendanceForm
-from mad_web.madcon.models import MADconApplication, MADcon
+from mad_web.madcon.models import Registration
 
 
-class MADconRegistrationView(FormView):
-    template_name = 'madcon/registration.html'
-    form_class = MADconApplicationForm
-    success_url = '/thanks/'
+class RegistrationView(View):
+    def get(self, request, *args, **kwargs):
+        form = MADconApplicationForm(request=request)
 
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+        return render(request, 'madcon/registration.html', {'form': form})
 
-        most_recent_madcon = MADcon.objects.get(date__year=datetime.datetime.now().year)
-        return super(MADconRegistrationView, self).form_valid(form)
+    def post(self, request, *args, **kwargs):
+        # create a form instance and populate it with data from the request:
+        form = MADconApplicationForm(request.POST, request.FILES, request=request)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            form.register_for_madcon()
+            # redirect to a new URL:
+            messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
+            return HttpResponseRedirect("/madcon")
+        return render(request, 'madcon/registration.html', {'form': form})
 
     def get_context_data(self, **kwargs):
-        context = super(MADconRegistrationView, self).get_context_data(**kwargs)
+        context = super(RegistrationView, self).get_context_data(**kwargs)
 
         return context
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
+
         return reverse('madcon')
 
 
-class MADconConfirmAttendanceView(FormView):
+class ConfirmAttendanceView(View):
     template_name = 'madcon/confirm.html'
     form_class = MADconConfirmAttendanceForm
     success_url = '/thanks/'
@@ -41,20 +48,20 @@ class MADconConfirmAttendanceView(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
 
-        return super(MADconRegistrationView, self).form_valid(form)
+        return super(RegistrationView, self).form_valid(form)
 
 
-class MADconRegistrationStatusView(TemplateView):
-    model = MADconApplication
+class RegistrationStatusView(TemplateView):
+    model = Registration
     template_name = 'madcon/status.html'
 
     def get_context_data(self, **kwargs):
-        context = super(MADconRegistrationStatusView, self).get_context_data(**kwargs)
+        context = super(RegistrationStatusView, self).get_context_data(**kwargs)
         user = self.request.user
         registration = None
         try:
-            registration = MADconApplication.objects.get(user=user)
-        except MADconApplication.DoesNotExist:
+            registration = Registration.objects.get(user=user)
+        except Registration.DoesNotExist:
             registration = None
         context['registration'] = registration
         return context

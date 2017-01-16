@@ -10,17 +10,17 @@ urlpatterns = [
     # URL pattern for the Events
     url(
         regex=r'^register/$',
-        view=login_required(views.MADconRegistrationView.as_view()),
+        view=login_required(views.RegistrationView.as_view()),
         name='register'
     ),
     url(
         regex=r'^status/$',
-        view=login_required(views.MADconRegistrationStatusView.as_view()),
+        view=login_required(views.RegistrationStatusView.as_view()),
         name='status'
     ),
     url(
         regex=r'^confirm/$',
-        view=login_required(views.MADconConfirmAttendanceView.as_view()),
+        view=login_required(views.ConfirmAttendanceView.as_view()),
         name='confirm'
     ),
 ]
