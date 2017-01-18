@@ -17,7 +17,7 @@
         {% if registration %}
             <a class="btn btn-primary" href="{% url 'madcon:status' %}">Registration Status</a>
         {% else %}
-            <a class="btn btn-primary" href="{% url 'madcon:register' %}">Register</a>
+            <a class="btn btn-primary" href="{% url 'madcon:register' %} disabled">Register</a>
         {% endif %}
         <a class="btn btn-primary" href="https://goo.gl/forms/FiyCFjoK4HbIO6z62">Volunteer</a>
         <a class="btn btn-primary" href="https://goo.gl/forms/S53GAf8eonYeDb743">Teach a Workshop</a>
