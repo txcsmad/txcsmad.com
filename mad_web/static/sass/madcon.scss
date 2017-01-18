@@ -32,6 +32,18 @@
   }
 }
 
+.registration-status-page p {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.registration-status-page .status-text {
+  font-size: 24px;
+  display: block;
+}
+
 ul.thumbnails {
   display: -webkit-flex;
   display: flex;

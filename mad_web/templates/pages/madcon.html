@@ -13,11 +13,12 @@
             <img class="mad-con-logo" src="{% static 'images/mad-con-logo-sq-16-17.svg' %}" alt="MADcon Logo"/>
 
         </div>
-        <h2>Empowering students with programming.<br/> Free Ticket.<br/> Free Food.<br/> No pressure.</h2>
+        <h2> February 4th, 2017 <br> Empowering students with programming.<br> Technical workshops by industry.<br>
+            Beginner and advanced friendly.<br> No pressure.</h2>
         {% if registration %}
             <a class="btn btn-primary" href="{% url 'madcon:status' %}">Registration Status</a>
         {% else %}
-            <a class="btn btn-primary" href="{% url 'madcon:register' %}" disabled>Register</a>
+            <a class="btn btn-primary" href="{% url 'madcon:register' %}">Register</a>
         {% endif %}
         <a class="btn btn-primary" href="https://goo.gl/forms/FiyCFjoK4HbIO6z62">Volunteer</a>
         <a class="btn btn-primary" href="https://goo.gl/forms/S53GAf8eonYeDb743">Teach a Workshop</a>
@@ -59,7 +60,7 @@
 
                     <p>This is ultimately a conference, which you can meet new people from industry or from campus to
                         help you change and empower the world. </p>
-                    <a class="btn btn-default" href="#" disabled>Register</a>
+                    <a class="btn btn-default" href="{% url 'madcon:register' %}">Register</a>
                 </div>
             </div>
         </div>
