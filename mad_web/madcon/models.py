@@ -25,7 +25,7 @@ class Registration(models.Model):
     first_time = models.BooleanField()
     user = models.OneToOneField(User)
     status = models.CharField(choices=APPLICATION_STATUS_CHOICES, max_length=1)
-    t_shirt_size = models.CharField(choices=T_SHIRT_SIZES, max_length=3, blank=True)
+    t_shirt_size = models.CharField(choices=T_SHIRT_SIZES, max_length=3, blank=True, default="XS")
     madcon = models.ForeignKey(MADcon)
     created_at = models.DateTimeField(auto_now_add=True)
 

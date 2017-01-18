@@ -30,8 +30,8 @@ class User(AbstractUser):
     nick_name = models.CharField(max_length=255)
     graduation_date = models.DateField()     
     resume = models.FileField(upload_to='resumes/', blank=True, null=True, validators=[validate_file_extension, validate_file_size])
-    concentration = models.CharField(max_length=3, choices=CONCENTRATION_CHOICES, blank=True, null=True)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
+    concentration = models.CharField(max_length=3, choices=CONCENTRATION_CHOICES, blank=True, default="CS", null=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, default="M", null=True)
 
     def __str__(self):
         return self.username
