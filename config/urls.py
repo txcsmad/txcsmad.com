@@ -10,11 +10,15 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 
 from mad_web.events.views import EventViewSet
-from mad_web.users.views import UserViewSet
+from mad_web.madcon.views import MyRegistrationViewSet, MADconViewSet
+from mad_web.users.views import UserViewSet, MeViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'me', MeViewSet)
 router.register(r'events', EventViewSet)
+router.register(r'madcon', MADconViewSet)
+router.register(r'madcon-registration', MyRegistrationViewSet)
 
 urlpatterns = [
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),

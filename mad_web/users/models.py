@@ -1,20 +1,35 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
+
 import hashlib
 
 from django.contrib.auth.models import Group, AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
 
+GENDER_CHOICES = (
+    ("M", "Male"),
+    ("F", "Female"),
+    ("N", "Non - binary"),
+    ("P", "Prefer not to answer"))
+CONCENTRATION_CHOICES = (
+    ("CS", "Computer Science"),
+    ("D", "Design"),
+    ("B", "Business"),
+    ("EE", "Electrical Engineering"),
+    ("M", "Math"),
+    ("O", "Other")
+)
 
 @python_2_unicode_compatible
 class User(AbstractUser):
-    full_name = models.CharField(_('Full Name'), max_length=255)
-    nick_name = models.CharField(_('Nick Name'), max_length=255)
-    graduation_date = models.DateField(_('Graduation Date'))
-    resume = models.FileField(_('Resume'), upload_to='resumes', blank=True, null=True)
+    full_name = models.CharField(max_length=255)
+    nick_name = models.CharField(max_length=255)
+    graduation_date = models.DateField()
+    resume = models.FileField(upload_to='resumes', blank=True, null=True)
+    concentration = models.CharField(max_length=3, choices=CONCENTRATION_CHOICES, blank=True, null=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
 
     def __str__(self):
         return self.username

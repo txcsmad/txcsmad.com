@@ -27,13 +27,20 @@ class Event(models.Model):
     location = models.CharField(_("Location"), max_length=255)
     description = models.TextField(_("Description"), null=True, blank=True)
     image_url = models.CharField(_("Image URL"), max_length=255)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="event_creator", verbose_name=_("Creator"))
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="event_creator",
+                                verbose_name=_("Creator"))
     created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
     event_tags = ArrayField(models.IntegerField(_("Event Tag")), verbose_name=_("Event Tags"))
-    attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="event_attendees", verbose_name=_("Attendees"))
+    attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="event_attendees",
+                                       verbose_name=_("Attendees"))
+
+    speaker_bio = models.TextField(null=True, blank=True)
+    presented_by = models.CharField(null=True, blank=True, max_length=256)
+    speaker = models.CharField(null=True, blank=True, max_length=256)
 
     def __str__(self):
         return self.title
+
 
 class EventCalendar(HTMLCalendar):
     day_abbr = ["M", "T", "W", "T", "F", "S", "S"]
