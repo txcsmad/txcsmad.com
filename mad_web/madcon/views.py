@@ -9,6 +9,9 @@ from django.views.generic import TemplateView, CreateView, FormView
 from rest_framework import viewsets
 import datetime
 from mad_web.madcon.forms import MADconConfirmAttendanceForm, UserResumeInlineFormSet, MADconRegisterationForm, UserResumeForm
+from rest_framework.permissions import IsAuthenticated
+
+from mad_web.madcon.forms import MADconConfirmAttendanceForm
 from mad_web.madcon.models import Registration, MADcon
 from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer
 
@@ -108,9 +111,10 @@ class MADconViewSet(viewsets.ModelViewSet):
 
 
 class MyRegistrationViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsRegistrant,)
+    permission_classes = (IsAuthenticated,)
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
+    pagination_class = None
 
     def get_queryset(self):
         user = self.request.user
