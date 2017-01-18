@@ -23,7 +23,7 @@ class Registration(models.Model):
     )
     dietary_restrictions = models.CharField(blank=True, max_length=256)
     first_time = models.BooleanField()
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     status = models.CharField(choices=APPLICATION_STATUS_CHOICES, max_length=1)
     t_shirt_size = models.CharField(choices=T_SHIRT_SIZES, max_length=3, blank=True)
     madcon = models.ForeignKey(MADcon)

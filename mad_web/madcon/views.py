@@ -5,31 +5,50 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView, FormView
 from rest_framework import viewsets
-
-from mad_web.madcon.forms import MADconApplicationForm, MADconConfirmAttendanceForm
+import datetime
+from mad_web.madcon.forms import MADconConfirmAttendanceForm, UserResumeInlineFormSet, MADconRegisterationForm, UserResumeForm
 from mad_web.madcon.models import Registration, MADcon
 from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer
 
 
 class RegistrationView(View):
-    def get(self, request, *args, **kwargs):
-        form = MADconApplicationForm(request=request)
 
-        return render(request, 'madcon/registration.html', {'form': form})
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        form = UserResumeForm(instance=user)
+        user_resume_form = UserResumeInlineFormSet(instance=user)
+        registration = None
+        try:
+            registration = Registration.objects.get(user=user)
+        except Registration.DoesNotExist:
+            registration = None
+        if registration:
+            user_resume_form[0].instance = registration
+        
+        return render(request, 'madcon/registration.html', {'form': form, 'user_resume_form': user_resume_form})
 
     def post(self, request, *args, **kwargs):
-        # create a form instance and populate it with data from the request:
-        form = MADconApplicationForm(request.POST, request.FILES, request=request)
-        # check whether it's valid:
+        user = self.request.user
+        form = UserResumeForm(request.POST, request.FILES, instance=user)
+        user_resume_form = None
+        registration = None
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            form.register_for_madcon()
-            # redirect to a new URL:
-            messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
-            return HttpResponseRedirect("/madcon")
-        return render(request, 'madcon/registration.html', {'form': form})
+            new_user_info = form.save()
+            user_resume_form = UserResumeInlineFormSet(request.POST, request.FILES, instance = new_user_info)
+            if user_resume_form.is_valid():
+                new_registration_info = user_resume_form.save(commit=False)
+                new_registration_info[0].user = new_user_info
+                new_registration_info[0].madcon = MADcon.objects.get(date__year=datetime.datetime.now().year)
+                new_registration_info[0].status =  "P"
+                new_registration_info[0].save()
+                
+                messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
+                return HttpResponseRedirect("/madcon")
+        else:
+            user_resume_form =  UserResumeInlineFormSet(request.POST, request.FILES, instance=user)       
+        return render(request, 'madcon/registration.html', {'form': form, 'user_resume_form': user_resume_form})
 
     def get_context_data(self, **kwargs):
         context = super(RegistrationView, self).get_context_data(**kwargs)

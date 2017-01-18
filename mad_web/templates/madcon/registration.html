@@ -10,6 +10,7 @@
 
 {% block extra-js %}
     <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
     <script src="{% static 'js/bootstrap-material-datetimepicker.js' %}"></script>
     <script>
         $('#id_graduation_date').bootstrapMaterialDatePicker({weekStart: 0, time: false, format: "YYYY-MM-DD"});
@@ -32,6 +33,8 @@
                       enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
+                    {{ user_resume_form | crispy }}
+                   
                     <div class="control-group">
                         <div class="controls">
                             <button type="submit" class="btn btn-primary">Confirm</button>
