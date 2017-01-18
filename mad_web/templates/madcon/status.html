@@ -7,7 +7,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
-        <p>Your registration is currently {{ registration.status }}</p>
+        <p>Your registration is currently {{ registration.get_status_display }}</p>
     </div>
 {% endblock content %}
 

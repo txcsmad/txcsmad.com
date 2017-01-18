@@ -14,7 +14,11 @@
 
         </div>
         <h2>Empowering students with programming.<br/> Free Ticket.<br/> Free Food.<br/> No pressure.</h2>
-        <a class="btn btn-primary" href="{% url 'madcon:register' %}">Register</a>
+        {% if registration %}
+            <a class="btn btn-primary" href="{% url 'madcon:status' %}">Registration Status</a>
+        {% else %}
+            <a class="btn btn-primary" href="{% url 'madcon:register' %}">Register</a>
+        {% endif %}
         <a class="btn btn-primary" href="https://goo.gl/forms/FiyCFjoK4HbIO6z62">Volunteer</a>
         <a class="btn btn-primary" href="https://goo.gl/forms/S53GAf8eonYeDb743">Teach a Workshop</a>
         <a class="btn btn-primary" href="https://goo.gl/forms/36n1soVH3fAA8qYk2">Apply for Showcase</a>

@@ -29,7 +29,7 @@ class MADconRegistrationView(FormView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
-        return reverse('madcon')
+        return reverse('madcon:madcon')
 
 
 class MADconConfirmAttendanceView(FormView):
@@ -42,6 +42,23 @@ class MADconConfirmAttendanceView(FormView):
         # It should return an HttpResponse.
 
         return super(MADconRegistrationView, self).form_valid(form)
+
+
+class MADconMainView(TemplateView):
+    template_name = 'pages/madcon.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MADconMainView, self).get_context_data(**kwargs)
+        user = self.request.user
+        registration = None
+        if user.is_authenticated:
+            try:
+                registration = MADconApplication.objects.get(user=user)
+            except MADconApplication.DoesNotExist:
+                registration = None
+        context['registration'] = registration
+        return context
+
 
 
 class MADconRegistrationStatusView(TemplateView):
