@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from rest_framework import viewsets
 
+from mad_web.users.permissions import IsUserOrReadOnly
 from mad_web.users.serializers import UserSerializer
 from mad_web.utils.utils import OfficerRequiredMixin
 from .forms import UserUpdateForm
@@ -52,7 +53,18 @@ class UserListView(OfficerRequiredMixin, ListView):
     slug_url_kwarg = 'username'
 
 
-# ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsUserOrReadOnly,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    paginate_by = 25
+
+
+class MeViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsUserOrReadOnly,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return User.objects.filter(id=user.id)

@@ -5,7 +5,7 @@ from mad_web.users.models import User
 
 class MADcon(models.Model):
     verbose_name = "MADcon"
-    date = models.DateField(unique_for_month=True)
+    date = models.DateField(unique_for_month="date")
 
 
 class Registration(models.Model):
