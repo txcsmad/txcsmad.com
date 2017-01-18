@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from mad_web.madcon.forms import MADconApplicationForm, MADconConfirmAttendanceForm
 from mad_web.madcon.models import Registration, MADcon
@@ -74,9 +75,10 @@ class MADconViewSet(viewsets.ModelViewSet):
 
 
 class MyRegistrationViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsRegistrant,)
+    permission_classes = (IsAuthenticated,)
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
+    pagination_class = None
 
     def get_queryset(self):
         user = self.request.user
