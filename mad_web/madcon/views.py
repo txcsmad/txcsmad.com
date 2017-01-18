@@ -42,13 +42,13 @@ class RegistrationView(View):
             user_resume_form = UserResumeInlineFormSet(request.POST, request.FILES, instance = new_user_info)
             if user_resume_form.is_valid():
                 new_registration_info = user_resume_form.save(commit=False)
-                new_registration_info[0].user = new_user_info
-                new_registration_info[0].madcon = MADcon.objects.get(date__year=datetime.datetime.now().year)
-                new_registration_info[0].status =  "P"
-                new_registration_info[0].save()
-                
-                messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
-                return HttpResponseRedirect("/madcon")
+                if len(new_registration_info) > 0:
+                    new_registration_info[0].user = new_user_info
+                    new_registration_info[0].madcon = MADcon.objects.get(date__year=datetime.datetime.now().year)
+                    new_registration_info[0].status =  "P"
+                    new_registration_info[0].save()                    
+                    messages.add_message(self.request, messages.SUCCESS, 'Your registration was successful!')
+                    return HttpResponseRedirect("/madcon")
         else:
             user_resume_form =  UserResumeInlineFormSet(request.POST, request.FILES, instance=user)       
         return render(request, 'madcon/registration.html', {'form': form, 'user_resume_form': user_resume_form})
