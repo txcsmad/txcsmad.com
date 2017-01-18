@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block css %}
+    <link href="{% static 'generated_css/madcon.min.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block title %}MADcon Registration Status{% endblock %}
 
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
-        <p>Your registration is currently {{ registration.status }}</p>
+    <div class="container registration-status-page">
+        <p>Your registration is currently <span class="status-text">{{ registration.get_status_display }}</span></p>
+        {% if registration %}
+            {% if registration.status == 'P' or registration.status == 'W'  %}
+                <a class="btn btn-primary" href="{% url 'madcon:register' %}">Modify Application</a>
+            {% endif %}
+        {% endif %}
     </div>
 {% endblock content %}
 

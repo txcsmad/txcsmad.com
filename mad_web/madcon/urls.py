@@ -9,6 +9,11 @@ from . import views
 urlpatterns = [
     # URL pattern for the Events
     url(
+        regex=r'^$',
+        view=views.MADconMainView.as_view(),
+        name='madcon'
+    ),
+    url(
         regex=r'^register/$',
         view=login_required(views.RegistrationView.as_view()),
         name='register'
