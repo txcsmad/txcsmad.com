@@ -2,12 +2,10 @@ import datetime
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils.safestring import mark_safe
 from django.views.generic import DetailView, ListView, FormView
 from rest_framework import viewsets
-from rest_framework.renderers import JSONRenderer
 
 from mad_web.events.serializers import EventSerializer
 from mad_web.utils.utils import TaOrOfficerRequiredMixin
@@ -76,5 +74,17 @@ class EventConfirmAttendanceView(TaOrOfficerRequiredMixin, FormView):
 
 # ViewSets define the view behavior.
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Event.objects.all()
+    queryset = Event.objects.order_by('-start_time')
     serializer_class = EventSerializer
+    ordering = ('-start_time',)
+
+    def get_queryset(self):
+        # Optionally filter by tag
+        queryset = Event.objects.order_by('-start_time')
+        tag = self.request.query_params.get('tag', None)
+        if tag is not None:
+            clean_tag = int(tag)
+            queryset = Event.objects.raw(
+                'SELECT * FROM "events_event" WHERE %d = ANY ("events_event"."event_tags") ORDER BY "events_event"."start_time" DESC' % (
+                clean_tag))
+        return queryset

@@ -6,9 +6,12 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from mad_web.madcon.forms import MADconApplicationForm, MADconConfirmAttendanceForm
-from mad_web.madcon.models import Registration
+from mad_web.madcon.models import Registration, MADcon
+from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer
 
 
 class RegistrationView(View):
@@ -35,7 +38,6 @@ class RegistrationView(View):
         return context
 
     def get_success_url(self):
-
         return reverse('madcon')
 
 
@@ -65,3 +67,19 @@ class RegistrationStatusView(TemplateView):
             registration = None
         context['registration'] = registration
         return context
+
+
+class MADconViewSet(viewsets.ModelViewSet):
+    queryset = MADcon.objects.all()
+    serializer_class = MADconSerializer
+
+
+class MyRegistrationViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = Registration.objects.all()
+    serializer_class = RegistrationSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        user = self.request.user
+        return Registration.objects.filter(user=user)

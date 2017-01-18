@@ -10,11 +10,15 @@ from django.views.generic import TemplateView
 from rest_framework import routers
 
 from mad_web.events.views import EventViewSet
-from mad_web.users.views import UserViewSet
+from mad_web.madcon.views import MyRegistrationViewSet, MADconViewSet
+from mad_web.users.views import UserViewSet, MeView
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'events', EventViewSet)
+router.register(r'madcon/myregistration', MyRegistrationViewSet)
+router.register(r'madcon', MADconViewSet)
+
 
 urlpatterns = [
                   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
@@ -32,7 +36,8 @@ urlpatterns = [
                   url(r'^accounts/', include('allauth.urls')),
 
                   # API Rest Framework
-                  url(r'^api/', include(router.urls)),
+                  url(r'^api/v1/me/', MeView.as_view()),
+                  url(r'^api/v1/', include(router.urls)),
                   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
                   # Your stuff: custom urls includes go here
