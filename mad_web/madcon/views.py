@@ -61,8 +61,8 @@ class MADconMainView(TemplateView):
         registration = None
         if user.is_authenticated:
             try:
-                registration = MADconApplication.objects.get(user=user)
-            except MADconApplication.DoesNotExist:
+                registration = Registration.objects.get(user=user)
+            except Registration.DoesNotExist:
                 registration = None
         context['registration'] = registration
         return context
