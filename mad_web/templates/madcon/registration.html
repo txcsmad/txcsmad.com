@@ -5,7 +5,6 @@
 {% block title %}Register for MADcon{% endblock %}
 
 {% block css %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{% static 'generated_css/datepicker_base.min.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -13,10 +12,13 @@
     <script src="{% static 'js/moment.min.js' %}"></script>
     <script src="{% static 'js/jquery.formset.js' %}"></script>
     <script src="{% static 'js/bootstrap-material-datetimepicker.js' %}"></script>
+{#    <script>#}
+{#        $('#id_graduation_date').bootstrapMaterialDatePicker({#}
+{#            time: false, format: "YYYY-MM-DD", monthPicker: true#}
+{#        });#}
+{#    </script>#}
     <script>
-        $('#id_graduation_date').bootstrapMaterialDatePicker({
-            time: false, format: "YYYY-MM-DD", monthPicker: true
-        });
+        $('#id_graduation_date').bootstrapMaterialDatePicker({weekStart: 0, time: false, format: "YYYY-MM-DD"});
     </script>
 {% endblock %}
 
