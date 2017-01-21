@@ -1,11 +1,8 @@
-import datetime
-from os import path
-
 from django import forms
 from django.contrib.admin.widgets import AdminFileWidget
-from django.template.defaultfilters import filesizeformat
-from mad_web.madcon.models import Registration, MADcon
-from mad_web.users.models import GENDER_CHOICES, CONCENTRATION_CHOICES, User
+
+from mad_web.madcon.models import Registration
+from mad_web.users.models import User
 
 
 class MADconRegisterationForm(forms.ModelForm):
@@ -13,7 +10,7 @@ class MADconRegisterationForm(forms.ModelForm):
         model = Registration
         fields = ['t_shirt_size', 'first_time','dietary_restrictions']
 class UserResumeForm(forms.ModelForm):
-    resume = forms.FileField(widget=AdminFileWidget)
+    resume = forms.FileField(widget=AdminFileWidget, required=False)
     class Meta:
         model = User
         fields = ['gender', 'concentration', 'graduation_date', 'resume']
