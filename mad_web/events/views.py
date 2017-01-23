@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.safestring import mark_safe
 from django.views.generic import DetailView, ListView, FormView
 from rest_framework import viewsets
+from rest_framework.exceptions import NotFound
 
 from mad_web.events.serializers import EventSerializer
 from mad_web.utils.utils import TaOrOfficerRequiredMixin
@@ -88,7 +89,7 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
             try:
                 tag_object = EventTag.objects.get(pk=clean_tag)
             except EventTag.DoesNotExist:
-                tag_object = None
+                raise NotFound(detail="The tag does not exist")
             if tag_object is not None:
                 queryset = tag_object.event_tags.all()
                 #queryset = Event.objects.raw(                'SELECT * FROM "events_event" WHERE %d = ANY ("events_event"."event_tags") ORDER BY "events_event"."start_time" DESC' % (                clean_tag))
