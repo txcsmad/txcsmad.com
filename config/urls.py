@@ -44,7 +44,10 @@ urlpatterns = [
                   url(r'^madcon/', include('mad_web.madcon.urls', namespace='madcon')),
                   url(r'^', include('mad_web.home.urls', namespace='home')),
                   url(r'^go/', include('mad_web.go.urls', namespace='go')),
-                  url(r'^notify/', include('mad_web.notify.urls', namespace='notify'))
+                  url(r'^notify/', include('mad_web.notify.urls', namespace='notify')),
+
+                  #OAuth
+                  url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
