@@ -10,7 +10,7 @@ from rest_framework import viewsets
 from mad_web.events.serializers import EventSerializer
 from mad_web.utils.utils import TaOrOfficerRequiredMixin
 from .forms import ConfirmAttendanceForm
-from .models import Event, EventCalendar
+from .models import Event, EventCalendar, EventTag
 from ..users.models import User
 
 
@@ -84,7 +84,12 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
         tag = self.request.query_params.get('tag', None)
         if tag is not None:
             clean_tag = int(tag)
-            queryset = Event.objects.raw(
-                'SELECT * FROM "events_event" WHERE %d = ANY ("events_event"."event_tags") ORDER BY "events_event"."start_time" DESC' % (
-                clean_tag))
+            tag_object = None
+            try:
+                tag_object = EventTag.objects.get(pk=clean_tag)
+            except EventTag.DoesNotExist:
+                tag_object = None
+            if tag_object is not None:
+                queryset = tag_object.event_tags.all()
+                #queryset = Event.objects.raw(                'SELECT * FROM "events_event" WHERE %d = ANY ("events_event"."event_tags") ORDER BY "events_event"."start_time" DESC' % (                clean_tag))
         return queryset

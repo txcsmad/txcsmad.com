@@ -1,0 +1,49 @@
+[{
+    "model": "events.EventTag",
+    "pk": 1,
+    "fields": {
+      "name": "MAD"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 2,
+    "fields": {
+      "name": "Android"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 3,
+    "fields": {
+      "name": "iOS"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 4,
+    "fields": {
+      "name": "uMAD"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 5,
+    "fields": {
+      "name": "Hack Night"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 6,
+    "fields": {
+      "name": "Partner"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  }
+]
