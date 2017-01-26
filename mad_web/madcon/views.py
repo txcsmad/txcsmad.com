@@ -5,14 +5,17 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView, CreateView, FormView
+from django.views.generic import TemplateView, CreateView, FormView, ListView
 from rest_framework import viewsets
 import datetime
+import itertools
+
 from mad_web.madcon.forms import MADconConfirmAttendanceForm, UserResumeInlineFormSet, MADconRegisterationForm, UserResumeForm
 from rest_framework.permissions import IsAuthenticated
 
 from mad_web.madcon.forms import MADconConfirmAttendanceForm
 from mad_web.madcon.models import Registration, MADcon
+from mad_web.events.models import Event, EventTag
 from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer
 
 
@@ -119,3 +122,29 @@ class MyRegistrationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Registration.objects.filter(user=user)
+
+class ScheduleListView(View):
+
+    def get(self, request, *args, **kwargs):
+        queryset = None
+        current_madcon = None
+        madcon_tag = None
+        try:
+            current_madcon = MADcon.objects.get(date__year=datetime.datetime.now().year)
+            madcon_tag = EventTag.objects.get(pk=4)
+        except (MADcon.DoesNotExist, EventTag.DoesNotExist):
+            return render(request, 'madcon/schedule.html', {'event_list': []})        
+        queryset = Event.objects.filter(start_time__year=current_madcon.date.year, start_time__month=current_madcon.date.month, start_time__day=current_madcon.date.day, event_tags=madcon_tag)
+        slots = itertools.groupby(queryset, lambda x:self.get_date_hour(x.start_time))
+        schedule_slots = []
+        for group,matches in slots:
+            slot = ScheduleSlot(matches, group)
+            schedule_slots.append(slot)
+        return render(request, 'madcon/schedule.html', {'event_list': queryset, 'slots': schedule_slots, 'madcon':current_madcon})
+
+    def get_date_hour(self, timestamp):
+        return timestamp.strftime("%x %H")
+
+class ScheduleSlot:
+    def __init__(self, events, time):
+        self.events = list(events)

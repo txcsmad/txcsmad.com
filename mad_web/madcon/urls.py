@@ -19,6 +19,11 @@ urlpatterns = [
         name='register'
     ),
     url(
+        regex=r'^schedule/$',
+        view=views.ScheduleListView.as_view(),
+        name='schedule'
+    ),
+    url(
         regex=r'^status/$',
         view=login_required(views.RegistrationStatusView.as_view()),
         name='status'
