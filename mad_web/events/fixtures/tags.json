@@ -26,7 +26,7 @@
     "model": "events.EventTag",
     "pk": 4,
     "fields": {
-      "name": "uMAD"
+      "name": "MADcon"
     },
     "created_on": "2017-01-01 01:00+06:00"
   },

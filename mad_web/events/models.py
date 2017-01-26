@@ -3,21 +3,11 @@ from datetime import date
 from itertools import groupby
 
 from django.conf import settings
-from django.contrib.postgres.fields import ArrayField
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.html import conditional_escape as esc
 from django.utils.translation import ugettext_lazy as _
 
-EVENT_TAG = (
-    (0, _("MAD")),
-    (1, _("Android")),
-    (2, _("iOS")),
-    (3, _("Web")),
-    (4, _("uMAD")),
-    (5, _("Hack Night")),
-    (6, _("Partner")),
-)
 
 class EventTag(models.Model):
     name = models.CharField(_("Name"), max_length=255, null=False, blank=False, unique=True)
