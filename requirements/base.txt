@@ -52,3 +52,6 @@ djangorestframework==3.4.4
 
 # Cleanup unused user uploaded files
 django_cleanup==0.4.2
+
+# OAuth
+django-oauth-toolkit==0.11.0
