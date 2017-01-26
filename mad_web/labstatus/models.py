@@ -6,7 +6,7 @@ from enum import Enum
 
 import requests
 
-current_base_url = "https://www.cs.utexas.edu/users/mad/utcs-app-backend/staging/cgi-bin/utcs.scgi"
+current_base_url = "https://www.cs.utexas.edu/users/mad/utcs-app-backend/1.1/cgi-bin/utcs.scgi"
 
 
 class UTCSService(Enum):
