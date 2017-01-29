@@ -9,7 +9,8 @@ from django.views.generic import TemplateView, CreateView, FormView
 from rest_framework import viewsets
 import datetime
 from mad_web.madcon.forms import MADconConfirmAttendanceForm, UserResumeInlineFormSet, MADconRegisterationForm, UserResumeForm
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.exceptions import NotFound
 
 from mad_web.madcon.forms import MADconConfirmAttendanceForm
 from mad_web.madcon.models import Registration, MADcon
@@ -119,3 +120,19 @@ class MyRegistrationViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         return Registration.objects.filter(user=user)
+
+class RegistrationViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes  = (IsAdminUser,)
+    queryset = Registration.objects.all()
+    serializer_class = RegistrationSerializer
+    pagination_class = None
+    def get_queryset(self):
+        queryset = Registration.objects.all()
+        status = self.request.query_params.get('status', None)
+        status_choices = dict(Registration.APPLICATION_STATUS_CHOICES)
+        if status is not None:
+            if not (status in status_choices):
+                raise NotFound("Status option is not valid")
+            queryset = queryset.filter(status=status)
+        return queryset
+            
