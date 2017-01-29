@@ -131,3 +131,31 @@ class UserService:
         for user in user_list:
             sponsor_email_list.append(user.email)
         return sponsor_email_list
+    
+    @staticmethod
+    def get_madcon_pending_emails():
+        from mad_web.madcon.models import Registration
+        registrations = Registration.objects.filter(status="P").prefetch_related("user")
+        pending_email_list = []
+        for registration in registrations:
+            pending_email_list.append(registration.user.email)
+        return pending_email_list
+
+
+    @staticmethod
+    def get_madcon_accepted_emails():
+        from mad_web.madcon.models import Registration
+        registrations = Registration.objects.filter(status="A").prefetch_related("user")
+        accepted_email_list = []
+        for registration in registrations:
+            accepted_email_list.append(registration.user.email)
+        return accepted_email_list
+
+    @staticmethod
+    def get_madcon_confirmed_emails():
+        from mad_web.madcon.models import Registration
+        registrations = Registration.objects.filter(status="C").prefetch_related("user")
+        confirmed_email_list = []
+        for registration in registrations:
+            confirmed_email_list.append(registration.user.email)
+        return confirmed_email_list

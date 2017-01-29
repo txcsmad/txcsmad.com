@@ -14,6 +14,9 @@ class NotifyForm(forms.Form):
         (2, _("Members")),
         (3, _("Officers")),
         (4, _("Sponsors")),
+        (5, _("MADcon Pending")),
+        (6, _("MADcon Accepted")),
+        (7, _("MADcon Confirmed")),
     ))
     subject = forms.CharField()
     message = forms.CharField(widget=forms.Textarea)
@@ -30,6 +33,12 @@ class NotifyForm(forms.Form):
             email_to = UserService.get_officer_users_emails()
         elif list_option == 4:
             email_to = UserService.get_sponsor_users_emails()
+        elif list_option == 5:
+            email_to = UserService.get_madcon_pending_emails()
+        elif list_option == 6:
+            email_to = UserService.get_madcon_accepted_emails()
+        elif list_option == 7:
+            email_to = UserService.get_madcon_confirmed_emails()
         else:
             email_to = [EMAIL_WEBMASTER]
 
