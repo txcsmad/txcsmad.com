@@ -120,7 +120,7 @@ class RegistrationStatusView(FormView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.SUCCESS, 'Confirmed!')
-        return reverse('home:feed')
+        return reverse('madcon:status')
 
 
 class MADconViewSet(viewsets.ModelViewSet):
