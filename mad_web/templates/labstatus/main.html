@@ -135,7 +135,7 @@
 
 <script type="text/template" id="tooltipTemplate">
     <h3><%= data.name %></h3>
-    <span> <%= data.uptime %> </span>
+    <span> <%= Math.floor(data.uptime / (24 * 60)) %>:<%= Math.floor((data.uptime / 60) % 24) %>:<%= data.uptime % 60 %> </span>
 </script>
 <script type="text/template" id="monitorTooltipTemplate">
     <h3><%= data.name %></h3>

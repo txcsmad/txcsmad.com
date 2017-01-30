@@ -1,10 +1,12 @@
 import hashlib
 import hmac
+import math
+import time
 from enum import Enum
 
 import requests
 
-current_base_url = "https://www.cs.utexas.edu/users/mad/utcs-app-backend/1.0/cgi-bin/utcs.scgi"
+current_base_url = "https://www.cs.utexas.edu/users/mad/utcs-app-backend/1.1/cgi-bin/utcs.scgi"
 
 
 class UTCSService(Enum):
@@ -43,8 +45,9 @@ class UTCSBackend:
     def _makedigest(service, arg, key):
         if arg is None:
             arg = ""
+        timestamp = math.floor(int(time.time()) / 30)
         keyasbytes = key.encode()
-        message = (str(service) + str(arg)).encode()
+        message = (str(service) + str(arg) + str(timestamp)).encode()
         digester = hmac.new(keyasbytes, message, hashlib.sha1)
 
         return digester.hexdigest()
@@ -59,6 +62,7 @@ class LabMachine:
         self.load = json.get("load")
         self.users = json.get("users")
         self.location = (0, 0)
+        self.lab = json.get("lab")
 
     @staticmethod
     def get_empty():
@@ -69,11 +73,13 @@ class LabsResponse:
     def __init__(self, json):
         self.machines = [{}, {}]
         if json["meta"]["success"]:
-            labs = json["values"]
-            for entry in labs[0]["machines"]:
-                self.machines[0][entry["name"]] = LabMachine(entry)
-            for entry in labs[1]["machines"]:
-                self.machines[1][entry["name"]] = LabMachine(entry)
+            machines = json["values"]
+            for entry in machines:
+                machine = LabMachine(entry)
+                if machine.lab == "third":
+                    self.machines[0][machine.name] = machine
+                else:
+                    self.machines[1][machine.name] = machine
 
 
 class LabsLayoutResponse:
@@ -86,15 +92,21 @@ class LabsLayoutResponse:
             third_dimensions = third["dimensions"]
             basement_dimensions = basement["dimensions"]
             self.dimensions.append(
-                (int(third_dimensions["maximumGridWidth"]), int(third_dimensions["maximumGridHeight"])))
+                (int(third_dimensions["width"]), int(third_dimensions["height"])))
             self.dimensions.append(
-                (int(basement_dimensions["maximumGridWidth"]), int(basement_dimensions["maximumGridHeight"])))
+                (int(basement_dimensions["width"]), int(basement_dimensions["height"])))
             third_machines = third["layout"]
             basement_machines = basement["layout"]
-            for name, coord in third_machines.items():
+            for entry in third_machines:
+                name = entry["name"]
+                x = float(entry["x"])
+                y = float(entry["y"])
                 self.machines_layout[0][name] = (
-                    float(coord["x"]) / self.dimensions[0][0], float(coord["y"]) / self.dimensions[0][1])
+                    x / self.dimensions[0][0], y / self.dimensions[0][1])
 
-            for name, coord in basement_machines.items():
+            for entry in basement_machines:
+                name = entry["name"]
+                x = float(entry["x"])
+                y = float(entry["y"])
                 self.machines_layout[1][name] = (
-                    float(coord["x"]) / self.dimensions[1][0], float(coord["y"]) / self.dimensions[1][1])
+                    x / self.dimensions[0][0], y / self.dimensions[0][1])
