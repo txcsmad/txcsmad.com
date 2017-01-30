@@ -15,7 +15,7 @@ from rest_framework.exceptions import NotFound
 
 from mad_web.madcon.forms import MADconConfirmAttendanceForm
 from mad_web.madcon.models import Registration, MADcon
-from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer
+from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer, RegistrationUserSerializier
 
 
 class RegistrationView(View):
@@ -142,7 +142,7 @@ class MyRegistrationViewSet(viewsets.ModelViewSet):
 class RegistrationViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (IsAdminUser,)
     queryset = Registration.objects.all()
-    serializer_class = RegistrationSerializer
+    serializer_class = RegistrationUserSerializier
     pagination_class = None
 
     def get_queryset(self):
