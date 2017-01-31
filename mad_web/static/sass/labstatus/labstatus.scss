@@ -1,60 +1,4 @@
-/* = Global
--------------------------------------------------------------- */
-
-body {
-  line-height: 1.5;
-  font-weight: 400;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: white;
-  background-color: black;
-  margin: 0;
-}
-
-p {
-  margin-bottom: 12px;
-}
-
-img {
-  max-width: 100%;
-}
-
-p i {
-  font-style: italic;
-}
-
-a {
-  text-decoration: underline;
-}
-
-p a:link,
-p a:visited {
-  color: #FFBB2B;
-}
-
-h1 {
-  font-size: 24px;
-  font-weight: 300;
-}
-
-h2 {
-  font-size: 24px;
-  line-height: 36px;
-  font-weight: 900;
-}
-
-h3 {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-h4 {
-  font-weight: 700;
-}
-
-em {
-  font-weight: 700;
-  display: inline;
-}
+@import "../base";
 
 /* = Sections
 -------------------------------------------------------------- */
@@ -63,55 +7,41 @@ section h1 {
   text-align: center;
 }
 
-footer {
-  text-align: center;
-  margin: 12px 0;
-}
-
 /* = Layout
 -------------------------------------------------------------- */
 /* Top level page structure*/
-
-body {
-  display: flex;
-  height: 100vh; /* Fullscreen app*/
-  flex-direction: column;
-}
-
-nav {
-  flex: 0 1 auto;
-}
-
-footer {
-  flex: 0 1 auto;
-}
 
 #labs {
   flex: 1 1 0;
   overflow-x: scroll;
   overflow-y: hidden;
-  min-height: 450px;
   display: flex;
+}
+
+#sub-nav {
+  margin-top: 4px;
+  padding: 0 12px;
+}
+
+#sub-nav a {
+  display: inline-block;
+  float: right;
 }
 
 /* = Labs
 -------------------------------------------------------------- */
 
 #labs {
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   position: relative;
-  width: 100vw;
   font-size: 0;
-  scroll-snap-points-x: repeat(99.9%);
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: mandatory;
-
+  width: 100%;
 }
 
 .lab {
   display: flex;
   flex: 1 0 auto;
-  width: 100vw;
+  width: 100%;
   flex-direction: column;
 }
 
@@ -121,6 +51,7 @@ footer {
   flex-direction: column;
   padding: 0 12px;
   max-width: 500px;
+  min-height: 450px;
   width: 100%;
   margin: 0 auto;
 }
@@ -155,7 +86,7 @@ footer {
   height: 20px;
   display: inline-block;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   transition: opacity 0.5s;
   opacity: 1;
@@ -173,19 +104,26 @@ footer {
   opacity: 0;
 }
 
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
 /* = Search
 -------------------------------------------------------------- */
-
-nav {
-  padding: 0 12px;
-  min-height: 40px;
-  display: flex;
-}
 
 #search-icon {
   display: inline-block;
   flex: 0 1 0;
   margin-right: 4px;
+}
+
+#search-icon::before {
+  content: " ";
+  background-image: url("../../images/search-icon.svg");
+  width: 100%;
+  height: 100%;
+  display: inline-block;
 }
 
 #search-icon::before,
@@ -208,11 +146,10 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   border: none;
   background-color: transparent;
-  color: white;
   flex: 1 0 0;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.6);
     padding: 0;
     margin: 0;
   }
@@ -229,27 +166,8 @@ input[type="search"]::-webkit-search-results-decoration {
 /* = Footer
 -------------------------------------------------------------- */
 
-footer {
-  display: flex;
-  justify-content: center;
-}
-
-footer a {
-  flex: none;
-  display: inline-block;
-  color: white;
-  width: 1.2em;
-  height: 1.2em;
-  line-height: 1;
-}
-
-footer .ion-social-github {
+#attribution .ion-social-github {
   margin-top: 2px;
-}
-
-.mad-labs-logo {
-  width: 100%;
-  height: 100%;
 }
 
 .mad-labs-logo::before {
