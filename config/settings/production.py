@@ -75,10 +75,10 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '***REMOVED***',
-        'USER': '***REMOVED***',
-        'PASSWORD': '***REMOVED***',
-        'PORT': '***REMOVED***',
+        'NAME': get_config("DATABASE_NAME"),
+        'USER': get_config("DATABASE_USER"),
+        'PASSWORD': get_config("DATABASE_PASSWORD"),
+        'PORT': get_config("DATABASE_PORT"),
         'ATOMIC_REQUESTS': True,
     }
 }
