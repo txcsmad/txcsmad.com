@@ -152,7 +152,7 @@ class ScheduleListView(View):
             madcon_tag = EventTag.objects.get(pk=4)
         except (MADcon.DoesNotExist, EventTag.DoesNotExist):
             return render(request, 'madcon/schedule.html', {'event_list': []})        
-        queryset = Event.objects.filter(start_time__year=current_madcon.date.year, start_time__month=current_madcon.date.month, start_time__day=current_madcon.date.day, event_tags=madcon_tag)
+        queryset = Event.objects.filter(start_time__year=current_madcon.date.year, start_time__month=current_madcon.date.month, start_time__day=current_madcon.date.day, event_tags=madcon_tag).order_by('start_time')
         slots = itertools.groupby(queryset, lambda x:self.get_date_hour(x.start_time))
         schedule_slots = []
         for group,matches in slots:
