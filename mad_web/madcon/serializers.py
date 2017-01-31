@@ -19,5 +19,4 @@ class RegistrationUserSerializier(serializers.HyperlinkedModelSerializer):
 class MADconSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MADcon
-        fields = ('id'
-                  'date',)
+        fields = ('id', 'date')
