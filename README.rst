@@ -25,7 +25,7 @@ Local Deployment
 Get all the dependencies we'll need to run Django.
 ::
     brew install python3
-    git clone git@github.com:txcsmad/MAD-Web.git
+    git clone git@github.com:txcsmad/txcsmad.com.git
     pip3 install -r requirements/local.txt
 
 Install Postgres app(http://postgresapp.com/) and start Postgres.
