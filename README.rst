@@ -2,7 +2,7 @@ MAD Web
 =======
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-:target: https://raw.githubusercontent.com/txcsmad/MAD-Web/master/LICENSE
+    :target: https://raw.githubusercontent.com/txcsmad/txcsmad.com/master/LICENSE
     :alt: MIT Licensed
 
 The main online hub for MAD, built with Django.
@@ -14,7 +14,7 @@ The main online hub for MAD, built with Django.
 * REST API
 * Information about MAD
 * UTCS lab status page
-    * MADcon registration
+* MADcon registration
 
 Development
 -----
@@ -65,9 +65,9 @@ All included test users have the password ``test``.
 
 Running Tests
 ^^^^^^^^^^^^^
-
+Just run
 ::
-  py.test
+    py.test
 
 Checking Coverage
 ^^^^^^^^^^^^^^^^^
