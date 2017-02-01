@@ -1,4 +1,4 @@
-MAD Web
+txcsmad.com
 =======
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
@@ -25,7 +25,7 @@ Local Deployment
 Get all the dependencies we'll need to run Django.
 ::
     brew install python3
-    git clone git@github.com:txcsmad/MAD-Web.git
+    git clone git@github.com:txcsmad/txcsmad.com.git
     pip3 install -r requirements/local.txt
 
 Install Postgres app(http://postgresapp.com/) and start Postgres.
@@ -100,7 +100,7 @@ First time
 ^^^^^^^^^^
 Ensure that Python 3.5 and Postgres are installed, then run the below.
 ::
-    git clone git@github.com:txcsmad/MAD-Web.git
+    git clone git@github.com:txcsmad/txcsmad.com.git
     pip3 install -r requirements/production.txt
     npm install
     npm install --global gulp-cli
@@ -121,8 +121,16 @@ Updates
 ^^^^^^^
 The MAD server is configured with an ``updatemad`` command, which is an alias for the below.
 ::
-    # Pull from master
-    git pull origin master
+    # Update and use master ( not pull, to enforce using whatever is on master )
+    git fetch
+    git reset --hard origin/master
+    
+    # update pip & python packages
+    pip3 install --upgrade pip
+    pip3 install -r requirements/production.txt
+    
+    # update nodejs packages
+    npm install
 
     # migrate database changes
     python3 manage.py migrate
