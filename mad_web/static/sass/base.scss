@@ -1,10 +1,11 @@
+$assetPath: "/static/";
+
 @import "_bootstrap_paper";
 @import "_colors";
 @import "_dimens";
 @import "_fonts";
 @import "navbar";
 
-// project specific CSS goes here
 
 ////////////////////////////////
 //General//
@@ -304,7 +305,7 @@ input[type=number]:focus,
   z-index: 100;
   position: absolute;
   width: 100%;
-  text-align:center;
+  text-align: center;
 }
 
 .alert {
