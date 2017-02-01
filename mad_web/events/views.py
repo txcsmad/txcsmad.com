@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 from django.views.generic import DetailView, ListView, FormView
 from rest_framework import viewsets
 from rest_framework.exceptions import NotFound
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from mad_web.events.serializers import EventSerializer
 from mad_web.utils.utils import TaOrOfficerRequiredMixin
@@ -76,6 +77,7 @@ class EventConfirmAttendanceView(TaOrOfficerRequiredMixin, FormView):
 # ViewSets define the view behavior.
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Event.objects.order_by('-start_time')
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     serializer_class = EventSerializer
     ordering = ('-start_time',)
 
