@@ -12,5 +12,5 @@ class GoSetupView(OfficerRequiredMixin, ListView):
 
 
 def go(request, go_id):
-    go = get_object_or_404(Go, pk=go_id)
+    go = get_object_or_404(Go, pk__iexact=go_id)
     return HttpResponseRedirect(go.url)

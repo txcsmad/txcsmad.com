@@ -1,4 +1,5 @@
 from django.core import validators
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -35,3 +36,12 @@ class Go(models.Model):
 
     def __str__(self):
         return self.id
+    def save(self, force_insert=False, force_update=False):
+        try:
+            if(Go.objects.get(pk__iexact=self.id)):
+                raise ValidationError("The id for this Go already exists")
+            else:
+                super(Go, self).save(force_insert, force_update)
+        except Go.DoesNotExist:
+            super(Go, self).save(force_insert, force_update)
+            
