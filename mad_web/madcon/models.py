@@ -4,8 +4,11 @@ from mad_web.users.models import User
 
 
 class MADcon(models.Model):
-    verbose_name = "MADcon"
     date = models.DateField(unique_for_month="date")
+    class Meta:
+        verbose_name = "MADcon"
+        verbose_name_plural = "MADcons"
+    
 
 
 class Registration(models.Model):
