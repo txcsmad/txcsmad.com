@@ -92,6 +92,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
 )
 
 # MIGRATIONS CONFIGURATION
