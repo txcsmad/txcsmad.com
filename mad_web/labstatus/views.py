@@ -29,4 +29,5 @@ def main_app(request):
 
     labs = serialize_for_view(labs_data, labs_layout_data)
 
-    return render(request, 'labstatus/main.html', {"labs": labs})
+    return render(request, 'labstatus/main.html',
+                  {"labs": labs, "description": "See which machines are available in the UTCS labs"})
