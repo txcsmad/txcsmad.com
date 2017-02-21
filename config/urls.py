@@ -9,6 +9,7 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework import routers
 
+from mad_web import pages
 from mad_web.events.views import EventViewSet
 from mad_web.madcon.views import MyRegistrationViewSet, MADconViewSet, RegistrationViewSet
 from mad_web.users.views import UserViewSet, MeView
@@ -20,11 +21,8 @@ router.register(r'madcon/myregistration', MyRegistrationViewSet)
 router.register(r'madcon/registration', RegistrationViewSet)
 router.register(r'madcon', MADconViewSet)
 
-
 urlpatterns = [
-                  url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
-                  url(r'^workshops/$', TemplateView.as_view(template_name='pages/workshops.html'), name='workshops'),
-                  url(r'^labs/$', TemplateView.as_view(template_name='pages/labs.html'), name='labs'),
+                  url(r'^', include('mad_web.pages.urls')),
                   # Django Admin, use {% url 'admin:index' %}
                   url(settings.ADMIN_URL, include(admin.site.urls)),
 
@@ -47,7 +45,7 @@ urlpatterns = [
                   url(r'^go/', include('mad_web.go.urls', namespace='go')),
                   url(r'^notify/', include('mad_web.notify.urls', namespace='notify')),
 
-                  #OAuth
+                  # OAuth
                   url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

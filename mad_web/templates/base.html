@@ -6,23 +6,21 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %}MAD{% endblock title %}</title>
     <meta name="description"
-          content="Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms. ">
+          content="{{ description|default:"Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms."}}">
     <meta name="theme-color" content="#1EBD5F">
 
     <!-- SEO -->
-    <meta property="og:title" content="MAD">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.txcsmad.com">
-    <meta property="og:image" content="
-            {{ request.build_absolute_uri }}{% block open_graph_image %}{% static 'images/mad-logo-banner-color.png' %}{% endblock open_graph_image %}"/>
+    <meta property="og:url" content="https://{{ request.site.domain }}">
+    <meta property="og:image" content="https://{{ request.site.domain }}{% block open_graph_image %}{% static 'images/mad-logo-banner-color.png' %}{% endblock open_graph_image %}"/>
     <meta property="og:site_name" content="txcsmad.com">
     <meta property="og:description"
-          content="Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms.">
+          content="{{ description|default:"Mobile App Development, UT Austin's premiere student organization dedicated to mobile platforms."}}">
     <meta name="keywords" content="mobile, app, applications, development, education, UT, austin">
-    <link rel="canonical" href="https://www.txcsmad.com/">
+    <link rel="canonical" href="https://{{ request.site.domain }}{{ request.path }}">
 
     <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="196x196" href="{% static 'images/icons/favicon-196.png' %}">
