@@ -11,7 +11,7 @@
 
     <!-- SEO -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://{{ request.site.domain }}">
+    <meta property="og:url" content="https://{{ request.site.domain }}{{ request.path }}">
     <meta property="og:image" content="https://{{ request.site.domain }}{% block open_graph_image %}{% static 'images/mad-logo-banner-color.png' %}{% endblock open_graph_image %}"/>
     <meta property="og:site_name" content="txcsmad.com">
     <meta property="og:description"
