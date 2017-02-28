@@ -57,7 +57,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'rest_framework',  # Rest API
-    'oauth2_provider', # OAuth Provider
+    'oauth2_provider',  # OAuth Provider
 )
 
 # Apps specific for this project go here.
@@ -196,6 +196,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
+                'mad_web.utils.utils.add_analytics_context_processor'
             ],
         },
     },

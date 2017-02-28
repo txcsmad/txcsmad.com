@@ -50,13 +50,13 @@ DEBUG = False
 ALLOWED_HOSTS = get_config("ALLOWED_HOSTS")
 # END SITE CONFIGURATION
 
-INSTALLED_APPS += ('gunicorn', )
+INSTALLED_APPS += ('gunicorn',)
 
 # EMAIL
 # ------------------------------------------------------------------------------
 
 # Anymail with Sendgrid
-INSTALLED_APPS += ("anymail", )
+INSTALLED_APPS += ("anymail",)
 # Uses SENDGRID_API_KEY in common.py
 EMAIL_BACKEND = "anymail.backends.sendgrid.SendGridBackend"
 
@@ -91,6 +91,9 @@ CACHES = {
         'LOCATION': ''
     }
 }
+# CACHING
+# ------------------------------------------------------------------------------
+GOOGLE_ANALYTICS_ID = "UA-66239364-1"
 
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
