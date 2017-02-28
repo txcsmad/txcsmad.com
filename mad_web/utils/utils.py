@@ -1,11 +1,12 @@
+import json
+
+import sendgrid
+from django.conf import settings
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
 
 from config.settings.common import SENDGRID_MAILING_LIST_ID, SENDGRID_API_KEY
-
-import json
-import sendgrid
 
 
 class OfficerRequiredMixin(UserPassesTestMixin):
@@ -27,6 +28,19 @@ class TaOrOfficerRequiredMixin(UserPassesTestMixin):
         if not self.request.user.is_anonymous:
             raise PermissionDenied(self.get_permission_denied_message())
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
+
+def add_analytics_context_processor(request):
+    """
+    A context processor that makes the Google Analytics ID available to the base template. This variable is only
+    defined in production. This ID is not private information.
+    :param request:
+    :return:
+    """
+    if hasattr(settings, "GOOGLE_ANALYTICS_ID"):
+        return {"GOOGLE_ANALYTICS_ID": settings.GOOGLE_ANALYTICS_ID}
+    else:
+        return {}
 
 
 def subscribe_to_newsletter(email, first_name, last_name):
