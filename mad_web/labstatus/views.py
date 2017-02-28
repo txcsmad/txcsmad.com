@@ -17,6 +17,8 @@ def serialize_for_view(labs_data: LabsResponse, labs_layout_data: LabsLayoutResp
                 machine_info = LabMachine.get_empty()
                 machine_info.name = name
                 machine_info.location = coords
+                if "monitor" in machine_info.name:
+                    machine_info.is_monitor = True
             serialized_lab.append(machine_info.__dict__)
         serialized_labs.append(serialized_lab)
     return serialized_labs

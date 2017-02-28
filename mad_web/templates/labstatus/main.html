@@ -24,7 +24,7 @@
                 $("script#monitorTooltipTemplate").html()
             );
             const searchField = document.getElementById("search-input");
-            var machines;
+            let machines;
             let spaces = document.getElementsByClassName("space");
             for (let i = 0; i < spaces.length; i++) {
                 const element = spaces[i];
@@ -84,8 +84,8 @@
                         {% else %}
                             <div class="space machine to-be-rendered" data-name="{{ machine.name }}"
                                  data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
-                                 data-up="{{ machine.up | lower }}" data-uptime="{{ machine.uptime }}"
-                                 data-load="{{ machine.load }}"
+                                 {% if machine.up is not None %}data-up="{{ machine.up | lower }}" data-uptime="{{ machine.uptime }}"
+                                 data-load="{{ machine.load }}"{% endif %}
                                  data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
 
                             >
