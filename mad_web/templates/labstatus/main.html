@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %} UTCS Lab Status || MAD {% endblock title %}
 
+{% block open_graph_image %}{% static 'images/labstatus-banner.png' %}{% endblock open_graph_image %}
+
 {% block css %}
     <link href="{% static 'generated_css/labstatus/labstatus.min.css' %}" rel="stylesheet">
 {% endblock %}
@@ -84,7 +86,8 @@
                         {% else %}
                             <div class="space machine to-be-rendered" data-name="{{ machine.name }}"
                                  data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
-                                 {% if machine.up is not None %}data-up="{{ machine.up | lower }}" data-uptime="{{ machine.uptime }}"
+                                 {% if machine.up is not None %}data-up="{{ machine.up | lower }}"
+                                 data-uptime="{{ machine.uptime }}"
                                  data-load="{{ machine.load }}"{% endif %}
                                  data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
 
