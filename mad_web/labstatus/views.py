@@ -11,8 +11,6 @@ def main_app(request):
 
 
 def backend_proxy(request):
-    if not ("txcsmad.com/" in request.META["HTTP_REFERER"] or "0.0.0.0" in request.META["HTTP_REFERER"]):
-        return HttpResponse({}, content_type='application/json')
     backend = UTCSBackend(settings.UTCS_API_KEY)
     service = request.GET.get('service')
     if service == "labs-layout":
