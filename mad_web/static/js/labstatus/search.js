@@ -4,7 +4,7 @@ function filterMachines(machines, filterString) {
     $.each(machines, function (index, machine) {
         machine = $(machine);
         const name = machine.data("name");
-        const match = name.indexOf(filterString) > -1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        const match = name.indexOf(filterString.toLowerCase()) > -1;
         if (!match) {
             machine.addClass("no-match")
         } else {
