@@ -12,4 +12,10 @@ urlpatterns = [
         view=views.main_app,
         name='main'
     ),
+    url(
+        regex=r'^backend-proxy$',
+        view=views.backend_proxy,
+        name='labs-proxy'
+    ),
+
 ]

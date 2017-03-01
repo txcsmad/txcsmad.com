@@ -14,28 +14,28 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
+    <script src="{% static 'generated_js/labstatus/backend.min.js' %}"></script>
+    <script src="{% static 'generated_js/labstatus/sha1.min.js' %}"></script>
+    <script src="{% static 'generated_js/labstatus/model.min.js' %}"></script>
     <script src="{% static 'generated_js/labstatus/rendering.min.js' %}"></script>
     <script src="{% static 'generated_js/labstatus/search.min.js' %}"></script>
     <script>
         window.addEventListener("load", function () {
-
+            // TEMPLATES
             const spaceTipTemplate = _.template(
                 $("script#tooltipTemplate").html()
             );
             const monitorTipTemplate = _.template(
                 $("script#monitorTooltipTemplate").html()
             );
+            const spaceTemplate = _.template(
+                $("script#spaceTemplate").html()
+            );
+
+            // SEARCH
             const searchField = document.getElementById("search-input");
             let machines;
-            let spaces = document.getElementsByClassName("space");
-            for (let i = 0; i < spaces.length; i++) {
-                const element = spaces[i];
-                const data = element.dataset;
-                element.style.left = data.xPercent * 100.0 + "%";
-                element.style.top = data.yPercent * 100.0 + "%";
-                element.className = element.className.replace("to-be-rendered", "");
-            }
-            renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
+
             searchField.addEventListener("input", function (e) {
                 const text = searchField.value;
                 if (!machines || machines.length > 0) {
@@ -45,6 +45,52 @@
             });
             document.addEventListener("keypress", function (e) {
                 searchField.focus()
+            });
+
+            // DATA
+            let backend = new UTCSBackend(utcs_js_key, proxy_url);
+
+            function updateInfo() {
+                const labsPromise = backend.request(UTCSBackendService.LABS);
+                labsPromise.then(function (data) {
+                    const parsed = new LabsResponse(data);
+                    if (parsed.success) {
+                        const spaces = $(".space");
+                        const allInfo = Object.assign(parsed.machines[0], parsed.machines[1]);
+                        updateMachineInfo(allInfo, spaces);
+                        renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
+                    }
+                });
+            }
+
+            // We'll run the first requests manually
+            const labsPromise = backend.request(UTCSBackendService.LABS);
+            const layoutPromise = backend.request(UTCSBackendService.LAYOUT);
+            // Need to get layout first.
+            layoutPromise.then(function (data) {
+                const parsed = new LabsLayoutResponse(data);
+                if (parsed.success) {
+                    renderSpaces(parsed.machines_layout[0], $("#third-floor .machines"), spaceTemplate);
+                    renderSpaces(parsed.machines_layout[1], $("#basement .machines"), spaceTemplate);
+
+                    // Once we have actual uptime data...
+                    labsPromise.then(function (data) {
+                        // Allow the newly laid out dots to fade in
+                        $(".animate-in").removeClass("animate-in");
+                        const parsed = new LabsResponse(data);
+                        if (parsed.success) {
+                            const spaces = $(".space");
+                            const allInfo = Object.assign(parsed.machines[0], parsed.machines[1]);
+                            // Pump all of the information into the DOM
+                            updateMachineInfo(allInfo, spaces);
+                            // Add the tooltips to display stats
+                            renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
+                            // and now do the same every 15 seconds.
+                            setTimeout(updateInfo, 15000);
+                        }
+                    })
+                }
+
             });
         });
 
@@ -62,47 +108,37 @@
         </a>
     </div>
     <section id="labs">
-        {% for lab in labs %}
-            {% if forloop.first %}
-                <div id="third-floor" class="lab">
-            {% else %}
-                <div id="basement" class="lab">
-            {% endif %}
-        <div class="container">
-            {% if forloop.first %}
+
+        <div id="third-floor" class="lab">
+
+
+            <div class="container">
                 <h1>Third Floor</h1>
-            {% else %}
-                <h1>Basement</h1>
-            {% endif %}
 
-            <div class="machines-container">
-                <div class="machines">
-                    {% for machine in lab %}
-                        {% if machine.is_monitor %}
-                            <div class="space monitor to-be-rendered" data-name="{{ machine.name }}"
-                                 data-x-percent="{{ machine.location.0 }}"
-                                 data-y-percent="{{ machine.location.1 }}"
-                            ></div>
-                        {% else %}
-                            <div class="space machine to-be-rendered" data-name="{{ machine.name }}"
-                                 data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
-                                 {% if machine.up is not None %}data-up="{{ machine.up | lower }}"
-                                 data-uptime="{{ machine.uptime }}"
-                                 data-load="{{ machine.load }}"{% endif %}
-                                 data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
+                <div class="machines-container">
+                    <div class="machines">
 
-                            >
-                            </div>
-                        {% endif %}
-                    {% endfor %}
 
+                    </div>
                 </div>
             </div>
         </div>
         </div>
-        {% endfor %}
-    </section>
 
+        <div id="basement" class="lab">
+            <div class="container">
+                <h1>Basement</h1>
+
+                <div class="machines-container">
+                    <div class="machines">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
 
 
     <script type="text/template" id="tooltipTemplate">
@@ -111,5 +147,14 @@
     </script>
     <script type="text/template" id="monitorTooltipTemplate">
         <h3><%= data.name %></h3>
+    </script>
+    <script type="text/template" id="spaceTemplate">
+
+        <div class="space <% if (data.is_monitor) { %> monitor <% } else { %> machine <% } %> animate-in"
+             data-name="<%= data.name %>"
+             style="left: <%= data.location[0] * 100.0 %>%; top: <%= data.location[1] * 100.0 %>%"
+        ></div>
+
+
     </script>
 {% endblock %}

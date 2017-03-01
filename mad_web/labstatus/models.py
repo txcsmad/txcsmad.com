@@ -25,6 +25,12 @@ class UTCSBackend:
         self.key = api_key
         self.base_url = current_base_url
 
+    def raw_request(self, service: UTCSService):
+        url = self._create_url(service)
+        headers = self._create_headers(service)
+        response = requests.get(url, headers=headers)
+        return response
+
     def request(self, service: UTCSService):
         url = self._create_url(service)
         headers = self._create_headers(service)

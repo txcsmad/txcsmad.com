@@ -51,7 +51,7 @@ section h1 {
   flex-direction: column;
   padding: 0 12px;
   max-width: 500px;
-  min-height: 450px;
+  min-height: 550px;
   height: 550px;
   width: 100%;
   margin: 0 auto;
@@ -89,7 +89,7 @@ section h1 {
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
-  transition: opacity 0.5s;
+  transition: opacity 0.4s, background-color 0.3s;
   opacity: 1;
 }
 
@@ -101,7 +101,7 @@ section h1 {
   background-color: green;
 }
 
-.to-be-rendered {
+.space.animate-in {
   opacity: 0;
 }
 
@@ -197,7 +197,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 @media screen and (min-width: 800px) and (min-height: 700px) {
   h1 {
-    font-size: 36px;
+    font-size: 24px;
   }
   .machines {
   }
