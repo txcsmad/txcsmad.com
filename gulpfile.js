@@ -45,7 +45,7 @@ var paths = pathsConfig();
 
 // Styles autoprefixing and minification
 gulp.task('styles', function () {
-    return gulp.src(paths.sass)
+    return gulp.src(paths.sass, {since: gulp.lastRun('styles')})
         .pipe(sass().on('error', sass.logError))
         .pipe(plumber()) // Checks for errors
         .pipe(autoprefixer({browsers: ['last 2 version']})) // Adds vendor prefixes
@@ -58,7 +58,7 @@ gulp.task('styles', function () {
 
 // Javascript minification
 gulp.task('scripts', function () {
-    return gulp.src(paths.js)
+    return gulp.src(paths.js, {since: gulp.lastRun('scripts')})
         .pipe(plumber()) // Checks for errors
         // Minification doesn't work for ES6. Need to figure out a new pipeline here.
         // .pipe(uglify()) // Minifies the js
@@ -68,7 +68,7 @@ gulp.task('scripts', function () {
 
 // Image compression
 gulp.task('imgCompression', function () {
-    return gulp.src(paths.images + "**/*")
+    return gulp.src(paths.images + "**/*", {since: gulp.lastRun('imgCompression')})
         .pipe(imagemin()) // Compresses PNG, JPEG, GIF and SVG images
         .pipe(gulp.dest(paths.images))
 });
@@ -90,23 +90,21 @@ gulp.task('browserSync', function () {
 });
 
 // Default task
-gulp.task('default', ['styles', 'scripts', 'imgCompression']);
+gulp.task('default', gulp.parallel('styles', 'scripts', 'imgCompression'));
 
 // Gulp with runServer and browserSync
-gulp.task('run', function () {
-    runSequence(['styles', 'scripts', 'imgCompression'], 'runServer', 'browserSync');
-});
+gulp.task('run', gulp.series(gulp.parallel('styles', 'scripts', 'imgCompression'), 'runServer', 'browserSync'));
 
 ////////////////////////////////
 //Watch//
 ////////////////////////////////
 
 // Watch
-gulp.task('watch', ['default'], function () {
+gulp.task('watch', gulp.series('default', function () {
     // Register watchers and return immediately
-    gulp.watch(paths.sass, ['styles']);
-    gulp.watch(paths.js, ['scripts']);
-    gulp.watch(paths.images, ['imgCompression']);
+    gulp.watch(paths.sass, gulp.series('styles'));
+    gulp.watch(paths.js, gulp.series('scripts'));
+    gulp.watch(paths.images, gulp.series('imgCompression'));
 
-});
+}));
 

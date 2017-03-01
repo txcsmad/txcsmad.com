@@ -7,12 +7,12 @@ txcsmad.com
 
 The main online hub for MAD, built with Django.
 
+* Information about MAD
 * User system
 * Event system with QR code check-in
 * URL shortener
 * Admin panel
 * REST API
-* Information about MAD
 * UTCS lab status page
 * MADcon registration
 
@@ -24,6 +24,7 @@ Local Deployment
 
 Get all the dependencies we'll need to run Django.
 ::
+    # Use Homebrew for macOS. Replace with appropriate package manager for your platform
     brew install python3
     git clone git@github.com:txcsmad/txcsmad.com.git
     pip3 install -r requirements/local.txt
@@ -35,15 +36,16 @@ Install Postgres app(http://postgresapp.com/) and start Postgres.
     # Populate the DB with test data
     python3 manage.py migrate
 
-We use Gulp_ for our build system. It automates the process of compiling styles and minifying static assets. To install it\:
+We use Gulp_ 4 for our build system. It automates the process of compiling styles and minifying static assets. To install it (and all of its dependencies) locally\:
 ::
+    # Get
     brew install npm
+    npm install gulpjs/gulp.git#4.0 --save-dev
     npm install
-    npm install --global gulp-cli
 
 .. _Gulp: http://gulpjs.com
 
-In ``config/settings``, lename ``config.template.json`` to ``config.json``. The default values should be fine for local development.
+In ``config/settings``, rename ``config.template.json`` to ``config.json``. The default values should be fine for local development.
 
 Several run configurations are available. Check ``gulpfile.js`` for more details.
 ::
@@ -103,6 +105,7 @@ Ensure that Python 3.5 and Postgres are installed, then run the below.
     git clone git@github.com:txcsmad/txcsmad.com.git
     pip3 install -r requirements/production.txt
     npm install
+    npm install gulpjs/gulp.git#4.0 --save-dev
     npm install --global gulp-cli
     createdb mad_web
     python3 manage.py migrate
@@ -115,7 +118,9 @@ Get SSL certificates from `Let's Encrypt`_, and configure Nginx to serve them.
 
 .. _Let's Encrypt: https://letsencrypt.org/
 
-Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. You can generate a new key here: http://www.miniwebtool.com/django-secret-key-generator/. Make sure that you generate or retrieve the other keys as well.
+Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The Django key should be a unique 50 character key. You can generate a new key `here`_. Make sure that you generate or retrieve the other keys as well.
+
+.. _here: http://www.miniwebtool.com/django-secret-key-generator/
 
 Updates
 ^^^^^^^
@@ -124,11 +129,11 @@ The MAD server is configured with an ``updatemad`` command, which is an alias fo
     # Update and use master ( not pull, to enforce using whatever is on master )
     git fetch
     git reset --hard origin/master
-    
+
     # update pip & python packages
     pip3 install --upgrade pip
     pip3 install -r requirements/production.txt
-    
+
     # update nodejs packages
     npm install
 
