@@ -19,7 +19,8 @@ class UTCSBackend {
             url: url,
             success: callback,
             dataType: "json",
-            headers: headers
+            // Headers are causing HTTPS issues
+            //headers: headers
         });
     }
 
