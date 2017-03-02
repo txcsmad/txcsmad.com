@@ -10,7 +10,6 @@ function renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate) {
         const templateData = {data: data};
         _.templateSettings.variable = "data";
         return monitorTipTemplate(templateData)
-
     }
 
     for (let i = 0; i < spaces.length; i++) {
@@ -18,23 +17,42 @@ function renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate) {
         const classes = space.className;
 
         let tooltipContent;
+        const data = space.dataset;
         if (classes.includes("monitor")) {
-            const data = space.dataset;
             tooltipContent = renderMonitorTooltip(data);
         } else {
-            const data = space.dataset;
             tooltipContent = renderTooltip(data);
         }
-
-        $(space).tooltipster({
-            content: $(tooltipContent),
-            theme: "tooltip",
-            speed: 200,
-            trigger: "hover",
-            // Using the click trigger may be helpful for debugging styles
-            //trigger: "click"
-        });
+        if (classes.includes("tooltipstered")) {
+            $(space).tooltipster('content', $(tooltipContent));
+        } else {
+            $(space).tooltipster({
+                content: $(tooltipContent),
+                theme: "tooltip",
+                speed: 200,
+                trigger: "hover",
+                // Using the click trigger may be helpful for debugging styles
+                //trigger: "click"
+            });
+        }
     }
+}
+
+function renderLabs(layoutResponse, container, labTemplate, spaceTemplate) {
+    function renderLab(data) {
+        const templateData = {data: data};
+        _.templateSettings.variable = "data";
+        return labTemplate(templateData)
+    }
+
+    for (let i = 0; i < layoutResponse.labLayout.length; i++) {
+        const layout = layoutResponse.labLayout[i];
+        const data = {name: layoutResponse.names[i]};
+        container.append(renderLab(data));
+        const id = layoutResponse.names[i] + "-lab";
+        renderSpaces(layout, $("#" + id + " .machines"), spaceTemplate);
+    }
+
 }
 
 function renderSpaces(spaces, container, spaceTemplate) {
@@ -47,8 +65,22 @@ function renderSpaces(spaces, container, spaceTemplate) {
     const keys = Object.keys(spaces);
     for (let i = 0; i < keys.length; i++) {
         const space = spaces[keys[i]];
-        const machine = {location: space, name: keys[i]};
-        container.append(renderSpace(machine));
+        container.append(renderSpace(space));
+    }
+}
+
+
+function updateInfo(labsResponse, spaceTipTemplate, monitorTipTemplate) {
+    const spaces = $(".space");
+    updateMachineInfo(labsResponse.machines, spaces);
+    renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
+    const labs = $(".lab");
+    for (let i = 0; i < labs.length; i++) {
+        const lab = labs[i];
+        const statsPane = $(lab).find(".stats")[0];
+        const name = $(lab).attr("data-name");
+        const numOccupied = labsResponse.getNumOccupied(name);
+        statsPane.innerHTML = numOccupied + " machines occupied";
     }
 }
 
@@ -64,15 +96,5 @@ function updateMachineInfo(info, spaces) {
             space.attr('data-occupied', machineInfo.occupied);
             space.attr('data-up', machineInfo.up);
         }
-    }
-}
-
-function positionSpaces(spaces) {
-    for (let i = 0; i < spaces.length; i++) {
-        const element = spaces[i];
-        const data = element.dataset;
-        element.style.left = data.xPercent * 100.0 + "%";
-        element.style.top = data.yPercent * 100.0 + "%";
-
     }
 }

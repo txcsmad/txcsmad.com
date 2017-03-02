@@ -29,11 +29,11 @@ class UTCSBackend {
     }
 
     create_headers(service) {
-        const digest = this.makeDigest(String(service), null, this.key);
+        const digest = UTCSBackend.makeDigest(String(service), null, this.key);
         return {"authentication": "hmac web:" + digest}
     }
 
-    makeDigest(service, arg, key) {
+    static makeDigest(service, arg, key) {
         if (arg === null) {
             arg = ""
         }

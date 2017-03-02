@@ -31,6 +31,9 @@
             const spaceTemplate = _.template(
                 $("script#spaceTemplate").html()
             );
+            const labTemplate = _.template(
+                $("script#labTemplate").html()
+            );
 
             // SEARCH
             const searchField = document.getElementById("search-input");
@@ -48,18 +51,17 @@
             });
 
             // DATA
-            let backend = new UTCSBackend(utcs_js_key, proxy_url);
+            const backend = new UTCSBackend(utcs_js_key, proxy_url);
 
-            function updateInfo() {
+            function timerCallback() {
                 const labsPromise = backend.request(UTCSBackendService.LABS);
                 labsPromise.then(function (data) {
                     const parsed = new LabsResponse(data);
-                    if (parsed.success) {
-                        const spaces = $(".space");
-                        const allInfo = Object.assign(parsed.machines[0], parsed.machines[1]);
-                        updateMachineInfo(allInfo, spaces);
-                        renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
+                    if (!parsed.success) {
+                        return Promise.reject(new Error("Couldn't get status data."));
                     }
+                    updateInfo(parsed, spaceTipTemplate, monitorTipTemplate);
+                    setTimeout(timerCallback, 15000);
                 });
             }
 
@@ -68,28 +70,25 @@
             const layoutPromise = backend.request(UTCSBackendService.LAYOUT);
             // Need to get layout first.
             layoutPromise.then(function (data) {
-                const parsed = new LabsLayoutResponse(data);
-                if (parsed.success) {
-                    renderSpaces(parsed.machines_layout[0], $("#third-floor .machines"), spaceTemplate);
-                    renderSpaces(parsed.machines_layout[1], $("#basement .machines"), spaceTemplate);
-
-                    // Once we have actual uptime data...
-                    labsPromise.then(function (data) {
-                        // Allow the newly laid out dots to fade in
-                        $(".animate-in").removeClass("animate-in");
-                        const parsed = new LabsResponse(data);
-                        if (parsed.success) {
-                            const spaces = $(".space");
-                            const allInfo = Object.assign(parsed.machines[0], parsed.machines[1]);
-                            // Pump all of the information into the DOM
-                            updateMachineInfo(allInfo, spaces);
-                            // Add the tooltips to display stats
-                            renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
-                            // and now do the same every 15 seconds.
-                            setTimeout(updateInfo, 15000);
-                        }
-                    })
+                const layoutResponse = new LabsLayoutResponse(data);
+                if (!layoutResponse.success) {
+                    return Promise.reject(new Error("Couldn't get layout data."));
                 }
+                renderLabs(layoutResponse, $("#labs"), labTemplate, spaceTemplate);
+
+                return labsPromise;
+
+            }).then(function (data) {
+                // Once we have actual uptime data...
+                // Allow the newly laid out dots to fade in
+                $(".animate-in").removeClass("animate-in");
+                const labsResponse = new LabsResponse(data);
+                if (!labsResponse.success) {
+                    return Promise.reject(new Error("Couldn't get status data."));
+                }
+                updateInfo(labsResponse, spaceTipTemplate, monitorTipTemplate);
+                // and now do the same every 15 seconds.
+                setTimeout(timerCallback, 15000);
 
             });
         });
@@ -100,43 +99,15 @@
 
 {% block content %}
     <div id="sub-nav">
-        <div class="svg-icon" id="search-icon"></div>
+        <img class="svg-icon" id="search-icon" src="{% static 'images/search-icon.svg' %}"/>
         <input type="search" placeholder="machine name" id="search-input"/>
         <div class="svg-icon" id="help-icon" style="display: none;"></div>
         <a href="{% url 'labs' %}">
-            <div class="svg-icon mad-labs-logo"></div>
+            <img class="svg-icon mad-labs-logo" id="search-icon" src="{% static 'images/madlabs-beaker.svg' %}"/>
         </a>
     </div>
     <section id="labs">
 
-        <div id="third-floor" class="lab">
-
-
-            <div class="container">
-                <h1>Third Floor</h1>
-
-                <div class="machines-container">
-                    <div class="machines">
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
-        <div id="basement" class="lab">
-            <div class="container">
-                <h1>Basement</h1>
-
-                <div class="machines-container">
-                    <div class="machines">
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </section>
 
@@ -150,11 +121,23 @@
     </script>
     <script type="text/template" id="spaceTemplate">
 
-        <div class="space <% if (data.is_monitor) { %> monitor <% } else { %> machine <% } %> animate-in"
+        <div class="space <% if (data.isMonitor) { %> monitor <% } else { %> machine <% } %> animate-in"
              data-name="<%= data.name %>"
-             style="left: <%= data.location[0] * 100.0 %>%; top: <%= data.location[1] * 100.0 %>%"
+             style="left: <%= data.x * 100.0 %>%; top: <%= data.y * 100.0 %>%"
         ></div>
 
 
+    </script>
+    <script type="text/template" id="labTemplate">
+        <div id="<%= data.name %>-lab" class="lab" data-name="<%= data.name %>">
+            <div class="container">
+                <h1><%= data.name %></h1>
+                <div class="machines-container">
+                    <div class="machines">
+                    </div>
+                </div>
+                <div class="stats"></div>
+            </div>
+        </div>
     </script>
 {% endblock %}

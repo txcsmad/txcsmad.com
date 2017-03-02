@@ -4,58 +4,85 @@ const Lab = {
 };
 class LabsResponse {
     constructor(json) {
-        this.machines = [{}, {}];
+        this.machines = {};
         this.success = json["meta"]["success"];
-        if (json["meta"]["success"]) {
-            const values = json["values"];
-            for (let i = 0; i < values.length; i++) {
-                const machine = values[i];
-                if (machine.lab == "third") {
-                    this.machines[0][machine.name] = machine;
-                } else {
-                    this.machines[1][machine.name] = machine
-                }
+        if (!json["meta"]["success"]) {
+            return;
+        }
+        const values = json["values"];
+        for (let i = 0; i < values.length; i++) {
+            const machine = values[i];
+            this.machines[machine.name] = machine;
+        }
+    }
+
+    getByLab() {
+        let byLab = {};
+        const keys = Object.keys(this.machines);
+        for (let i = 0; i < keys.length; i++) {
+            const machine = this.machines[keys[i]];
+            if (byLab[machine.lab] !== undefined) {
+                byLab[machine.lab].push(machine);
+            } else {
+                byLab[machine.lab] = [machine];
             }
         }
     }
+
+    getNumMachines(labName) {
+        const byLab = this.getByLab();
+        return byLab[labName].length;
+    }
+
+
+    getNumOccupied(labName) {
+        let total = 0;
+        const keys = Object.keys(this.machines);
+        for (let i = 0; i < keys.length; i++) {
+            const machine = this.machines[keys[i]];
+            if (machine.lab === labName && machine.occupied) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
 }
 
 
 class LabsLayoutResponse {
 
     constructor(json) {
-        this.machines_layout = [{}, {}];
+        this.names = [];
+        this.labLayout = [];
         this.dimensions = [];
         this.success = json["meta"]["success"];
-        if (json["meta"]["success"]) {
-            let third = json["values"][0];
-            let basement = json["values"][1];
-            let third_dimensions = third["dimensions"];
-            let basement_dimensions = basement["dimensions"];
-            this.dimensions.push(
-                [Math.round(third_dimensions["width"]), Math.round(third_dimensions["height"])]);
-            this.dimensions.push(
-                [Math.round(basement_dimensions["width"]), Math.round(basement_dimensions["height"])]);
-            const third_machines = third["layout"];
-            const basement_machines = basement["layout"];
-            for (let i = 0; i < third_machines.length; i++) {
-                const entry = third_machines[i];
-                let name = entry["name"];
-                let x = entry["x"];
-                let y = entry["y"];
-                this.machines_layout[0][name] = [x / this.dimensions[0][0], y / this.dimensions[0][1]];
-                entry.is_monitor = name.includes("monitor");
-            }
-
-            for (let i = 0; i < basement_machines.length; i++) {
-                const entry = basement_machines[i];
-                let name = entry["name"];
-                let x = entry["x"];
-                let y = entry["y"];
-                this.machines_layout[1][name] = [x / this.dimensions[0][0], y / this.dimensions[0][1]];
-                entry.is_monitor = name.includes("monitor");
-            }
+        if (!json["meta"]["success"]) {
+            return;
         }
+        const values = json["values"];
+        for (let i = 0; i < values.length; i++) {
+            let lab = values[i];
+            this.names.push(lab["name"]);
+            const rawDimensions = lab["dimensions"];
+            const dimensions = [Math.round(rawDimensions["width"]), Math.round(rawDimensions["height"])];
+            this.dimensions.push(dimensions);
+            const machines = lab["layout"];
+            const layout = [];
+            for (let j = 0; j < machines.length; j++) {
+                const entry = machines[j];
+                let name = entry["name"];
+                let x = entry["x"] / dimensions[0];
+                let y = entry["y"] / dimensions[1];
+                layout[name] = {name: name, x: x, y: y, isMonitor: name.includes("monitor")};
+            }
+            this.labLayout.push(layout);
+        }
+
+    }
+
+    getAllLayouts() {
+        return Object.assign(this.machines[0], this.machines[1])
     }
 }
 
