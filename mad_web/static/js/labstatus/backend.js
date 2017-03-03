@@ -1,6 +1,6 @@
 const current_base_url = "https://www.cs.utexas.edu/users/mad/utcs-app-backend/1.1/cgi-bin/utcs.scgi";
 const proxy_url = "https://www.txcsmad.com/labstatus/backend-proxy";
-const stats_url = "https://txcsmad.com/labstatus/stats";
+const stats_url = "https://www.txcsmad.com/labstatus/stats";
 const utcs_js_key = "aS9O0@Ke";
 const UTCSBackendService = {
     LAYOUT: 'labs-layout',
