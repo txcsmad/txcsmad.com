@@ -69,6 +69,40 @@ function renderSpaces(spaces, container, spaceTemplate) {
     }
 }
 
+function renderGraphs(stats, containers) {
+    const options = {
+        backgroundColor: "transparent",
+        colors: ['red'],
+        legend: {position: 'none'},
+        vAxis: {
+            textPosition: 'none',
+            gridlines: {
+                color: 'transparent'
+            },
+        },
+        hAxis: {
+            textPosition: 'none',
+            gridlines: {
+                color: 'transparent'
+            }
+        },
+        axisFontSize: 0
+    };
+    for (let i = 0; i < stats.length; i++) {
+        const data = new google.visualization.DataTable();
+        data.addColumn('number', 'X');
+        data.addColumn('number', 'Occupied');
+
+        let preparedStats = [];
+        for (let j = 0; j < stats[i].length; j++) {
+            preparedStats.push([j, stats[i][j]]);
+        }
+        data.addRows(preparedStats);
+        const chart = new google.visualization.LineChart(containers[i]);
+        chart.draw(data, options);
+    }
+}
+
 
 function updateInfo(labsResponse, spaceTipTemplate, monitorTipTemplate) {
     const spaces = $(".space");

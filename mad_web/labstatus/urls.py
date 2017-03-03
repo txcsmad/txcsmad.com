@@ -17,5 +17,10 @@ urlpatterns = [
         view=views.backend_proxy,
         name='labs-proxy'
     ),
+    url(
+        regex=r'^stats$',
+        view=views.last_day_occupied_stats,
+        name='labs-stats'
+    ),
 
 ]

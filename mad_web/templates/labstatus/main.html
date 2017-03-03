@@ -13,6 +13,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="{% static 'generated_js/labstatus/backend.min.js' %}"></script>
     <script src="{% static 'generated_js/labstatus/sha1.min.js' %}"></script>
@@ -52,6 +53,7 @@
 
             // DATA
             const backend = new UTCSBackend(utcs_js_key, proxy_url);
+            const statsBackend = new StatsBackend(utcs_js_key, stats_url);
 
             function timerCallback() {
                 const labsPromise = backend.request(UTCSBackendService.LABS);
@@ -81,6 +83,7 @@
             }).then(function (data) {
                 // Once we have actual uptime data...
                 // Allow the newly laid out dots to fade in
+                $("#labs-loading").hide();
                 $(".animate-in").removeClass("animate-in");
                 const labsResponse = new LabsResponse(data);
                 if (!labsResponse.success) {
@@ -90,11 +93,35 @@
                 // and now do the same every 15 seconds.
                 setTimeout(timerCallback, 15000);
 
+            }).catch(function (error) {
+                $("#labs-loading").hide();
+                $("#labs-error").show();
             });
+
+            // GRAPHING
+
+            function graphingTimerCallback() {
+                const statsPromise = statsBackend.request("");
+                statsPromise.then(function (data) {
+                    renderGraphs(data, $(".graph"));
+                    setTimeout(graphingTimerCallback, 600000 * 5);
+                })
+            }
+
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages': ['corechart']});
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(startGraphing);
+
+            function startGraphing() {
+                graphingTimerCallback();
+            }
         });
 
 
     </script>
+
 {% endblock %}
 
 {% block content %}
@@ -107,8 +134,8 @@
         </a>
     </div>
     <section id="labs">
-
-
+        <div id="labs-loading">Loading...</div>
+        <div id="labs-error" style="display:none">Something went wrong. We're sorry.</div>
     </section>
 
 
@@ -137,6 +164,7 @@
                     </div>
                 </div>
                 <div class="stats"></div>
+                <div class="graph"></div>
             </div>
         </div>
     </script>

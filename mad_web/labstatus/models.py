@@ -78,41 +78,51 @@ class LabMachine:
 class LabsResponse:
     def __init__(self, json):
         self.machines = [{}, {}]
-        if json["meta"]["success"]:
-            machines = json["values"]
-            for entry in machines:
-                machine = LabMachine(entry)
-                if machine.lab == "third":
-                    self.machines[0][machine.name] = machine
-                else:
-                    self.machines[1][machine.name] = machine
+        if not json["meta"]["success"]:
+            return
+        machines = json["values"]
+        for entry in machines:
+            machine = LabMachine(entry)
+            if machine.lab == "third":
+                self.machines[0][machine.name] = machine
+            else:
+                self.machines[1][machine.name] = machine
+
+    def num_occupied_by_lab(self):
+        stats = []
+        for lab in self.machines:
+            bit_map = [1 if machine.occupied else 0 for machine in lab.values()]
+            stats.append(sum(bit_map))
+        return tuple(stats)
 
 
 class LabsLayoutResponse:
     def __init__(self, json):
         self.machines_layout = [{}, {}]
         self.dimensions = []
-        if json["meta"]["success"]:
-            third = json["values"][0]
-            basement = json["values"][1]
-            third_dimensions = third["dimensions"]
-            basement_dimensions = basement["dimensions"]
-            self.dimensions.append(
-                (int(third_dimensions["width"]), int(third_dimensions["height"])))
-            self.dimensions.append(
-                (int(basement_dimensions["width"]), int(basement_dimensions["height"])))
-            third_machines = third["layout"]
-            basement_machines = basement["layout"]
-            for entry in third_machines:
-                name = entry["name"]
-                x = float(entry["x"])
-                y = float(entry["y"])
-                self.machines_layout[0][name] = (
-                    x / self.dimensions[0][0], y / self.dimensions[0][1])
+        if not json["meta"]["success"]:
+            return
+        third = json["values"][0]
+        basement = json["values"][1]
+        third_dimensions = third["dimensions"]
+        basement_dimensions = basement["dimensions"]
+        self.dimensions.append(
+            (int(third_dimensions["width"]), int(third_dimensions["height"])))
+        self.dimensions.append(
+            (int(basement_dimensions["width"]), int(basement_dimensions["height"])))
+        third_machines = third["layout"]
+        basement_machines = basement["layout"]
+        for entry in third_machines:
+            name = entry["name"]
+            x = float(entry["x"])
+            y = float(entry["y"])
+            self.machines_layout[0][name] = (
+                x / self.dimensions[0][0], y / self.dimensions[0][1])
 
-            for entry in basement_machines:
-                name = entry["name"]
-                x = float(entry["x"])
-                y = float(entry["y"])
-                self.machines_layout[1][name] = (
-                    x / self.dimensions[0][0], y / self.dimensions[0][1])
+        for entry in basement_machines:
+            name = entry["name"]
+            x = float(entry["x"])
+            y = float(entry["y"])
+            self.machines_layout[1][name] = (
+                x / self.dimensions[0][0], y / self.dimensions[0][1])
+
