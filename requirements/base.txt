@@ -55,3 +55,7 @@ django_cleanup==0.4.2
 
 # OAuth
 django-oauth-toolkit==0.11.0
+
+# Cron
+django-cron==0.5.0
+dateutils==2.6.0

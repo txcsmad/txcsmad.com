@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'rest_framework',  # Rest API
     'oauth2_provider',  # OAuth Provider
+    'django_cron',  # Lab Status background activity
 )
 
 # Apps specific for this project go here.
@@ -112,6 +113,14 @@ DEBUG = get_config('DEBUG')
 FIXTURE_DIRS = (
     str(APPS_DIR.path('fixtures')),
 )
+
+# CRON CONFIGURATION
+# ------------------------------------------------------------------------------
+
+CRON_CLASSES = [
+    "mad_web.labstatus.cron_tasks.ArchiveLabsResponse",
+    # ...
+]
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
