@@ -94,5 +94,9 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
                 raise NotFound(detail="The tag does not exist")
             if tag_object is not None:
                 queryset = tag_object.event_tags.all()
-                #queryset = Event.objects.raw(                'SELECT * FROM "events_event" WHERE %d = ANY ("events_event"."event_tags") ORDER BY "events_event"."start_time" DESC' % (                clean_tag))
+        future = self.request.query_params.get('future', None)
+        if future is not None and is True:
+            now = datetime.datetime.now()
+            now = now.replace(hour=0, minute=0, second=0, microsecond=0)
+            queryset = queryset.filter(start_time__gte=now)
         return queryset
