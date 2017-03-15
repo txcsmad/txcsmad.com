@@ -77,7 +77,7 @@ class EventConfirmAttendanceView(TaOrOfficerRequiredMixin, FormView):
 # ViewSets define the view behavior.
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Event.objects.order_by('-start_time')
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = EventSerializer
     ordering = ('-start_time',)
 
@@ -94,5 +94,9 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
                 raise NotFound(detail="The tag does not exist")
             if tag_object is not None:
                 queryset = tag_object.event_tags.all()
-                #queryset = Event.objects.raw(                'SELECT * FROM "events_event" WHERE %d = ANY ("events_event"."event_tags") ORDER BY "events_event"."start_time" DESC' % (                clean_tag))
+        future = bool(self.request.query_params.get('future', None))
+        if future:
+            now = datetime.datetime.now()
+            now = now.replace(hour=0, minute=0, second=0, microsecond=0)
+            queryset = queryset.filter(start_time__gte=now)
         return queryset
