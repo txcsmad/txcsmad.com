@@ -7,7 +7,9 @@ function filterMachines(machines, filterString) {
         const match = name.indexOf(filterString.toLowerCase()) > -1;
         if (!match) {
             machine.addClass("no-match")
+            machine.removeClass("match-highlight")
         } else {
+            machine.addClass("match-highlight")
             machine.removeClass("no-match")
         }
     });

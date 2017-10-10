@@ -188,6 +188,11 @@ input[type="search"]::-webkit-search-results-decoration {
   opacity: .5;
 }
 
+.match-highlight {
+    border-style: solid;
+    border-color: #0046ff;
+}
+
 #help-icon {
   display: inline-block;
 }
