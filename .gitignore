@@ -78,3 +78,4 @@ config/settings/config.json
 mad_web/static/generated_css/
 mad_web/static/generated_js/
 staticfiles/
+/env
