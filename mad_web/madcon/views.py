@@ -28,8 +28,11 @@ class RegistrationView(View):
         form = UserResumeForm(instance=user)
         user_resume_form = UserResumeInlineFormSet(instance=user)
         registration = None
+        madcon = current_madcon()
+        if madcon.registration_open == False:
+            return render(request, 'madcon/coming_soon.html')
         try:
-            registration = Registration.objects.get(user=user, madcon=current_madcon())
+            registration = Registration.objects.get(user=user, madcon=madcon)
         except Registration.DoesNotExist:
             registration = None
         if registration:

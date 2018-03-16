@@ -18,5 +18,5 @@ class MADconRegistrationAdmin(admin.ModelAdmin):
 
 @admin.register(MADcon)
 class MADconAdmin(admin.ModelAdmin):
-    list_display = ('date',)
+    list_display = ('date', 'registration_open')
     ordering = ('-date',)

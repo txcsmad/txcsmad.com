@@ -5,6 +5,7 @@ from mad_web.users.models import User
 
 class MADcon(models.Model):
     date = models.DateField(unique_for_month="date")
+    registration_open = models.BooleanField(default=False)
     class Meta:
         verbose_name = "MADcon"
         verbose_name_plural = "MADcons"
