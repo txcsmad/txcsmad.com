@@ -100,3 +100,11 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
             now = now.replace(hour=0, minute=0, second=0, microsecond=0)
             queryset = queryset.filter(start_time__gte=now)
         return queryset
+
+
+class MadConScheduleViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Event.objects.order_by('-start_time').filter(event_tags__name__contains='MADcon', start_time__year=datetime.datetime.now().year)
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        return self.queryset
