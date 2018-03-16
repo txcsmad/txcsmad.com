@@ -19,7 +19,8 @@ from mad_web.events.models import Event, EventTag
 from rest_framework.exceptions import NotFound
 from mad_web.madcon.serializers import RegistrationSerializer, MADconSerializer, RegistrationUserSerializier
 
-
+def current_madcon():
+    return MADcon.objects.get(date__year=datetime.datetime.now().year)
 
 class RegistrationView(View):
     def get(self, request, *args, **kwargs):
@@ -28,7 +29,7 @@ class RegistrationView(View):
         user_resume_form = UserResumeInlineFormSet(instance=user)
         registration = None
         try:
-            registration = Registration.objects.get(user=user)
+            registration = Registration.objects.get(user=user, madcon=current_madcon())
         except Registration.DoesNotExist:
             registration = None
         if registration:
@@ -50,8 +51,7 @@ class RegistrationView(View):
                 new_registration_info = user_resume_form.save(commit=False)
                 if len(new_registration_info) > 0:
                     new_registration_info[0].user = new_user_info
-                    new_registration_info[0].madcon = MADcon.objects.get(
-                        date__year=datetime.datetime.now().year)
+                    new_registration_info[0].madcon = current_madcon()
                     new_registration_info[0].status = "P"
                     new_registration_info[0].save()
                     messages.add_message(self.request, messages.SUCCESS,
@@ -92,7 +92,7 @@ class MADconMainView(TemplateView):
         registration = None
         if user.is_authenticated:
             try:
-                registration = Registration.objects.get(user=user)
+                registration = Registration.objects.get(user=user, madcon=current_madcon())
             except Registration.DoesNotExist:
                 registration = None
         context['registration'] = registration
@@ -109,7 +109,7 @@ class RegistrationStatusView(FormView):
         user = self.request.user
         registration = None
         try:
-            registration = Registration.objects.get(user=user)
+            registration = Registration.objects.get(user=user, madcon=current_madcon())
         except Registration.DoesNotExist:
             registration = None
         context['registration'] = registration
@@ -139,7 +139,7 @@ class MyRegistrationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Registration.objects.filter(user=user)
+        return Registration.objects.filter(user=user, madcon=current_madcon())
 
 class ScheduleListView(View):
 
