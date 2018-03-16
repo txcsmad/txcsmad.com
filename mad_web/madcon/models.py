@@ -9,7 +9,9 @@ class MADcon(models.Model):
     class Meta:
         verbose_name = "MADcon"
         verbose_name_plural = "MADcons"
-    
+    def __str__(self):
+        return "MADcon %s" % str(self.date.year)
+
 
 
 class Registration(models.Model):

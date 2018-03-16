@@ -10,8 +10,7 @@ def change_status_to_accepted(modeladmin, request, queryset):
 
 @admin.register(Registration)
 class MADconRegistrationAdmin(admin.ModelAdmin):
-    list_display = (
-    'user', 'created_at', 'status', 'dietary_restrictions', "first_time", "t_shirt_size")
+    list_display = ('user', 'madcon_id', 'created_at', 'status', 'dietary_restrictions', "first_time", "t_shirt_size")
     ordering = ('-created_at',)
     actions = [change_status_to_accepted]
 
