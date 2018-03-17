@@ -104,6 +104,7 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
 
 class MadConScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Event.objects.order_by('-start_time').filter(event_tags__name__contains='MADcon', start_time__year=datetime.datetime.now().year)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = EventSerializer
 
     def get_queryset(self):
