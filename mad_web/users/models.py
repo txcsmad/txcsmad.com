@@ -34,7 +34,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, default="M", null=True)
 
     def __str__(self):
-        return self.username
+        return self.full_name
 
     def get_absolute_url(self):
         return reverse('users:detail', kwargs={'username': self.username})
