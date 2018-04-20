@@ -80,10 +80,13 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = EventSerializer
     ordering = ('-start_time',)
+    page_size = 1000
 
     def get_queryset(self):
         # Optionally filter by tag
         queryset = Event.objects.order_by('-start_time')
+
+        # tag filtering
         tag = self.request.query_params.get('tag', None)
         if tag is not None:
             clean_tag = int(tag)
@@ -94,11 +97,11 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
                 raise NotFound(detail="The tag does not exist")
             if tag_object is not None:
                 queryset = tag_object.event_tags.all()
-        future = bool(self.request.query_params.get('future', None))
-        if future:
-            now = datetime.datetime.now()
-            now = now.replace(hour=0, minute=0, second=0, microsecond=0)
-            queryset = queryset.filter(start_time__gte=now)
+
+        # only show future events
+        now = datetime.datetime.now()
+        now = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        queryset = queryset.filter(start_time__gte=now)
         return queryset
 
 
