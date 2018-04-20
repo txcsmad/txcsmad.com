@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.utils.safestring import mark_safe
 from django.views.generic import DetailView, ListView, FormView
-from rest_framework import viewsets
+from rest_framework import viewsets, pagination
 from rest_framework.exceptions import NotFound
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -73,6 +73,8 @@ class EventConfirmAttendanceView(TaOrOfficerRequiredMixin, FormView):
         messages.add_message(self.request, messages.SUCCESS, 'Confirmed!')
         return reverse('home:feed')
 
+class EventPagination(pagination.PageNumberPagination):
+    page_size = 1000
 
 # ViewSets define the view behavior.
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
@@ -80,7 +82,7 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = EventSerializer
     ordering = ('-start_time',)
-    page_size = 1000
+    pagination_class = EventPagination
 
     def get_queryset(self):
         # Optionally filter by tag
