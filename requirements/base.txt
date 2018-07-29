@@ -44,7 +44,7 @@ redis>=2.10.0
 # Custom requirements
 
 # Mail
-django-anymail==0.4.2
+django-anymail~>1.2.1
 sendgrid==3.2.10
 
 # Rest API Framework
