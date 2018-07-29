@@ -69,9 +69,10 @@
                     <li class="{% block madcon_tab %}{% endblock %} nav-item">
                         <a class="nav-link" href="{% url 'madcon:madcon' %}">MADcon</a>
                     </li>
-                    <li class="{% block labs_tab %}{% endblock %} nav-item">
+                    <!-- Refactoring labs so taking this out for now -->
+                    <!-- <li class="{% block labs_tab %}{% endblock %} nav-item">
                         <a class="nav-link" href="{% url 'labs' %}">Labs</a>
-                    </li>
+                    </li> -->
                     {% if request.user.is_staff %}
                         <li class="{% block members_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'users:list' %}">Members</a>
@@ -143,8 +144,9 @@
     <div class="container">
         <div class="text">
             <ul class="social">
-                <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
-                        class="fa fa-slack"></i></a></li>
+                <!-- No one uses this slack anymore lol -->
+                <!-- <li><a href="https://utcsmad.slack.com" data-toggle="tooltip" title="Slack"><i
+                        class="fa fa-slack"></i></a></li> -->
                 <li><a href="https://facebook.com/groups/MADstudentorg/" data-toggle="tooltip" title="Facebook"><i
                         class="fa fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com/txcsmad" data-toggle="tooltip" title="Twitter"><i
