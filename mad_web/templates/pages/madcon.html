@@ -10,19 +10,20 @@
 {% block content %}
     <div class="mad-con-head text-center">
         <div class="man-con-logo-circle">
-            <img class="mad-con-logo" src="{% static 'images/mad-con-2018-logo.png' %}" alt="MADcon Logo"/>
+            <img class="mad-con-logo" src="{% static 'images/mad-con-logo-2019.png' %}" alt="MADcon Logo"/>
 
         </div>
-        <h2>April 21, 2018<br>Gates Dell Complex, UT Austin</h2>
-        {% if registration %}
+        <h2>March 9th, 2019<br>Gates Dell Complex, UT Austin</h2>
+        <!-- {% if registration %}
             <a class="btn btn-primary" href="{% url 'madcon:status' %}">Registration Status</a>
         {% else %}
             <a class="btn btn-primary" href="{% url 'madcon:register' %}">Register</a>
-        {% endif %}
+        {% endif %} -->
+        <a class="btn btn-primary" href="https://txcsmad.typeform.com/to/LsS1oj" target="_blank">Register</a>
         <a class="btn btn-primary" href="{% url 'madcon:schedule' %}">Schedule</a>
-        <a class="btn btn-primary" href="https://goo.gl/forms/5pBrJlVxabs3t11q1">Volunteer</a>
-        <a class="btn btn-primary" href="https://goo.gl/forms/fzKF4OhbSq5QBKF72">Teach a Workshop</a>
-        <a class="btn btn-primary" href="https://goo.gl/forms/Ai9P12yU0DTrA7tl1">Apply for Showcase</a>
+        <a class="btn btn-primary" href="https://goo.gl/forms/ywLilxIiLF65E2Df2" target="_blank">Volunteer</a>
+        <a class="btn btn-primary" href="https://goo.gl/forms/Q7qMquOdBoU9Q6Sk2" target="_blank">Teach a Workshop</a>
+        <a class="btn btn-primary" href="https://goo.gl/forms/Fak2YBPgEOe8ab2D3" target="_blank">Apply for Showcase</a>
     </div>
     <section id="mad-con-intro">
         <div class="container text-center">
@@ -46,7 +47,7 @@
                     <h3 class="event-header">Project Showcase</h3>
 
                     <p>Have a cool project you've been working on? Show it off at the MADcon Project Showcase!</p>
-                    <a class="btn btn-default" href="https://goo.gl/forms/Ai9P12yU0DTrA7tl1">Apply for Showcase</a>
+                    <a class="btn btn-default" href="https://goo.gl/forms/Fak2YBPgEOe8ab2D3" target="_blank">Apply for Showcase</a>
                 </div>
                 <div class="col-md-4">
                     <div class="icon">
@@ -56,7 +57,7 @@
                     <h3 class="event-header">People</h3>
 
                     <p>MADcon is an opportunity to learn new things, make new friends, and connect with industry engineers all in one jam-packed day of fun.</p>
-                    <a class="btn btn-default" href="{% url 'madcon:register' %}">Register</a>
+                    <a class="btn btn-default" href="https://txcsmad.typeform.com/to/LsS1oj" target="_blank">Register</a>
                 </div>
             </div>
         </div>
