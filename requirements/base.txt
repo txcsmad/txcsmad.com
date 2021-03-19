@@ -48,7 +48,7 @@ django-anymail==1.2.1
 sendgrid==3.2.10
 
 # Rest API Framework
-djangorestframework==3.4.4
+djangorestframework==3.11.2
 
 # Cleanup unused user uploaded files
 django_cleanup==0.4.2
